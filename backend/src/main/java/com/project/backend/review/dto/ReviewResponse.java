@@ -4,6 +4,9 @@ import com.project.backend.review.domain.Review;
 import lombok.Builder;
 import lombok.Getter;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Getter
 public class ReviewResponse {
@@ -47,6 +50,26 @@ public class ReviewResponse {
         this.semester = review.getSemester();
         this.date = review.getDate();
         this.rid = review.getRid();
+    }
+
+    public static ReviewResponse from(Review review){
+        return ReviewResponse.builder()
+                .subjectName(review.getSubjectName())
+                .content(review.getContent())
+                .nickname( review.getNickname())
+                .univName(review.getUnivName())
+                .rating(review.getRating())
+                .testType(review.getTestType())
+                .semester( review.getSemester())
+                .date(review.getDate())
+                .rid(review.getRid())
+                .build();
+    }
+
+    public static List<ReviewResponse> listFrom(List<Review> places){
+        return places.stream()
+                .map(ReviewResponse::from)
+                .collect(Collectors.toList());
     }
 
 
