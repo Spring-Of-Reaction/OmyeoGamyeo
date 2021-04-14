@@ -4,14 +4,12 @@ import com.project.backend.review.domain.Review;
 import lombok.Builder;
 import lombok.Getter;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Getter
 public class ReviewResponse {
 
-
+    private Long id;
     private String subjectName;
     private String content;
     private String nickname;
@@ -20,13 +18,14 @@ public class ReviewResponse {
     private String testType;
     private String professor;
     private String semester;
-    private LocalDate date;
-    private Long rid;
+    private LocalDate updateDate;
+
 
     @Builder
-    public ReviewResponse(String subjectName,String content, String nickname,
-                               String univName, Integer rating, String testType, String professor,
-                               String semester, LocalDate date, Long rid) {
+    public ReviewResponse(Long id, String subjectName,String content, String nickname,
+                          String univName, Integer rating, String testType, String professor,
+                          String semester, LocalDate updateDate) {
+        this.id = id;
         this.subjectName = subjectName;
         this.content = content;
         this.nickname = nickname;
@@ -35,11 +34,10 @@ public class ReviewResponse {
         this.testType = testType;
         this.professor =professor;
         this.semester = semester;
-        this.date = date;
-        this.rid = rid;
-    }
+        this.updateDate = updateDate; }
 
     public ReviewResponse(Review review){
+        this.id = review.getId();
         this.subjectName = review.getSubjectName();
         this.content = review.getContent();
         this.nickname = review.getNickname();
@@ -48,11 +46,17 @@ public class ReviewResponse {
         this.testType = review.getTestType();
         this.professor = review.getProfessor();
         this.semester = review.getSemester();
-        this.date = review.getDate();
-        this.rid = review.getRid();
+        this.updateDate = review.getUpdateDate();
     }
 
-    public static ReviewResponse from(Review review){
+
+
+    /*@Builder
+    public ReviewResponse(Long rid) {
+        this.rid = rid;
+    }*/
+
+    /*public static ReviewResponse from(Review review){
         return ReviewResponse.builder()
                 .subjectName(review.getSubjectName())
                 .content(review.getContent())
@@ -70,7 +74,7 @@ public class ReviewResponse {
         return places.stream()
                 .map(ReviewResponse::from)
                 .collect(Collectors.toList());
-    }
+    }*/
 
 
 }

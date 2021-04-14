@@ -1,4 +1,6 @@
 package com.project.backend.review.dto;
+
+
 import com.project.backend.review.domain.Review;
 import lombok.Builder;
 import lombok.Getter;
@@ -6,8 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class ReviewCreateRequest {
-
+public class ReviewUpdateRequest {
     private String subjectName;
     private String content;
     private String nickname;
@@ -17,9 +18,11 @@ public class ReviewCreateRequest {
     private String professor;
     private String semester;
 
-    public ReviewCreateRequest(String subjectName,String content, String nickname,
+
+    @Builder
+    public ReviewUpdateRequest(String subjectName,String content, String nickname,
                                String univName, Integer rating, String testType, String professor,
-                               String semester) {
+                               String semester){
         this.subjectName = subjectName;
         this.content = content;
         this.nickname = nickname;
@@ -31,6 +34,7 @@ public class ReviewCreateRequest {
     }
 
     public Review toReviewEntity() {
+
         return Review.builder()
                 .subjectName(subjectName)
                 .content(content)
@@ -43,3 +47,4 @@ public class ReviewCreateRequest {
                 .build();
     }
 }
+
