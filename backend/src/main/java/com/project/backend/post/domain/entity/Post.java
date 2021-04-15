@@ -42,5 +42,13 @@ public class Post {
         this.filename = filename;
         this.filepath = filepath;
     }
+    //수정시에 바뀔 수 있는 것만 값만 지정
+    public void update(String title, String content, Integer category, String filename, String filepath){
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.filename = filename;
+        this.filepath = filepath;
+    }
 
 }
