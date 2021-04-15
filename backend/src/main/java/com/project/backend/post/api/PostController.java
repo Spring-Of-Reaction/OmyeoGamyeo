@@ -28,4 +28,10 @@ public class PostController {
     public PostResponseDto findById(@PathVariable Long pid){
         return postService.findById(pid);
     }
+
+    @DeleteMapping("/api/v1/post/{pid}")
+    public Long delete(@PathVariable Long pid){
+        postService.delete(pid);
+        return pid;
+    }
 }

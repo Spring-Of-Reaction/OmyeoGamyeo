@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 public class PostSaveRequestDto {
+    private Integer pid;
     private String nickname;
     private String title;
     private String content;
@@ -21,7 +22,8 @@ public class PostSaveRequestDto {
     private LocalDate date;
 
     @Builder
-    public PostSaveRequestDto(String nickname, String title, String content, Integer category, Integer views, String filename, String filepath, LocalDate date){
+    public PostSaveRequestDto(Integer pid, String nickname, String title, String content, Integer category, Integer views, String filename, String filepath, LocalDate date){
+        this.pid = pid;
         this.nickname = nickname;
         this.title = title;
         this.content = content;
