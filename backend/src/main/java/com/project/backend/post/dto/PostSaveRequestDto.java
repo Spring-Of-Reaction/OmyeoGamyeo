@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 
 @Getter
 @NoArgsConstructor
@@ -16,8 +18,10 @@ public class PostSaveRequestDto {
     private Integer views;
     private String filename;
     private String filepath;
+    private LocalDate date;
+
     @Builder
-    public PostSaveRequestDto(String nickname, String title, String content, Integer category, Integer views, String filename, String filepath){
+    public PostSaveRequestDto(String nickname, String title, String content, Integer category, Integer views, String filename, String filepath, LocalDate date){
         this.nickname = nickname;
         this.title = title;
         this.content = content;
@@ -25,6 +29,7 @@ public class PostSaveRequestDto {
         this.views = views;
         this.filename = filename;
         this.filepath = filepath;
+        this.date = date;
     }
 
     public Post toPostEntity(){
@@ -36,6 +41,7 @@ public class PostSaveRequestDto {
                 .views(views)
                 .filename(filename)
                 .filepath(filepath)
+                .date(date)
                 .build();
     }
 }

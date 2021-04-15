@@ -14,7 +14,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment 가능
     private Long pid;
 
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String nickname;
     private String title;
     private String content;
