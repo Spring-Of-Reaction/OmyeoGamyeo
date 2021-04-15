@@ -118,11 +118,48 @@ public class PostControllerTest {
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         List<Post> all = postRepository.findAll();
-        System.out.println(savedPost.getTitle());
 
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
 
     }
+
+    @Test
+    public void Post_삭제() throws Exception{
+        //given
+        String nickname = "테스트 닉네임";
+        String title="테스트 게시글";
+        String content="테스트 본문";
+        Integer category = 1;
+        Integer views = 1;
+        String filename = "테스트 파일이름";
+        String filepath = "테스트 파일경로";
+        LocalDate date = LocalDate.now();
+
+        PostSaveRequestDto requestDto = PostSaveRequestDto.builder()
+                .nickname(nickname)
+                .title(title)
+                .content(content)
+                .category(category)
+                .views(views)
+                .filename(filename)
+                .filepath(filepath)
+                .date(date)
+                .build();
+
+        Integer deleteId = requestDto.getPid();
+
+        String url = "http://localhost:" + port + "api/v1/post" + deleteId;
+
+        //when
+        restTemplate.delete(url, HttpMethod.DELETE, requestDto);
+
+        //then
+        assertThat(postRepository.findAll().isEmpty());
+
+
+    }
+
+
 
 }
