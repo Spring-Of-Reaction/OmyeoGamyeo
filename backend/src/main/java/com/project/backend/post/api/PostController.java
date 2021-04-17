@@ -42,6 +42,10 @@ public class PostController {
         return postService.findAllDesc();
     }
 
+    //category별 1:일상, 2:질문
+    @GetMapping("/api/v1/post/category/{category}")
+    public List list_category(@PathVariable Integer category) { return postService.findByCategory(category);}
+
 
 
 }

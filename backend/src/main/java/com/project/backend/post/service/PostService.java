@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,5 +55,14 @@ public class PostService {
         return postRepository.findAllDesc().stream()
                 .map(PostListResponseDto::new) //.map(post-> new PostListResponseDto(post))
                 .collect(Collectors.toList());
+    }//postRepository 결과로 넘어온 Post의 Stream을 map통해 PostListResponseDto 변환, List로 변환
+
+    @Transactional(readOnly = true)
+    public List<PostListResponseDto> findByCategory(Integer category){
+        return postRepository.findByCategory(category).stream()
+                .sorted(Comparator.comparing(Post::getPid).reversed()) //먼저 만들어진게 아래 오도록
+                .map(PostListResponseDto::new)
+                .collect(Collectors.toList());
+
     }
 }
