@@ -23,12 +23,4 @@ public class PostUpdateRequestDto {
         this.filename = filename;
         this.filepath = filepath;
     }
-
-    @Builder
-    public PostUpdateRequestDto(String title, String content){
-        this.title = title;
-        this.content = content;
-    }
-
-
 }
