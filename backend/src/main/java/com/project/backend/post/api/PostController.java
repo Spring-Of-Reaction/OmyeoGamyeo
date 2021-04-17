@@ -7,6 +7,8 @@ import com.project.backend.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 public class PostController {
@@ -34,4 +36,12 @@ public class PostController {
         postService.delete(pid);
         return pid;
     }
+
+    @GetMapping("/api/v1/post")
+    public List list(){
+        return postService.findAllDesc();
+    }
+
+
+
 }

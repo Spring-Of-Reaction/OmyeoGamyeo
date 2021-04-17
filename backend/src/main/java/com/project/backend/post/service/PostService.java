@@ -2,12 +2,16 @@ package com.project.backend.post.service;
 
 import com.project.backend.post.domain.entity.Post;
 import com.project.backend.post.domain.repository.PostRepository;
+import com.project.backend.post.dto.PostListResponseDto;
 import com.project.backend.post.dto.PostResponseDto;
 import com.project.backend.post.dto.PostSaveRequestDto;
 import com.project.backend.post.dto.PostUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -43,5 +47,12 @@ public class PostService {
                 orElseThrow(()->new
                         IllegalArgumentException("해당 게시글이 없습니다. id" + pid));
         postRepository.delete(post);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostListResponseDto> findAllDesc() {
+        return postRepository.findAllDesc().stream()
+                .map(PostListResponseDto::new) //.map(post-> new PostListResponseDto(post))
+                .collect(Collectors.toList());
     }
 }
