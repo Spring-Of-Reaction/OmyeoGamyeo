@@ -60,4 +60,43 @@ public class PostRepositoryTest {
         assertThat(post.getContent()).isEqualTo(content);
     }
 
+    @Test
+    public void 카테고리정렬(){
+        //given
+        postRepository.save(Post.builder()
+                .nickname("nickname1")
+                .title("title1")
+                .content("content1")
+                .category(1)
+                .views(1)
+                .date(LocalDate.now())
+                .build());
+
+        postRepository.save(Post.builder()
+                .nickname("nickname2")
+                .title("title2")
+                .content("content2")
+                .category(1)
+                .views(1)
+                .date(LocalDate.now())
+                .build());
+
+        postRepository.save(Post.builder()
+                .nickname("nickname3")
+                .title("title3")
+                .content("content3")
+                .category(2)
+                .views(1)
+                .date(LocalDate.now())
+                .build());
+
+
+        //when
+        List<Post> postList = postRepository.findByCategory(1);
+
+        //then
+        postList.forEach(post -> System.out.println(post.getTitle()));
+
+    }
+
 }
