@@ -38,6 +38,14 @@ ul {
   text-align: center;
 }
 
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 0 20px 0;
+  border-top: 3px solid #0042fe;
+  justify-content: space-between;
+}
+
 nav {
   display: flex;
   justify-content: space-around;
@@ -52,6 +60,7 @@ nav {
 .notice,
 .mypage,
 .review,
+.footer,
 .error {
   margin: 30px 0;
   text-align: center;
