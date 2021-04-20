@@ -11,6 +11,7 @@ import java.time.LocalDate;
 public class Post {
 
     @Id //PK
+    @Column(name="pid")
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment 가능
     private Long pid;
 
