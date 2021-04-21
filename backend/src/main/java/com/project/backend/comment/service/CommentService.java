@@ -35,4 +35,12 @@ public class CommentService {
                 .map(CommentListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void delete(Long pid, Long cid){
+        Comment comment = commentRepository.findById(cid)
+        .orElseThrow(()->new
+                IllegalArgumentException("해당 댓글이 없습니다."));
+        commentRepository.delete(comment);
+    }
 }
