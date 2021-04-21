@@ -44,8 +44,17 @@ public class PostController {
 
     //category별 1:일상, 2:질문
     @GetMapping("/api/post/category/{category}")
-    public List list_category(@PathVariable Integer category) { return postService.findByCategory(category);}
+    public List list_category(@PathVariable Integer category){
+        return postService.findByCategory(category);}
 
+    @GetMapping("api/post/search/title")
+    public List searchTitle(@RequestParam("keyword") String keyword){
+        return postService.searchTitle(keyword);
+    }
 
+    @GetMapping("api/post/search/content")
+    public List searchContent(@RequestParam("keyword") String keyword){
+        return postService.searchContent(keyword);
+    }
 
 }

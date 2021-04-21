@@ -63,6 +63,21 @@ public class PostService {
                 .sorted(Comparator.comparing(Post::getPid).reversed()) //먼저 만들어진게 아래 오도록
                 .map(PostListResponseDto::new)
                 .collect(Collectors.toList());
+    }
 
+    @Transactional
+    public List<PostListResponseDto> searchTitle(String keyword){
+        return postRepository.findByTitleContaining(keyword).stream()
+                .sorted(Comparator.comparing(Post::getPid).reversed())
+                .map(PostListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<PostListResponseDto> searchContent(String keyword){
+        return postRepository.findByContentContaining(keyword).stream()
+                .sorted(Comparator.comparing(Post::getPid).reversed())
+                .map(PostListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
