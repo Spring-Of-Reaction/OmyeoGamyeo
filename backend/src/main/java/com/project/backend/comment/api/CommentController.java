@@ -31,4 +31,10 @@ public class CommentController {
 
     }
 
+    @DeleteMapping("/api/post/{pid}/comment/{cid}")
+    public Long delete(@PathVariable Long pid, @PathVariable Long cid){
+        commentService.delete(pid, cid);
+        return cid;
+    }
+
 }
