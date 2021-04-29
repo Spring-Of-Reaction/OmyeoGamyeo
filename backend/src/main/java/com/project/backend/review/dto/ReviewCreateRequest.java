@@ -1,6 +1,5 @@
 package com.project.backend.review.dto;
-import com.project.backend.review.domain.Review;
-import lombok.Builder;
+import com.project.backend.review.domain.entity.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

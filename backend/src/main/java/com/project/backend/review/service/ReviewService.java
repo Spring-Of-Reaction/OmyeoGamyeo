@@ -1,8 +1,8 @@
 package com.project.backend.review.service;
 
 
-import com.project.backend.review.dao.ReviewRepository;
-import com.project.backend.review.domain.Review;
+import com.project.backend.review.domain.repository.ReviewRepository;
+import com.project.backend.review.domain.entity.Review;
 import com.project.backend.review.dto.ReviewCreateRequest;
 import com.project.backend.review.dto.ReviewResponse;
 import com.project.backend.review.dto.ReviewUpdateRequest;

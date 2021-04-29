@@ -1,6 +1,6 @@
 package com.project.backend.review.dto;
 
-import com.project.backend.review.domain.Review;
+import com.project.backend.review.domain.entity.Review;
 import lombok.Builder;
 import lombok.Getter;
 import java.time.LocalDate;

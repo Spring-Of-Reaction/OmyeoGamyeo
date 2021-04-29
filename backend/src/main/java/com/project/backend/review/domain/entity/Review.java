@@ -1,4 +1,4 @@
-package com.project.backend.review.domain;
+package com.project.backend.review.domain.entity;
 
 import com.project.backend.BaseTimeEntity;
 import lombok.*;
