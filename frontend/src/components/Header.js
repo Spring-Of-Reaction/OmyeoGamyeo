@@ -11,6 +11,9 @@ function Header({ location, history }) {
   return (
     <header className='header'>
       {/*<strong>강의후기</strong>*/}
+      
+
+
       <ul>
         <li><Link style={navStyle} to='/'><h3>ㅇㅁ<br/>ㄱㅁ</h3></Link></li>
         <li><Link style={navStyle} to='/review'><h3>강의후기</h3></Link></li>

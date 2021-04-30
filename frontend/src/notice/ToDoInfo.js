@@ -5,7 +5,6 @@ class ToDoInfo extends Component {
     const { data } = this.props;
     return (
       <div>
-        
         <a href={data.text2}><span>{data.text}</span></a>
       </div>
     );

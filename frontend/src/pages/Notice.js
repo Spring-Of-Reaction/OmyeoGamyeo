@@ -27,6 +27,46 @@ class Notice extends Component {
           text: '세종대학교',
           text2: "http://www.sejong.ac.kr/",
         },
+        {
+          id: 5,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 6,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 7,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 8,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 9,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 10,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 11,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 12,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
       ],
       search: '',
     };
@@ -40,8 +80,8 @@ class Notice extends Component {
     render() {
       const { toDoList, search } = this.state;
       return (
-        <div>
-            <input value={search} name="search" onChange={this.handleSearch} placeholder=" ..검색" />
+        <div className= 'notice'>
+            <input value={search} name="search" onChange={this.handleSearch} placeholder=" ..학교 이름을 검색하세요" />
             <ToDoList
                 data={toDoList.filter((data) => data.text.indexOf(search) !== -1)}
             />

@@ -9,12 +9,13 @@ import Footer from './components/Footer';
 import Notice from './pages/Notice';
 import ReviewPage from './pages/Review';
 
+
 function App() {
   return (
     <>
+    
       <Router>
-      <Route path='/' component={Header} />
-     {/* <Nav/>*/}
+      <Route component={Header} /> 
         <Switch>
         <Route exact path='/' component={MainPage} />
           <Route path='/post' component={Post} />
@@ -24,7 +25,7 @@ function App() {
           <Route path='/review' component={ReviewPage} />
           <Route render={() => <div className='error'>에러 페이지</div>} />
         </Switch>
-        <Route path='/' component={Footer} />
+      <Route component={Footer} />
       </Router>
     </>
   );
