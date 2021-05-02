@@ -1,6 +1,7 @@
 package com.project.backend.review.api;
 
 import com.project.backend.review.dto.ReviewCreateRequest;
+import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.review.dto.ReviewResponse;
 import com.project.backend.review.dto.ReviewUpdateRequest;
 import com.project.backend.review.service.ReviewService;
@@ -33,7 +34,6 @@ public class ReviewController {
                                  @RequestBody ReviewUpdateRequest request){
 
         reviewService.update(id, request);
-
         return ResponseEntity.noContent().build();
 
     }
@@ -53,9 +53,18 @@ public class ReviewController {
     }
 
     @GetMapping("/review")
-    public ResponseEntity<List<ReviewResponse>> findAll() {
-        List<ReviewResponse> reviewList = reviewService.findAllDesc();
-
+    public ResponseEntity<List<ReviewListResponse>> findAll() {
+        List<ReviewListResponse> reviewList = reviewService.findAllDesc();
         return ResponseEntity.ok(reviewList);
+    }
+
+    @GetMapping("/review/search/univ")
+    public List searchTitle(@RequestParam("univName") String univName){
+        return reviewService.searchUniv(univName);
+    }
+
+    @GetMapping("/review/search/subject")
+    public List searchContent(@RequestParam("subjectName") String subjectName){
+        return reviewService.searchSubject(subjectName);
     }
 }

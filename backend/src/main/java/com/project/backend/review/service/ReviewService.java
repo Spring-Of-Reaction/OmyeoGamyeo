@@ -4,11 +4,14 @@ package com.project.backend.review.service;
 import com.project.backend.review.domain.repository.ReviewRepository;
 import com.project.backend.review.domain.entity.Review;
 import com.project.backend.review.dto.ReviewCreateRequest;
+import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.review.dto.ReviewResponse;
 import com.project.backend.review.dto.ReviewUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,9 +53,25 @@ public class ReviewService {
     }
 
     @Transactional(readOnly = true)
-    public List<ReviewResponse>findAllDesc(){
+    public List<ReviewListResponse>findAllDesc(){
         return reviewRepository.findAllDesc().stream()
-                .map(ReviewResponse::new)
+                .map(ReviewListResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<ReviewListResponse> searchUniv(String univName){
+        return reviewRepository.findByUnivContaining(univName).stream()
+                .sorted(Comparator.comparing(Review::getId).reversed())
+                .map(ReviewListResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<ReviewListResponse> searchSubject(String subjectName){
+        return reviewRepository.findBySubjectContaining(subjectName).stream()
+                .sorted(Comparator.comparing(Review::getId).reversed())
+                .map(ReviewListResponse::new)
                 .collect(Collectors.toList());
     }
 }

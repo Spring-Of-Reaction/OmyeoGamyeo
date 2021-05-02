@@ -11,4 +11,6 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT p FROM Review p ORDER BY p.id DESC")
     List<Review> findAllDesc();
+    List<Review> findByUnivContaining(String univName);
+    List<Review> findBySubjectContaining(String subjectName);
 }
