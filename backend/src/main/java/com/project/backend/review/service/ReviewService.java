@@ -8,6 +8,7 @@ import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.review.dto.ReviewResponse;
 import com.project.backend.review.dto.ReviewUpdateRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,14 +54,14 @@ public class ReviewService {
     }
 
     @Transactional(readOnly = true)
-    public List<ReviewListResponse>findAllDesc(){
-        return reviewRepository.findAllDesc().stream()
+    public List<ReviewListResponse>findAllDesc(Pageable pageable){
+        return reviewRepository.findAllDesc(pageable).stream()
                 .map(ReviewListResponse::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public List<ReviewListResponse> searchUniv(String univName){
+    public List<ReviewListResponse>searchUniv(String univName){
         return reviewRepository.findByUnivContaining(univName).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())
                 .map(ReviewListResponse::new)
@@ -68,7 +69,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public List<ReviewListResponse> searchSubject(String subjectName){
+    public List<ReviewListResponse>searchSubject(String subjectName){
         return reviewRepository.findBySubjectContaining(subjectName).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())
                 .map(ReviewListResponse::new)

@@ -1,14 +1,18 @@
 package com.project.backend.review.api;
 
+import com.project.backend.review.domain.repository.ReviewRepository;
 import com.project.backend.review.dto.ReviewCreateRequest;
 import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.review.dto.ReviewResponse;
 import com.project.backend.review.dto.ReviewUpdateRequest;
 import com.project.backend.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -48,17 +52,16 @@ public class ReviewController {
     @GetMapping("/review/{id}")
     public ResponseEntity<ReviewResponse> findById(@PathVariable Long id){
         ReviewResponse reviewResponse = reviewService.findById(id);
-
         return ResponseEntity.ok(reviewResponse);
     }
 
     @GetMapping("/review")
-    public ResponseEntity<List<ReviewListResponse>> findAll() {
-        List<ReviewListResponse> reviewList = reviewService.findAllDesc();
+    public ResponseEntity<List<ReviewListResponse>> findAll(@PageableDefault(size=5, sort="updateDate") Pageable pageable) {
+        List<ReviewListResponse> reviewList = reviewService.findAllDesc(pageable);
         return ResponseEntity.ok(reviewList);
     }
 
-    @GetMapping("/review/search/univ")
+   @GetMapping("/review/search/univ")
     public List searchTitle(@RequestParam("univName") String univName){
         return reviewService.searchUniv(univName);
     }
