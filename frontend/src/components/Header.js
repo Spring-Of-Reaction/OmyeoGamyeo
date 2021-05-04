@@ -21,6 +21,8 @@ function Header({ location, history }) {
         <li><Link style={navStyle} to='/find'><h3>학점교류 학교 길찾기</h3></Link></li>
         <li><Link style={navStyle} to='/notice'><h3>학교별 공지사항</h3></Link></li>
         <li><Link style={navStyle} to='/mypage'><h3>마이페이지</h3></Link></li>
+        <li><Link style={navStyle} to='/login'><h3>로그인</h3></Link></li>
+        <li><Link style={navStyle} to='/signup'><h3>회원가입</h3></Link></li>
         
       </ul>
 
