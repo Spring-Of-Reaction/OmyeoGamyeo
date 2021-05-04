@@ -67,6 +67,67 @@ class Notice extends Component {
           text: '세종대학교',
           text2: "http://www.sejong.ac.kr/",
         },
+        {
+          id: 1,
+          text: '강원대학교',
+          text2: " http://www.kangwon.ac.kr/",
+          
+        },
+        {
+          id: 2,
+          text: '서울대학교',
+          text2: " http://www.snu.ac.kr/",
+        },
+        {
+          id: 3,
+          text: '숙명여자대학교',
+          text2: "http://www.sookmyung.ac.kr/",
+        },
+        {
+          id: 4,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 5,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 6,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 7,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 8,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 9,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 10,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 11,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
+        {
+          id: 12,
+          text: '세종대학교',
+          text2: "http://www.sejong.ac.kr/",
+        },
       ],
       search: '',
     };
