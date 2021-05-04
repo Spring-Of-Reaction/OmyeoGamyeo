@@ -60,7 +60,7 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
+   /* @Transactional
     public List<ReviewListResponse>searchUniv(String univName){
         return reviewRepository.findByUnivContaining(univName).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())
@@ -74,5 +74,5 @@ public class ReviewService {
                 .sorted(Comparator.comparing(Review::getId).reversed())
                 .map(ReviewListResponse::new)
                 .collect(Collectors.toList());
-    }
+    }*/
 }

@@ -61,7 +61,7 @@ public class ReviewController {
         return ResponseEntity.ok(reviewList);
     }
 
-   @GetMapping("/review/search/univ")
+   /*@GetMapping("/review/search/univ")
     public List searchTitle(@RequestParam("univName") String univName){
         return reviewService.searchUniv(univName);
     }
@@ -69,5 +69,5 @@ public class ReviewController {
     @GetMapping("/review/search/subject")
     public List searchContent(@RequestParam("subjectName") String subjectName){
         return reviewService.searchSubject(subjectName);
-    }
+    }*/
 }
