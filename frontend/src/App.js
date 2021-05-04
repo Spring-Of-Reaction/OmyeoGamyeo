@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FindPage from './pages/FindPage';
 import MainPage from './pages/MainPage';
 import MyPage from './pages/MyPage';
-import Free from './pages/Free';
+import Post from './pages/Post';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Notice from './pages/Notice';
-import ReviewPage from './pages/ReviewPage'
+import ReviewPage from './pages/Review';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
      {/* <Nav/>*/}
         <Switch>
         <Route exact path='/' component={MainPage} />
-          <Route path='/free' component={Free} />
+          <Route path='/post' component={Post} />
           <Route path='/find' component={FindPage} />
           <Route path='/mypage' component={MyPage} />
           <Route path='/notice' component={Notice} />

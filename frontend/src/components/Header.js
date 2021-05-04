@@ -14,10 +14,10 @@ function Header({ location, history }) {
       <ul>
         <li><Link style={navStyle} to='/'><h3>ㅇㅁ<br/>ㄱㅁ</h3></Link></li>
         <li><Link style={navStyle} to='/review'><h3>강의후기</h3></Link></li>
-        <li><Link style={navStyle} to='/free'><h3>자유게시판</h3></Link></li>
+        <li><Link style={navStyle} to='/post'><h3>자유게시판</h3></Link></li>
         <li><Link style={navStyle} to='/find'><h3>학점교류 학교 길찾기</h3></Link></li>
         <li><Link style={navStyle} to='/notice'><h3>학교별 공지사항</h3></Link></li>
-        <li><Link style={navStyle} to='/mypage'><h3>로그인</h3></Link></li>
+        <li><Link style={navStyle} to='/mypage'><h3>마이페이지</h3></Link></li>
         
       </ul>
 

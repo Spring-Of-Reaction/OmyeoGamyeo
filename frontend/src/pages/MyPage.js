@@ -5,7 +5,7 @@ function MyPage() {
   return (
   
       
-      <div className='mypage'>로그인 페이지 입니다.</div>
+      <div className='mypage'>마이 페이지 입니다.</div>
       
   )
 }
