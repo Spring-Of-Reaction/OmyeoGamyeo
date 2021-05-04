@@ -1,0 +1,20 @@
+##Review Create test
+
+POST http://localhost:8080/api/review
+Content-Type: application/json
+
+{"subjectName": "인공지능",
+  "content":"인공지능 수업",
+  "nickname":"나빌레라",
+  "univName":"숙명여대",
+  "rating": 4,
+  "testType":"온라인 시험(중간,기말)",
+  "professor": "채희준",
+  "semester":"2021-1"
+}
+
+###
+POST http://localhost:8080/notice
+Content-Type: application/json
+
+{"title": "when this rain drops", "content": "I do really upset w/ this error"}
