@@ -1,22 +1,22 @@
 import React,{Component}  from 'react';
-import ReviewService from './ReviewService';
+import PostService from './FreePostService';
 
-class ViewingPage extends Component {
+class FreepostViewingPage extends Component {
     constructor(props) {
         super(props);
 
          
         this.state = { 
-            subjectName: this.props.match.params.subjectName,
-            Review: {}
+            title: this.props.match.params.title,
+            Posts: {}
         }
 
     }
 
-    
+   
     componentDidMount() {
-        ReviewService.getOneReview(this.state.subjectName).then( (res) => {
-            this.setState({Review: res.data});
+        PostService.getOnePost(this.state.title).then( res => {
+            this.setState({Posts: res.data});
         });
     }
 
@@ -31,7 +31,7 @@ class ViewingPage extends Component {
     }
 
     goToList() {
-        this.props.history.push('/review');
+        this.props.history.push('/post');
     }
 
     render() {
@@ -41,21 +41,20 @@ class ViewingPage extends Component {
                 <div className = "card col-md-6 offset-md-3">
                     <h3 className ="text-center"> 조회 페이지</h3>
                     <div className = "card-body">
+                            
+                          
                             <div className = "row">      
-                               <div>{this.props.match.params.subjectName}</div>
-                                <label> 과목명 </label>:{this.props.match.params.subjectName}
+                               
+                                <label> 제목 </label> : {this.state.Posts.title}
                             </div>
 
                             <div className = "row">
                                 <label> Contents </label> : 
-                                {this.state.Review.contents} 
+                                {this.state.Posts.contents} 
                             </div >
-                            <div className = "row">
-                                <label> professor  </label>: 
-                                {this.state.Review.professor}
-                            </div>
-                           
-                            {this.returnDate(this.state.Review.createdTime, this.state.Review.updatedTime) }
+                            
+
+                            {this.returnDate(this.state.Posts.createdTime, this.state.Posts.updatedTime) }
                             
                             <button className="btn btn-primary" onClick={this.goToList.bind(this)} style={{marginLeft:"10px"}}>글 목록으로 이동</button>
                     </div>
@@ -66,4 +65,4 @@ class ViewingPage extends Component {
     }
 }
 
-export default ViewingPage;
+export default FreepostViewingPage;

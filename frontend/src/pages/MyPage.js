@@ -1,11 +1,23 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Mypagemain from '../mypage/Mypagemain';
+import Scraps from '../mypage/Scraps';
+import Mylist from '../mypage/Mylist';
+import Inform from '../mypage/Inform';
 
 
 function MyPage() {
   return (
   
+      <div>
       
-      <div className='mypage'>마이 페이지 입니다.</div>
+    <Switch>
+        <Route exact path='/mypage' component={Mypagemain} />
+        <Route path='/mypage/scraps' component={Scraps} />
+        <Route path='/mypage/mylist' component={Mylist} />
+        <Route path='/mypage/Inform' component={Inform} />
+        </Switch>
+      </div>
       
   )
 }

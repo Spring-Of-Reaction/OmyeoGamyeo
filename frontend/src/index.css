@@ -36,6 +36,10 @@ ul {
   align-content: flex-start;
   flex-wrap: wrap;
 }
+.Notice ul li {
+  width: 180px;
+  text-align: center;
+}
 
 .header ul li {
   margin: 0 15px 0 0;
@@ -52,7 +56,12 @@ ul {
 }
 
 .body {
-  margin-top: 170px;
+  margin-top: 150px;
+}
+.main {
+  background-color: #0042fe;
+  color: white;
+  font-size: 4rem;
 }
 
 .find,

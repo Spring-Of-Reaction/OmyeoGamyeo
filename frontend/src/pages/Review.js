@@ -13,7 +13,7 @@ function Review() {
         <Switch>
         <Route exact path='/review' component={ListPage} />
         <Route path='/review/writingpage' component={WritingPage} />
-        <Route path='/review/viewingpage' component={ViewingPage} />
+        <Route path='/review/:subjectName' component={ViewingPage} />
         </Switch>
 
 

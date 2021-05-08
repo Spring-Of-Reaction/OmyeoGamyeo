@@ -30,7 +30,7 @@ function App() {
           <Route path='/signup' component={Signup} />
           <Route render={() => <div className='error'>에러 페이지</div>} />
         </Switch>
-        </div>
+      </div>
       <Route component={Footer} />
       </Router>
     </>

@@ -1,18 +1,20 @@
 import axios from 'axios';
 
-{/* 서버와 통신할 spring boot api URL
-const review_url=" "  
+const review_url="/review"  
 
 class ReviewService {
 
-    getBoards(){
+    getReview(){
         return axios.get(review_url);
     }
 
     createReview(review){
         return axios.post(review_url,review);
     }
+
+    getOneReview(no){
+        return axios.get(review_url+'/'+no);
+    }
 }
 
 export default new ReviewService();
-*/}
