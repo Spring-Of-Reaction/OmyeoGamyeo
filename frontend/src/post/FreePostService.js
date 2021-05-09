@@ -13,7 +13,7 @@ class FreepostService {
     }
 
     getOnePost(no){
-        return axios.post(post_url+'/'+no);
+        return axios.get(post_url+'/'+no);
     }
 }
 
