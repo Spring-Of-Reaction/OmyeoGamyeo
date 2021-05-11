@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-{/* 서버와 통신할 spring boot api URL
-const review_url=" "  
+const review_url="/review"
 
 class ReviewService {
 
-    getBoards(){
+    getReview(){
         return axios.get(review_url);
     }
 
@@ -15,4 +14,3 @@ class ReviewService {
 }
 
 export default new ReviewService();
-*/}
