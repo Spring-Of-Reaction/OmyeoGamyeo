@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
+import ReviewService from './ReviewService';
 
 class ListPage extends Component{
-  /*constructor(props) {
+  constructor(props) {
     super(props)
 
     this.state = { 
@@ -15,7 +16,7 @@ class ListPage extends Component{
     ReviewService.getReview().then((res) => {
         this.setState({ Review : res.data});
     });
-} */
+}
 
 createReview(){
   this.props.history.push('/review/writingpage')
@@ -27,6 +28,31 @@ createReview(){
       <div>
          <h2>강의 후기</h2>
       <div className='Listpage'> 목록 페이지 입니다.</div>
+          <div className ="row">
+              <table className="table table-striped table-bordered">
+                  <thead>
+                  <tr>
+                      <th>강의명 </th>
+                      <th>학교명 </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {
+                      this.state.Review.map(
+                          Review =>
+                              /*
+                              <tr key = {Review.no}>*/
+                              <tr>
+                                  <td> {Review.subjectName} </td>
+                                  <td> {Review.univName} </td>
+                              </tr>
+                      )
+                  }
+                  </tbody>
+              </table>
+          </div>
+
+          <Link to="/review/writingpage"> <button> 글 작성 </button></Link>
       <button onClick={this.createReview}> 글 작성 </button>
       <Link to="/review/viewingpage"> <button> 글을보러가기 </button></Link>
       </div>

@@ -1,10 +1,11 @@
 import React from 'react';
+import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FindPage from './pages/FindPage';
-import MainPage from './pages/MainPage';
+import Main from './pages/Main';
+import Navbar from './components/Navbar';
 import MyPage from './pages/MyPage';
 import Post from './pages/Post';
-import Header from './components/Header';
 import Footer from './components/Footer';
 import Notice from './pages/Notice';
 import ReviewPage from './pages/Review';
@@ -17,10 +18,9 @@ function App() {
     <>
     
       <Router>
-      <Route component={Header} /> 
-      <div className='body'>
+      <Navbar/>
         <Switch>
-        <Route exact path='/' component={MainPage} />
+        <Route exact path='/' exact component={Main} />
           <Route path='/post' component={Post} />
           <Route path='/find' component={FindPage} />
           <Route path='/mypage' component={MyPage} />
@@ -30,10 +30,8 @@ function App() {
           <Route path='/signup' component={Signup} />
           <Route render={() => <div className='error'>에러 페이지</div>} />
         </Switch>
-        </div>
-      <Route component={Footer} />
       </Router>
-    </>
+        </>
   );
 }
 
