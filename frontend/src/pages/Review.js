@@ -6,21 +6,26 @@ import ViewingPage from '../review/ViewingPage';
 
 
 function Review() {
-
-
-  return (
+  const tempStyle={
+    width:"100%",
+    height:"800px",
+    background:"yellow",
+    display: "flex",
+    }
     
+  
+  return (
+    <div>
         <Switch>
         <Route exact path='/review' component={ListPage} />
-        <Route path='/review/writingpage' component={WritingPage} />
-        <Route path='/review/:subjectName' component={ViewingPage} />
+        <Route path='/review/writingpage/:id' component={WritingPage} />
+        <Route path='/review/:id' component={ViewingPage} />
         </Switch>
-
-
-
-        
+       </div>   
   )
   
 }
+
+
 
 export default Review;

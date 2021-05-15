@@ -12,9 +12,9 @@ function Post()
        
             
         <Switch>
-        <Route exact path='/post' component={PostListPage} />
-        <Route path='/post/writingpage' component={PostWritingPage} />
-        <Route path='/post/:title' component={PostViewingPage} />
+        <Route exact path='/api/post' component={PostListPage} />
+        <Route path='/api/post/writingpage/:pid' component={PostWritingPage} />
+        <Route path='/api/post/:pid' component={PostViewingPage} />
         </Switch>
 
           

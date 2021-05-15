@@ -1,4 +1,6 @@
 import React from 'react';
+import '../review/Review.css';
+import Navbar from '../components/Navbar';
 import { RenderAfterNavermapsLoaded, NaverMap } from 'react-naver-maps';  
 {/*function getLocation() {
   if (navigator.geolocation) { // GPS를 지원하면
@@ -16,9 +18,12 @@ import { RenderAfterNavermapsLoaded, NaverMap } from 'react-naver-maps';
   }
 }*/}
 
+
+
 function FindPage() {
   return (
-    <div>
+    <div class='container'>
+      <div className='map'>
       <RenderAfterNavermapsLoaded
       ncpClientId={'5bq5fdsx8a'} // 자신의 네이버 계정에서 발급받은 Client ID
       error={<p>Maps Load Error</p>}
@@ -36,7 +41,7 @@ function FindPage() {
       />
 
       </RenderAfterNavermapsLoaded>
-      <div className='find'>길찾기 페이지 입니다.</div>
+      <div className='find'></div></div>
     </div>
   );
 }

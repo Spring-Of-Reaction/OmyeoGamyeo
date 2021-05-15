@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import FreepostService from './FreePostService';
+import FreePostService from './FreePostService';
+import '../review/Review.css';
 
 class FreepostWritingPage extends Component{
     constructor(props){
@@ -10,7 +11,7 @@ class FreepostWritingPage extends Component{
         content:'',
         date:0,
         category:0,
-        views:'',
+        views:0,
         filename:'',
         filepath:'',
         nickname:'',
@@ -29,7 +30,7 @@ class FreepostWritingPage extends Component{
 }
 
 cancel() {
-    this.props.history.push('/post');
+    this.props.history.push('/api/post');
 }
 
  
@@ -76,22 +77,102 @@ createPost = (event) => {
     
     console.log("Freepost => "+ JSON.stringify(Freepost));
 
-    FreepostService.createPost(Freepost).then(res => {
+    if (this.state.pid === 'create') {
+        FreePostService.createPost(Freepost).then(res => {
+            this.props.history.push('/api/post');
+        });
+    } else {
+        FreePostService.updatePost(this.state.pid, Freepost).then(res => {
+            this.props.history.push('/api/post');
+        });
+    } 
+    /*
+    FreePostService.createPost(Freepost).then(res => {
         this.props.history.push('/post');
-    });
+    });*/
     
 }
+getTitle() {
+    if (this.state.id === 'create') {
+        return <h2 className="reviewnaming">새 글을 작성해주세요</h2>
+    } else {
+        return <h2 className="reviewnaming">글을 수정합니다</h2>
+    }
+}
+componentDidMount() {
+    if (this.state.pid === 'create') {
+        return
+    } else {
+        FreePostService.getOnePost(this.state.pid).then( (res) => {
+            let FreePost = res.data;
+            console.log("FreePost => "+ JSON.stringify(FreePost));
+            
+            this.setState({
 
-
+                title:FreePost.title,
+                content:FreePost.content,
+                date:FreePost.date,
+                category:FreePost.category,
+                views:FreePost.views,
+                filename:FreePost.filename,
+                filepath:FreePost.filepath,
+                nickname:FreePost.nickname,
+                });
+        });
+    }
+}
 render() {
     return (
         <div>
             <div className = "container">
-                <div className = "row">
-                    <div className = "card col-md-6 offset-md-3 offset-md-3">
-                        <h3 className="text-center">새글을 작성해주세요</h3>
+                    {this.getTitle()}
                         <div className = "card-body">
-                            <form>
+                            <form className = "form-design">
+
+                            <div className = "form-group">
+                                    <label className="labels"> 제목  </label>
+                                    <input type="text" placeholder="제목" name="subjectName" className="form-control" 
+                                   value={this.state.title} onChange={this.changetitleHandler}/>
+                                </div>
+                                <div className = "form-group">
+                                <label className="labels"> 내용  </label>
+                                   <input type="text" placeholder="내용" name="content" className="form-control-sub" 
+                                    value={this.state.content} onChange={this.changecontentHandler}/>
+                                </div>
+                                <div className = "form-group">
+                                    <label className="labels"> 날짜  </label>
+                                    <input type="text" placeholder="날짜" name="date" className="form-control" 
+                                    value={this.state.date} onChange={this.changedateHandler} />
+                                </div>
+                                <div className = "form-group">
+                                <label className="labels"> 카테고리  </label>
+                                <input placeholder="카테고리" name="category" className="form-control" 
+                                     value={this.state.category} onChange={this.changecategoryHandler}/>
+                            
+                                </div>
+                                <div className = "form-group">
+                                <label className="labels"> 조회수  </label>
+                                    <input placeholder="조회수" name="views" className="form-control" 
+                                     value={this.state.views} onChange={this.changeviewsHandler}/>
+                                </div>
+                                
+                                   <div className = "form-group">
+                                        <label className="labels"> 파일이름  </label>
+                                        <input type="file" placeholder="" name="filename" className="form-control" 
+                                         value={this.state.filename} onChange={this.changefilenameHandler}/>
+                                    </div>
+                                    <div className = "form-group">
+                                        <label className="labels"> 닉네임  </label>
+                                        <input type="text" placeholder="" name="nickname" className="form-control" 
+                                         value={this.state.nickname} onChange={this.changenicknameHandler}/>
+                                    </div>
+                                    <div className = "form-group">
+                                        <label className="labels"> 파일경로  </label>
+                                        <input type="file" placeholder="" name="filepath" className="form-control" 
+                                         value={this.state.filepath} onChange={this.changefilepathHandler}/>
+                                    </div>
+                                    
+                                {/*
                                 <div className = "form-group">
                                     <label> Type </label>
                                     <select placeholder="type" name="type" className="form-control" 
@@ -109,16 +190,16 @@ render() {
                                         <label> 내용  </label>
                                         <textarea placeholder="" name="content" className="form-control" 
                                         />
-                                    </div>
+                                </div>*/}
+                                <div className = "button-group">
                                     <button className="btn btn-success" onClick={this.createPost} style={{marginLeft:"10px"}}>등록</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft:"10px"}}>취소</button>
+                                    </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
+            
     );
 }}
 

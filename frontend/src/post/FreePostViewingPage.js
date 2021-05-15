@@ -1,5 +1,6 @@
 import React,{Component}  from 'react';
-import PostService from './FreePostService';
+import FreePostService from './FreePostService';
+import '../review/Review.css';
 
 class FreepostViewingPage extends Component {
     constructor(props) {
@@ -7,16 +8,16 @@ class FreepostViewingPage extends Component {
 
          
         this.state = { 
-            title: this.props.match.params.title,
-            Posts: {}
+            pid: this.props.match.params.pid,
+            Freepost: {}
         }
-
+        this.goToPEdit=this.goToPEdit.bind(this);
     }
 
    
     componentDidMount() {
-        PostService.getOnePost(this.state.title).then( res => {
-            this.setState({Posts: res.data});
+        FreePostService.getOnePost(this.state.pid).then( res => {
+            this.setState({FreePost: res.data});
         });
     }
 
@@ -33,33 +34,51 @@ class FreepostViewingPage extends Component {
     goToList() {
         this.props.history.push('/post');
     }
-
+    goToPEdit= (event)=>{
+        event.preventDefault();
+        this.props.history.push(`/post/writingpage/${this.state.pid}`);
+           
+    }
+    deleteFreepost = async function () {
+        if(window.confirm("글을 삭제하시겠습니까?")){
+            FreePostService.deletePost(this.state.pid).then(res=> {
+                console.log("delete result=>"+JSON.stringify(res));
+                if(res.status===200){
+                    this.props.history.push('/post');
+                }else{
+                    alert("글 삭제를 실패하였습니다.");
+                }
+            });
+        }
+        
+    }
     render() {
         return (
-            <div>
+            <div className = "container">
       
                 <div className = "card col-md-6 offset-md-3">
-                    <h3 className ="text-center"> 조회 페이지</h3>
+                    <h2 className ='reviewnaming'> 조회 페이지</h2>
                     <div className = "card-body">
-                            
+                    <div className='form-design2'>    
                           
                             <div className = "row">      
                                
-                                <label> 제목 </label> : {this.state.Posts.title}
+                                <label className="labels"> 제목 </label>  <div className='contentbox'> {this.state.Posts.title} </div>
                             </div>
 
                             <div className = "row">
-                                <label> Contents </label> : 
-                                {this.state.Posts.contents} 
+                                <label className="labels"> Contents </label>  <div className='contentbox'> {this.state.Posts.content} </div>
                             </div >
                             
 
-                            {this.returnDate(this.state.Posts.createdTime, this.state.Posts.updatedTime) }
+                            {/*this.returnDate(this.state.Posts.createdTime, this.state.Posts.updatedTime) */}
                             
                             <button className="btn btn-primary" onClick={this.goToList.bind(this)} style={{marginLeft:"10px"}}>글 목록으로 이동</button>
+                            <button className="btn--primary" onClick={this.goToPEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
+                            <button className="btn--primary" onClick={()=> this.deletePost()} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
                     </div>
                 </div>
-
+                </div>
             </div>
         );
     }

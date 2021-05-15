@@ -1,6 +1,7 @@
 import React,{Component}  from 'react';
 import { Link } from 'react-router-dom';
 import FreePostService from './FreePostService';
+import '../review/Review.css';
 
 class FreepostListPage extends Component{
   constructor(props) {
@@ -11,6 +12,8 @@ class FreepostListPage extends Component{
   }
  
     this.createFreepost = this.createFreepost.bind(this);
+    this.readFreepost = this.readFreepost.bind(this);
+    
 }
   componentDidMount() {
     FreePostService.getPost().then((res) => {
@@ -19,49 +22,48 @@ class FreepostListPage extends Component{
 } 
 
 createFreepost(){
-  this.props.history.push('/post/writingpage')
+  this.props.history.push('/api/post/writingpage/create')
 }
 
 readFreepost(no){
-    this.props.history.push(`/post/${no}`)
+    this.props.history.push(`/api/post/${no}`)
 }
 
   render(){
   return (
   
-      <div>
-      <h2>자유게시판</h2>
-      <div className='Listpage'> 목록 페이지 입니다.</div>
-      <div className ="row">
-                    <table className="table table-striped table-bordered">
-                        <thead>
+      <div class='container'>
+      <h2 class='reviewnaming' >자유게시판</h2>
+      <div className = "card-body"> 
+
+                    <table className="table-boarder">
+                        <thead className="tablest">
                             <tr>
-                                <th>글 번호 </th>
-                                <th>제목 </th>
-                                <th>작성자 </th>
-                                
-                                
+                                <th width="100px">글 번호 </th>
+                                <th width="600px">제목 </th>
+                                <th width="500px">타입 </th>
+                            
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="tablest">
                             {
                                 this.state.Freepost.map(
                                     Freepost => 
-                                    <tr key = {Freepost.title}>
-                                        <td> {Freepost.no} </td>
-                                        <td> <a onClick = {() => this.readPosts(Freepost.title)}>{Freepost.title} </a></td>
-                                        <td> <a onClick = {() => this.readPosts(Freepost.title)}>{Freepost.univName}</a> </td>
+                                    <tr key = {Freepost.pid}>
+                                        <td width="100px"> <a onClick = {() => this.readPosts(Freepost.pid)}>{Freepost.pid} </a></td>
+                                        <td width="600px"> <a onClick = {() => this.readPosts(Freepost.pid)}>{Freepost.title} </a></td>
+                                        <td width="500px"> <a onClick = {() => this.readPosts(Freepost.pid)}>{Freepost.type}</a> </td>
                                     </tr>
                                 )
                             }
                         </tbody>
                     </table>
-                </div>
+                
                 
       
-      <button onClick={this.createFreepost}> 글 작성 </button> 
-      <Link to="/Post/viewingpage"> <button> 글을보러가기 </button></Link>
-      </div>
+      <button className="btn--primary2" onClick={this.createFreepost}> 글 작성 </button> 
+      
+      </div></div>
   )
   }
 }
