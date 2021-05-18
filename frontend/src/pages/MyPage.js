@@ -11,7 +11,7 @@ function MyPage() {
   
       <div>
       
-    <Switch>
+      <Switch>
         <Route exact path='/mypage' component={Mypagemain} />
         <Route path='/mypage/scraps' component={Scraps} />
         <Route path='/mypage/mylist' component={Mylist} />

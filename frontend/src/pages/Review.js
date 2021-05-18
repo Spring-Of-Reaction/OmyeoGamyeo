@@ -18,7 +18,8 @@ function Review() {
     <div>
         <Switch>
         <Route exact path='/review' component={ListPage} />
-        <Route path='/review/writingpage/:id' component={WritingPage} />
+        <Route path='/review/create' component={WritingPage} />
+        <Route path='/review/update/:id' component={WritingPage} />
         <Route path='/review/:id' component={ViewingPage} />
         </Switch>
        </div>   

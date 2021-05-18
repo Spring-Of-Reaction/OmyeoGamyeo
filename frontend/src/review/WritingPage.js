@@ -15,7 +15,7 @@ class WritingPage extends Component{
         testType:'',
         content:'',
         rating:0,
-        nickname:'',
+        nickname: new Date(),
         
     }
 
@@ -71,9 +71,9 @@ createReview = (event) => {
         nickname:this.state.nickname,
     };
 
-    console.log("Review => "+ JSON.stringify(Review)+this.state.id);
+    console.log("Review sssW=> "+ JSON.stringify(Review)+this.state.id);
 
-    if (this.state.id === 'create') {
+    if (!this.state.id ) {
         ReviewService.createReview(Review).then(res => {
             this.props.history.push('/review');
         });
@@ -90,7 +90,7 @@ cancel() {
 }
 
 getTitle() {
-    if (this.state.id === 'create') {
+    if (!this.state.id ) {
         return <h2 className="reviewnaming">새 글을 작성해주세요</h2>
     } else {
         return <h2 className="reviewnaming">글을 수정합니다</h2>
@@ -98,12 +98,12 @@ getTitle() {
 }
 
 componentDidMount() {
-    if (this.state.id === 'create') {
+    if (!this.state.id ) {
         return
     } else {
         ReviewService.getOneReview(this.state.id).then( (res) => {
             let Review = res.data;
-            console.log("Review => "+ JSON.stringify(Review));
+            console.log("Review W=> "+ JSON.stringify(Review));
             
             this.setState({
                 subjectName:Review.subjectName,

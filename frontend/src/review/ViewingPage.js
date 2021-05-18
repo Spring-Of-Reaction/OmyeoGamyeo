@@ -19,7 +19,9 @@ class ViewingPage extends Component {
     componentDidMount() {
         ReviewService.getOneReview(this.props.match.params.id).then( (res) => {
             this.setState({Review: res.data});
-        });       
+            
+        });      
+        console.log("Review => "+ JSON.stringify(this.state.Review)+this.state.id); 
         
     }
 
@@ -37,7 +39,7 @@ class ViewingPage extends Component {
    
     goToEdit= (event)=>{
         event.preventDefault();
-        this.props.history.push(`/review/writingpage/${this.state.id}`);
+        this.props.history.push(`/review/update/${this.state.id}`);
            
     }
     
@@ -83,6 +85,9 @@ class ViewingPage extends Component {
                             </div >
                             <div className = "row">
                                 <label className="labels"  > 기타 </label> <div className='contentbox'> {this.state.Review.content} </div>
+                            </div >
+                            <div className = "row">
+                                <label className="labels"  > 작성 시간 </label> <div className='contentbox'> {this.state.Review.nickname} </div>
                             </div >
                             
                             {/*this.returnDate(this.state.Review.createdTime, this.state.Review.updatedTime) 

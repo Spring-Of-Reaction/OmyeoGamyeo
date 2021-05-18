@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const post_url="/post"  
+const post_url="/api/post"  
 
 class FreepostService {
 

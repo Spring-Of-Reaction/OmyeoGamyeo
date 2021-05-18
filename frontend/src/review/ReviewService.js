@@ -18,7 +18,7 @@ class ReviewService {
     }
 
     updateReview(id,review){
-        return axios.get(review_url+'/'+id,review);
+        return axios.put(review_url+'/'+id,review);
     }
 
 

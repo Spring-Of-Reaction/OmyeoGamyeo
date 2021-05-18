@@ -144,10 +144,18 @@ render() {
                                     <input type="text" placeholder="날짜" name="date" className="form-control" 
                                     value={this.state.date} onChange={this.changedateHandler} />
                                 </div>
+
+
+                                
                                 <div className = "form-group">
                                 <label className="labels"> 카테고리  </label>
-                                <input placeholder="카테고리" name="category" className="form-control" 
-                                     value={this.state.category} onChange={this.changecategoryHandler}/>
+                                <select placeholder="type" name="categroy" className="form-control"
+                                        value={this.state.categroy} onChange={this.changecategroyHandler}>
+                                        <option value="1">일상</option>
+                                        <option value="2">질문</option>
+                                        </select>
+                                {/*<input placeholder="카테고리" name="categroy" className="form-control" 
+                                     value={this.state.category} onChange={this.changecategoryHandler}/>*/}
                             
                                 </div>
                                 <div className = "form-group">

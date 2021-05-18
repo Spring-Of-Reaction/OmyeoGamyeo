@@ -32,11 +32,11 @@ class FreepostViewingPage extends Component {
     }
 
     goToList() {
-        this.props.history.push('/post');
+        this.props.history.push('/api/post');
     }
     goToPEdit= (event)=>{
         event.preventDefault();
-        this.props.history.push(`/post/writingpage/${this.state.pid}`);
+        this.props.history.push(`/api/post/writingpage/${this.state.pid}`);
            
     }
     deleteFreepost = async function () {
@@ -44,7 +44,7 @@ class FreepostViewingPage extends Component {
             FreePostService.deletePost(this.state.pid).then(res=> {
                 console.log("delete result=>"+JSON.stringify(res));
                 if(res.status===200){
-                    this.props.history.push('/post');
+                    this.props.history.push('/api/post');
                 }else{
                     alert("글 삭제를 실패하였습니다.");
                 }

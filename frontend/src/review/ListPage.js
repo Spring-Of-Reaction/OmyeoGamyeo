@@ -26,7 +26,7 @@ class ListPage extends Component{
 
   }
     createReview() {
-    this.props.history.push('/review/writingpage/create')
+    this.props.history.push('/review/create')
     }
 
     readReview(id){
