@@ -1,63 +1,79 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
 import ReviewService from './ReviewService';
+import './Review.css';
+import ReviewSearch from './ReviewSearch';
+
 
 class ListPage extends Component{
   constructor(props) {
     super(props)
 
     this.state = { 
-      Review: []
-  }
+      Review: [],
+      number: 100
+    }
  
     this.createReview = this.createReview.bind(this);
+    this.readReview = this.readReview.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
 }
   componentDidMount() {
     ReviewService.getReview().then((res) => {
         this.setState({ Review : res.data});
+        /*console.log("Review => "+ JSON.stringify(this.state.Review));*/
     });
-}
 
-createReview(){
-  this.props.history.push('/review/writingpage')
-}
+  }
+    createReview() {
+    this.props.history.push('/review/create')
+    }
+
+    readReview(id){
+        this.props.history.push(`/review/${id}`)
+    }
+
+    handleSearch = (e) => {
+    let SearchReview={};
+    SearchReview[e.target.name]=e.target.value;
+    this.setState(SearchReview);
+  };
 
   render(){
-  return (
+     return (
   
-      <div>
-         <h2>강의 후기</h2>
-      <div className='Listpage'> 목록 페이지 입니다.</div>
-          <div className ="row">
-              <table className="table table-striped table-bordered">
-                  <thead>
-                  <tr>
-                      <th>강의명 </th>
-                      <th>학교명 </th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  {
-                      this.state.Review.map(
-                          Review =>
-                              /*
-                              <tr key = {Review.no}>*/
-                              <tr>
-                                  <td> {Review.subjectName} </td>
-                                  <td> {Review.univName} </td>
-                              </tr>
-                      )
-                  }
-                  </tbody>
-              </table>
-          </div>
-
-          <Link to="/review/writingpage"> <button> 글 작성 </button></Link>
-      <button onClick={this.createReview}> 글 작성 </button>
-      <Link to="/review/viewingpage"> <button> 글을보러가기 </button></Link>
+    <div class='container' >
+      <h2 class='reviewnaming'>강의 후기</h2>    
+      <div className = "card-body">
+        <table className="table-boarder">
+                        <thead className="tablest">
+                            <tr >
+                                <th width="100px" >글 번호 </th>
+                                <th width="600px" >강의명 </th>
+                                <th width="500px" >학교명 </th>
+                            </tr>
+                        </thead>
+                        <tbody className="tablest">
+                            {
+                                this.state.Review.map(
+                                    Review => 
+                                    <tr key = {Review.id}>
+                                        <td width="100px"> <a onClick = {() => this.readReview(Review.id)}>{Review.id} </a></td>
+                                        <td width="600px"> <a onClick = {() => this.readReview(Review.id)}>{Review.subjectName} </a></td>
+                                        <td width="500px"> <a onClick = {() => this.readReview(Review.id)}>{Review.univName}</a> </td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+        </table>
+        
+                
+      
+      <button className="btn--primary2" onClick={this.createReview}> 글 작성 </button> 
       </div>
-  )
-  }
-}
+    </div>
+  );
+  }}
+
 
 export default ListPage;

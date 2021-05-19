@@ -12,11 +12,9 @@ import ReviewPage from './pages/Review';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
-
 function App() {
   return (
     <>
-    
       <Router>
       <Navbar/>
         <Switch>
@@ -27,11 +25,12 @@ function App() {
           <Route path='/notice' component={Notice} />
           <Route path='/review' component={ReviewPage} />
           <Route path='/login' component={Login} />
-          <Route path='/signup' component={Signup} />
+          <Route path='/sign-up' component={Signup} />
           <Route render={() => <div className='error'>에러 페이지</div>} />
         </Switch>
+      <Footer/>
       </Router>
-        </>
+    </>
   );
 }
 

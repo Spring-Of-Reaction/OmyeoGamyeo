@@ -20,7 +20,7 @@ class ToDoList extends Component {
       <div className='Notice'>
         <ul >
           {data.map((data) => (
-            <li style={this.state.style}>
+            <li className='btn--primary' style={this.state.style}>
               <ToDoInfo data={data}> </ToDoInfo>
             </li>))}
           
