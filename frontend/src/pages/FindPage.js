@@ -21,7 +21,7 @@ import { RenderAfterNavermapsLoaded, NaverMap } from 'react-naver-maps';
 
 function FindPage() {
   return (
-    <div class='container'>
+    <div className='container'>
       <div className='map'>
       <RenderAfterNavermapsLoaded
       ncpClientId={'5bq5fdsx8a'} // 자신의 네이버 계정에서 발급받은 Client ID

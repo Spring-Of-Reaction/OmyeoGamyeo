@@ -134,6 +134,7 @@ render() {
                                    <input type="text" placeholder="내용" name="content" className="form-control-sub" 
                                     value={this.state.content} onChange={this.changecontentHandler}/>
                                 </div>
+<<<<<<< HEAD
                                 
                                 <div className = "form-group">
                                 <label className="labels"> 카테고리  </label>
@@ -144,6 +145,25 @@ render() {
                                         <option value='2'>질문</option>
                                         </select>
                                 
+=======
+                                <div className = "form-group">
+                                    <label className="labels"> 날짜  </label>
+                                    <input type="text" placeholder="날짜" name="date" className="form-control" 
+                                    value={this.state.date} onChange={this.changedateHandler} />
+                                </div>
+
+
+                                
+                                <div className = "form-group">
+                                <label className="labels"> 카테고리  </label>
+                                <select placeholder="type" name="categroy" className="form-control"
+                                        value={this.state.categroy} onChange={this.changecategroyHandler}>
+                                        <option value="1">일상</option>
+                                        <option value="2">질문</option>
+                                        </select>
+                                {/*<input placeholder="카테고리" name="categroy" className="form-control" 
+                                     value={this.state.category} onChange={this.changecategoryHandler}/>*/}
+>>>>>>> feature/navermapapi
                             
                                 </div>
                                 <div className = "form-group">
