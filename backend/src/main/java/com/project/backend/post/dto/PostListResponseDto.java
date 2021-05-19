@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 public class PostListResponseDto {
+    private Long pid;
     private String nickname;
     private String title;
     private Integer category;
@@ -14,6 +15,7 @@ public class PostListResponseDto {
     private LocalDate date;
 
     public PostListResponseDto(Post entity){
+        this.pid = entity.getPid();
         this.nickname = entity.getNickname();
         this.title = entity.getTitle();
         this.category = entity.getCategory();
