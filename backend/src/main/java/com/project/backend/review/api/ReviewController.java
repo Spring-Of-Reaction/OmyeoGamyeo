@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -34,12 +35,9 @@ public class ReviewController {
 
 
     @PutMapping("/review/{id}")
-    public ResponseEntity update(@PathVariable Long id,
-                                 @RequestBody ReviewUpdateRequest request){
-
-        reviewService.update(id, request);
-        return ResponseEntity.noContent().build();
-
+    public Long update(@PathVariable Long id,
+                                 @RequestBody ReviewUpdateRequest request) {
+        return reviewService.update(id, request);
     }
 
     @DeleteMapping("/review/{id}")
