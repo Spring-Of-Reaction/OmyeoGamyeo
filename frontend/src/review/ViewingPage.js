@@ -22,6 +22,23 @@ class ViewingPage extends Component {
         });       
         
     }
+    /*
+    returnCategory(typeNo){
+        let type=null;
+        if(typeNo==1){
+            type="일상";
+        }
+        else if(typeNo==2){
+            type="질문";
+        }
+
+        return (
+            <div className = "row">
+                <label className="labels"  > 평점 </label> <div className='contentbox'>{type}</div>
+            </div>
+
+        )
+    }*/
 
     returnDate(cTime, uTime) {
         return (
@@ -37,7 +54,7 @@ class ViewingPage extends Component {
    
     goToEdit= (event)=>{
         event.preventDefault();
-        this.props.history.push(`/review/writingpage/${this.state.id}`);
+        this.props.history.push(`/review/update/${this.state.id}`);
            
     }
     
@@ -78,11 +95,17 @@ class ViewingPage extends Component {
                             <div className = "row">      
                                 <label className="labels"  > 시험유형 </label> <div className='contentbox'>  {this.state.Review.testType}</div>
                             </div>
+                            
                             <div className = "row">
                                 <label className="labels"  > 평점 </label> <div className='contentbox'>{this.state.Review.rating} </div>
                             </div >
+                            {/*{this.returnCategory(this.state.Review.rating)}*/}
+
                             <div className = "row">
                                 <label className="labels"  > 기타 </label> <div className='contentbox'> {this.state.Review.content} </div>
+                            </div >
+                            <div className = "row">
+                                <label className="labels"  > 작성 시간</label> <div className='contentbox'> {this.state.Review.nickname} </div>
                             </div >
                             
                             {/*this.returnDate(this.state.Review.createdTime, this.state.Review.updatedTime) 

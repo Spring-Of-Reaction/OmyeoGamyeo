@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const post_url="/post"  
+const post_url="/api/post"  
 
 class FreepostService {
 
@@ -11,7 +11,10 @@ class FreepostService {
     createPost(post){
         return axios.post(post_url,post);
     }
-
+    getPostC(category){
+        return axios.get(post_url+'/category/'+category);
+    }
+    
     getOnePost(no){
         return axios.get(post_url+'/'+no);
     }

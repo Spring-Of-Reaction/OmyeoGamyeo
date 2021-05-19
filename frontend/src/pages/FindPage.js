@@ -1,6 +1,5 @@
 import React from 'react';
 import '../review/Review.css';
-import Navbar from '../components/Navbar';
 import { RenderAfterNavermapsLoaded, NaverMap } from 'react-naver-maps';  
 {/*function getLocation() {
   if (navigator.geolocation) { // GPS를 지원하면

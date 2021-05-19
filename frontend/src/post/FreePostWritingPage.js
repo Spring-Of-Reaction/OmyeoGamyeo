@@ -9,7 +9,7 @@ class FreepostWritingPage extends Component{
     this.state = {
         title:'',
         content:'',
-        date:0,
+        date: new Date(),
         category:0,
         views:0,
         filename:'',
@@ -30,7 +30,7 @@ class FreepostWritingPage extends Component{
 }
 
 cancel() {
-    this.props.history.push('/api/post');
+    this.props.history.push('/post');
 }
 
  
@@ -77,30 +77,25 @@ createPost = (event) => {
     
     console.log("Freepost => "+ JSON.stringify(Freepost));
 
-    if (this.state.pid === 'create') {
+    if (!this.state.pid) {
         FreePostService.createPost(Freepost).then(res => {
-            this.props.history.push('/api/post');
+            this.props.history.push('/post');
         });
     } else {
         FreePostService.updatePost(this.state.pid, Freepost).then(res => {
-            this.props.history.push('/api/post');
+            this.props.history.push('/post');
         });
     } 
-    /*
-    FreePostService.createPost(Freepost).then(res => {
-        this.props.history.push('/post');
-    });*/
-    
 }
 getTitle() {
-    if (this.state.id === 'create') {
+    if (!this.state.pid) {
         return <h2 className="reviewnaming">새 글을 작성해주세요</h2>
     } else {
         return <h2 className="reviewnaming">글을 수정합니다</h2>
     }
 }
 componentDidMount() {
-    if (this.state.pid === 'create') {
+    if (!this.state.pid) {
         return
     } else {
         FreePostService.getOnePost(this.state.pid).then( (res) => {
@@ -139,15 +134,16 @@ render() {
                                    <input type="text" placeholder="내용" name="content" className="form-control-sub" 
                                     value={this.state.content} onChange={this.changecontentHandler}/>
                                 </div>
-                                <div className = "form-group">
-                                    <label className="labels"> 날짜  </label>
-                                    <input type="text" placeholder="날짜" name="date" className="form-control" 
-                                    value={this.state.date} onChange={this.changedateHandler} />
-                                </div>
+                                
                                 <div className = "form-group">
                                 <label className="labels"> 카테고리  </label>
-                                <input placeholder="카테고리" name="category" className="form-control" 
-                                     value={this.state.category} onChange={this.changecategoryHandler}/>
+                                <select placeholder="type" name="category" className="form-control"
+                                        value={this.state.category} onChange={this.changecategoryHandler}>
+                                        <option value>카테고리를 선택하세요.</option>
+                                        <option value='1'>일상</option>
+                                        <option value='2'>질문</option>
+                                        </select>
+                                
                             
                                 </div>
                                 <div className = "form-group">

@@ -14,8 +14,8 @@ class WritingPage extends Component{
         semester:'',
         testType:'',
         content:'',
-        rating:0,
-        nickname:'',
+        rating:1,
+        nickname: new Date(),
         
     }
 
@@ -73,7 +73,7 @@ createReview = (event) => {
 
     console.log("Review => "+ JSON.stringify(Review)+this.state.id);
 
-    if (this.state.id === 'create') {
+    if (!this.state.id) {
         ReviewService.createReview(Review).then(res => {
             this.props.history.push('/review');
         });
@@ -90,7 +90,7 @@ cancel() {
 }
 
 getTitle() {
-    if (this.state.id === 'create') {
+    if (!this.state.id) {
         return <h2 className="reviewnaming">새 글을 작성해주세요</h2>
     } else {
         return <h2 className="reviewnaming">글을 수정합니다</h2>
@@ -98,7 +98,7 @@ getTitle() {
 }
 
 componentDidMount() {
-    if (this.state.id === 'create') {
+    if (!this.state.id) {
         return
     } else {
         ReviewService.getOneReview(this.state.id).then( (res) => {
@@ -155,28 +155,37 @@ render() {
                                 
                                    <div className = "form-group">
                                        
-                                        <label className="labels"> 평점  </label>
-
-                                        {/*<select placeholder="type" name="type" className="form-control"
+                                        <label className="labels"> 평점  </label>                
+                                        <select placeholder="type" name="type" className="form-control"
                                         value={this.state.rating} onChange={this.changeratingHandler}>
                                         <option value="1">일상</option>
                                         <option value="2">질문</option>
-                                        </select>*/}
-                                        
+                                        </select> 
+                                        {/*                      
                                         <input placeholder="" name="rating" className="form-control" 
-                                         value={this.state.rating} onChange={this.changeratingHandler}/>
+                                        value={this.state.rating} onChange={this.changeratingHandler}/>*/}
 
                                     </div>
-                                    <div className = "form-group">
-                                        <label className="labels"> 닉네임  </label>
-                                        <input placeholder="" name="nickname" className="form-control" 
-                                         value={this.state.nickname} onChange={this.changenicknameHandler}/>
-                                    </div>
+                                
                                     <div className = "form-group">
                                         <label className="labels"> 기타  </label>
                                         <input placeholder="" name="content" className="form-control-sub" 
                                          value={this.state.content} onChange={this.changecontentHandler}/>
                                     </div>
+
+                                    {/*<div className = "form-group">
+                                        <label className="labels"> 닉네임  </label>
+                                        <input placeholder="" name="nickname" className="form-control" 
+                                         value={this.state.nickname} onChange={this.changenicknameHandler}/>
+                                    </div>*/}
+
+
+                                    {/*<select placeholder="type" name="type" className="form-control"
+                                        value={this.state.rating} onChange={this.changeratingHandler}>
+                                        <option value="1">일상</option>
+                                        <option value="2">질문</option>
+                                        </select>*/}
+
                                     <div className = "button-group">
                                     <button className="btn--primary" onClick={this.createReview} >등록</button>
                                     <button className="btn--primary" onClick={this.cancel.bind(this)} style={{marginLeft:"10px"}}>취소</button>

@@ -19,7 +19,7 @@ function App() {
       <Navbar/>
         <Switch>
         <Route exact path='/' exact component={Main} />
-          <Route path='/api/post' component={Post} />
+          <Route path='/post' component={Post} />
           <Route path='/find' component={FindPage} />
           <Route path='/mypage' component={MyPage} />
           <Route path='/notice' component={Notice} />

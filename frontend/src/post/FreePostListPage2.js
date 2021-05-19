@@ -20,7 +20,7 @@ class FreepostListPage extends Component{
 }
   componentDidMount() {
       
-        FreePostService.getPost().then((res) => {
+        FreePostService.getPostC(2).then((res) => {
             this.setState({ Freepost : res.data});
         });
     
@@ -47,7 +47,7 @@ category2(){
   
       <div class='container'>
       <h2 class='reviewnaming' >자유게시판</h2>
-      <button className="btn--primary2" onClick={this.category}> 전체 보기 </button>
+      <button className="btn--primary2" onClick={this.category1}> 전체 보기 </button>
       <button className="btn--primary2" onClick={this.category1}> 일상 </button> 
       <button className="btn--primary2" onClick={this.category2}> 질문 </button> 
       <div className = "card-body"> 

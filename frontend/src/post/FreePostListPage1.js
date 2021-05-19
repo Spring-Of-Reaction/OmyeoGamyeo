@@ -19,8 +19,8 @@ class FreepostListPage extends Component{
     
 }
   componentDidMount() {
-      
-        FreePostService.getPost().then((res) => {
+     
+        FreePostService.getPostC(1).then((res) => {
             this.setState({ Freepost : res.data});
         });
     

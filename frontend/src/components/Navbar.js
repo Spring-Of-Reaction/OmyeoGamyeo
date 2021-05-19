@@ -41,7 +41,7 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/api/post' className='nav-links' onClick={closeMobileMenu}>
+                        <Link to='/post' className='nav-links' onClick={closeMobileMenu}>
                             자유게시판
                         </Link>
                     </li>

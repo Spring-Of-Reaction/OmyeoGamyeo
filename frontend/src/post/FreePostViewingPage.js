@@ -36,7 +36,7 @@ class FreepostViewingPage extends Component {
     }
     goToPEdit= (event)=>{
         event.preventDefault();
-        this.props.history.push(`/post/writingpage/${this.state.pid}`);
+        this.props.history.push(`/post/update/${this.state.pid}`);
            
     }
     deleteFreepost = async function () {
@@ -63,12 +63,13 @@ class FreepostViewingPage extends Component {
                           
                             <div className = "row">      
                                
-                                <label className="labels"> 제목 </label>  <div className='contentbox'> {this.state.Posts.title} </div>
+                                <label className="labels"> 제목 </label>  <div className='contentbox'> {this.state.Freepost.title} </div>
                             </div>
 
                             <div className = "row">
-                                <label className="labels"> Contents </label>  <div className='contentbox'> {this.state.Posts.content} </div>
+                                <label className="labels"> Contents </label>  <div className='contentbox'> {this.state.Freepost.content} </div>
                             </div >
+                            
                             
 
                             {/*this.returnDate(this.state.Posts.createdTime, this.state.Posts.updatedTime) */}
