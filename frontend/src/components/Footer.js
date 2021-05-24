@@ -18,7 +18,7 @@ function Footer() {
           <div class='footer-link-items'>
             <h2>Quick Link</h2>
             <Link to='/review'>강의 후기</Link>
-            <Link to='/board'>자유게시판</Link>
+            <Link to='/post'>자유게시판</Link>
             <Link to='/find'>학교별 길찾기</Link>
             <Link to='/notice'>학점교류 공지사항</Link>
           </div>

@@ -3,18 +3,16 @@ import { Link } from 'react-router-dom';
 import FreePostService from './FreePostService';
 import '../review/Review.css';
 
-class FreepostListPage extends Component{
+class FreepostListPageS2 extends Component{
   constructor(props) {
     super(props)
 
     this.state = { 
+        keywords: this.props.match.params.keywords,
       Freepost: [],
-      keywords:'',
-      searchoption:0
+      
   }
-    this.searchkeywords = this.searchkeywords.bind(this);
-    this.changekeyworsdHandler = this.changekeywordsHandler.bind(this);
-    this.changesearchoptionHandler = this.changesearchoptionHandler.bind(this);
+ 
     this.createFreepost = this.createFreepost.bind(this);
     this.readpost = this.readpost.bind(this);
     this.category=this.category.bind(this);
@@ -24,13 +22,10 @@ class FreepostListPage extends Component{
     
 }
   componentDidMount() {
-      
-        FreePostService.getPost().then((res) => {
+      console.log(this.state.keywords);
+        FreePostService.searchCPost(this.state.keywords).then((res) => {
             this.setState({ Freepost : res.data});
-           /* console.log(JSON.stringify(this.state.Freepost));*/
         });
-        
-        
     
 } 
 changekeywordsHandler = (event) => {
@@ -56,52 +51,14 @@ category2(){
     this.props.history.push('/post/category/2')
 }
 
-searchkeywords(option,keywords){
 
-    if(option==='1'){
-    this.props.history.push(`/post/search/title/${this.state.keywords}`);
-    /*console.log(this.state.searchoption,"+",this.state.keywords);*/
-    }
-    else if(option==='2'){
-        this.props.history.push(`/post/search/content/${this.state.keywords}`);
-       /* this.props.history.push(`/post/search/content/?keyword=${keywords}`);
-        console.log(option,"+",keywords);*/
-      
-    }
-    else{
-        return
-    }
- 
-}
 
   render(){
   return (
   
       <div class='container'>
       <h2 class='reviewnaming' >자유게시판</h2>
-      <div className="button-group2">
-      <button className="btn--primary3" onClick={this.category}> 전체 보기 </button>
-      <button className="btn--primary3" onClick={this.category1}> 일상 </button> 
-      <button className="btn--primary3" onClick={this.category2}> 질문 </button> 
-
-      <div className = "form-group">
-                                
-                                <select placeholder="type" name="searchoption" 
-                                        value={this.searchoption}  onChange={this.changesearchoptionHandler}>
-                                            <optgroup label='카테고리를 선택하세요'>
-                                        
-                                        <option value='1'>제목</option>
-                                        <option value='2'>내용</option></optgroup>
-                                        </select>
-                                
-                                    
-                                    <input type="text" placeholder="검색어를 입력하세요" name="keyword"  
-                                   value={this.keywords} onChange={this.changekeywordsHandler}/>
-                                   <button onClick={() => this.searchkeywords(this.state.searchoption,this.state.keywords)}> 검색 </button> 
-
-                                   
-                                </div>
-      </div>
+    
       <div className = "card-body"> 
 
                     <table className="table-boarder">
@@ -136,4 +93,4 @@ searchkeywords(option,keywords){
   }
 }
 
-export default FreepostListPage;
+export default FreepostListPageS2;

@@ -149,17 +149,22 @@ render() {
                                 </div>
                                 <div className = "form-group">
                                 <label className="labels"> 시험유형  </label>
-                                    <input type="text" placeholder="시험유형" name="testType" className="form-control" 
-                                     value={this.state.testType} onChange={this.changetestTypeHandler}/>
-                                </div>
+
+                                        
+                                  <input type="text" placeholder="시험유형" name="testType" className="form-control" 
+                                     value={this.state.testType} onChange={this.changetestTypeHandler}/> 
+                            </div> 
                                 
                                    <div className = "form-group">
                                        
                                         <label className="labels"> 평점  </label>                
                                         <select placeholder="type" name="type" className="form-control"
                                         value={this.state.rating} onChange={this.changeratingHandler}>
-                                        <option value="1">일상</option>
-                                        <option value="2">질문</option>
+                                        <option value="1">1점</option>
+                                        <option value="2">2점</option>
+                                        <option value="3">3점</option>
+                                        <option value="4">4점</option>
+                                        <option value="5">5점</option>
                                         </select> 
                                         {/*                      
                                         <input placeholder="" name="rating" className="form-control" 

@@ -47,9 +47,11 @@ category2(){
   
       <div class='container'>
       <h2 class='reviewnaming' >자유게시판</h2>
-      <button className="btn--primary2" onClick={this.category}> 전체 보기 </button>
-      <button className="btn--primary2" onClick={this.category1}> 일상 </button> 
-      <button className="btn--primary2" onClick={this.category2}> 질문 </button> 
+      <div className="button-group2">
+      <button className="btn--primary3" onClick={this.category}> 전체 보기 </button>
+      <button className="btn--primary3" onClick={this.category1}> 일상 </button> 
+      <button className="btn--primary3" onClick={this.category2}> 질문 </button> 
+      </div>
       <div className = "card-body"> 
 
                     <table className="table-boarder">
@@ -57,7 +59,7 @@ category2(){
                             <tr>
                                 <th width="100px">글 번호 </th>
                                 <th width="600px">제목 </th>
-                                <th width="500px">타입 </th>
+                                <th width="500px">작성일 </th>
                             
                             </tr>
                         </thead>
@@ -68,7 +70,7 @@ category2(){
                                     <tr key = {Freepost.pid}>
                                         <td width="100px"> <a onClick = {() => this.readPosts(Freepost.pid)}>{Freepost.pid} </a></td>
                                         <td width="600px"> <a onClick = {() => this.readPosts(Freepost.pid)}>{Freepost.title} </a></td>
-                                        <td width="500px"> <a onClick = {() => this.readPosts(Freepost.pid)}>{Freepost.type}</a> </td>
+                                        <td width="500px"> <a onClick = {() => this.readpost(Freepost.pid)}>{Freepost.date}</a> </td>
                                     </tr>
                                 )
                             }
