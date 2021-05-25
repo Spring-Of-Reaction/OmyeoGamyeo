@@ -63,19 +63,19 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
-   /* @Transactional
-    public List<ReviewListResponse>searchUniv(String univName){
-        return reviewRepository.findByUnivContaining(univName).stream()
+   @Transactional
+    public List<ReviewListResponse>searchUniv(String keyword){
+        return reviewRepository.findByUnivNameContaining(keyword).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())
                 .map(ReviewListResponse::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public List<ReviewListResponse>searchSubject(String subjectName){
-        return reviewRepository.findBySubjectContaining(subjectName).stream()
+    public List<ReviewListResponse>searchSubject(String keyword){
+        return reviewRepository.findBySubjectNameContaining(keyword).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())
                 .map(ReviewListResponse::new)
                 .collect(Collectors.toList());
-    }*/
+    }
 }
