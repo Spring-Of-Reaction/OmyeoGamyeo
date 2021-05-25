@@ -5,7 +5,7 @@ import './Review.css';
 import ReviewSearch from './ReviewSearch';
 
 
-class ListPage extends Component{
+class ListPageS2 extends Component{
   constructor(props) {
     super(props)
 
@@ -17,7 +17,6 @@ class ListPage extends Component{
     this.createReview = this.createReview.bind(this);
     this.readReview = this.readReview.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.searchkeywords = this.searchkeywords.bind(this);
     this.changekeyworsdHandler = this.changekeywordsHandler.bind(this);
     this.changesearchoptionHandler = this.changesearchoptionHandler.bind(this);
   }
@@ -75,24 +74,7 @@ handleSearch = (e) => {
   
     <div class='container' >
       <h2 class='reviewnaming'>강의 후기</h2> 
-      <div className = "form-group">
-                                
-                                <select placeholder="type" name="searchoption" 
-                                        value={this.searchoption}  onChange={this.changesearchoptionHandler}>
-                                            <optgroup label='카테고리를 선택하세요'>
-                                        
-                                        <option value='1'>학교명</option>
-                                        <option value='2'>과목명</option></optgroup>
-                                        </select>
-                                
-                                    
-                                    <input type="text" placeholder="검색어를 입력하세요" name="keyword"  
-                                   value={this.keywords} onChange={this.changekeywordsHandler}/>
-                                   <button onClick={() => this.searchkeywords(this.state.searchoption,this.state.keywords)}> 검색 </button> 
-
-                                   
-                                
-      </div>
+     
       <div className = "card-body">
         <table className="table-boarder">
                         <thead className="tablest">
@@ -125,4 +107,4 @@ handleSearch = (e) => {
   }}
 
 
-export default ListPage;
+export default ListPageS2;
