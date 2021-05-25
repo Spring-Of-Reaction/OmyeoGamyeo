@@ -54,7 +54,9 @@ public class Review extends BaseTimeEntity {
         this.semester = semester;
     }
 
-    public void update(Review review){
+    public void update(String subjectName,String content, String nickname,
+                       String univName, Integer rating, String testType, String professor,
+                       String semester){
         this.subjectName = subjectName;
         this.content = content;
         this.nickname = nickname;

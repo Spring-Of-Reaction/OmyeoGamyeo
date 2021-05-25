@@ -33,10 +33,13 @@ public class ReviewService {
     }
 
     @Transactional
-    public void update(Long id, ReviewUpdateRequest request ){
+    public Long update(Long id, ReviewUpdateRequest request){
         Review review = reviewRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id="+id));
-        review.update(request.toReviewEntity());
+                .orElseThrow(()-> new IllegalArgumentException("해당  게시글이 없습니다. id="+id));
+        review.update(request.getSubjectName(), request.getContent(), request.getNickname(),
+                request.getProfessor(), request.getRating(), request.getTestType(),
+                request.getSemester(),request.getUnivName());
+        return id;
     }
 
     @Transactional
@@ -60,19 +63,19 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
-   /* @Transactional
-    public List<ReviewListResponse>searchUniv(String univName){
-        return reviewRepository.findByUnivContaining(univName).stream()
+   @Transactional
+    public List<ReviewListResponse>searchUniv(String keyword){
+        return reviewRepository.findByUnivNameContaining(keyword).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())
                 .map(ReviewListResponse::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public List<ReviewListResponse>searchSubject(String subjectName){
-        return reviewRepository.findBySubjectContaining(subjectName).stream()
+    public List<ReviewListResponse>searchSubject(String keyword){
+        return reviewRepository.findBySubjectNameContaining(keyword).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())
                 .map(ReviewListResponse::new)
                 .collect(Collectors.toList());
-    }*/
+    }
 }

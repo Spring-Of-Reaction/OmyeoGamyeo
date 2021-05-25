@@ -14,7 +14,11 @@ class WritingPage extends Component{
         semester:'',
         testType:'',
         content:'',
+<<<<<<< HEAD
         rating:1,
+=======
+        rating:0,
+>>>>>>> feature/navermapapi
         nickname: new Date(),
         
     }
@@ -71,9 +75,13 @@ createReview = (event) => {
         nickname:this.state.nickname,
     };
 
-    console.log("Review => "+ JSON.stringify(Review)+this.state.id);
+    console.log("Review sssW=> "+ JSON.stringify(Review)+this.state.id);
 
+<<<<<<< HEAD
     if (!this.state.id) {
+=======
+    if (!this.state.id ) {
+>>>>>>> feature/navermapapi
         ReviewService.createReview(Review).then(res => {
             this.props.history.push('/review');
         });
@@ -90,7 +98,11 @@ cancel() {
 }
 
 getTitle() {
+<<<<<<< HEAD
     if (!this.state.id) {
+=======
+    if (!this.state.id ) {
+>>>>>>> feature/navermapapi
         return <h2 className="reviewnaming">새 글을 작성해주세요</h2>
     } else {
         return <h2 className="reviewnaming">글을 수정합니다</h2>
@@ -98,12 +110,16 @@ getTitle() {
 }
 
 componentDidMount() {
+<<<<<<< HEAD
     if (!this.state.id) {
+=======
+    if (!this.state.id ) {
+>>>>>>> feature/navermapapi
         return
     } else {
         ReviewService.getOneReview(this.state.id).then( (res) => {
             let Review = res.data;
-            console.log("Review => "+ JSON.stringify(Review));
+            console.log("Review W=> "+ JSON.stringify(Review));
             
             this.setState({
                 subjectName:Review.subjectName,

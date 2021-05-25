@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-
-function Mylist() {
+class Mylist extends Component {
+  render(){
   return (
   
       
-      <div >내가 쓴 글</div>
+      <div className='container' >내가 쓴 글</div>
       
-  )
+  )}
 }
 
 export default Mylist;

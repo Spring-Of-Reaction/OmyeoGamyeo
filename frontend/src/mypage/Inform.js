@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 
-function Inform() {
-  return (
+class Inform extends Component{
+  render(){
+    return (
   
       
-      <div >회원정보를 수정하세요.</div>
+      <div className='container' >회원정보를 수정하세요.</div>
       
   )
+}
 }
 
 export default Inform;

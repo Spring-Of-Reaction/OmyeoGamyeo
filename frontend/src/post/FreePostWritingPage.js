@@ -149,6 +149,11 @@ render() {
                                         <option value='2'>질문</option></optgroup>
                                         </select>
                                 
+
+
+
+                                
+                          
                                 </div>
                                 <div className = "form-group">
                                 <label className="labels"> 조회수  </label>

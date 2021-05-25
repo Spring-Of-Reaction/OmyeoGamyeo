@@ -6,6 +6,7 @@ class Signup extends Component{
   constructor(props) {
     super(props);
 
+
     this.state = {
       email:'',
       password:'',
@@ -106,6 +107,7 @@ return (
                                 <button className="btn btn-danger" onClick={() => alert(`${this.state.email}, ${this.state.univName}, ${this.state.password}`)}>회원정보는?</button> 
       </div>
       
+
   )
 
 }}
