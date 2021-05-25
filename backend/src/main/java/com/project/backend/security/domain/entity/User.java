@@ -1,10 +1,7 @@
 package com.project.backend.security.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.*;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -27,11 +25,12 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment 가능
     private Long uid;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String password;
     private String email;
     private String nickname;
     private String univ;
+    private String certified;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
@@ -43,14 +42,13 @@ public class User implements UserDetails {
  */
 
     @Builder
-    public User(String password, String email, String nickname, String univ, List roles){
+    public User(String password, String email, String nickname, String univ, List roles) {
         this.password = password;
         this.email = email;
         this.nickname = nickname;
         this.univ = univ;
         this.roles = roles;
     }
-
 
 
     @Override
@@ -85,3 +83,5 @@ public class User implements UserDetails {
         return true;
     }
 }
+
+
