@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User,Long> {
-    Optional<User> findByEmail(String email); //login id가 email
+    User findByEmail(String email); //login id가 email
+
+    User findByCertified(String certified);
     boolean existsByEmail(String email); //중복 가입 방지
 
 }
