@@ -21,6 +21,12 @@ class ReviewService {
         return axios.put(review_url+'/'+id,review);
     }
 
+    searchUPost(keyword){
+        return axios.get(review_url+'/search/univName/?keyword='+keyword);
+    }
+    searchSPost(keyword){
+        return axios.get(review_url+'/search/subjectName/?keyword='+keyword);
+    }
 
     deleteReview(id){
         return axios.delete(review_url+'/'+id);

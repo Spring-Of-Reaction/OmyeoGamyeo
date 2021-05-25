@@ -4,13 +4,13 @@ import '../review/Review.css';
 
 class FreepostWritingPage extends Component{
     constructor(props){
-        
     super(props);
     this.state = {
+        pid: this.props.match.params.pid,
         title:'',
         content:'',
         date: new Date(),
-        category:0,
+        category:1,
         views:0,
         filename:'',
         filepath:'',
@@ -64,7 +64,7 @@ changenicknameHandler = (event) => {
 
 createPost = (event) => {
     event.preventDefault();
-    let Freepost = {
+    let FreePost = {
         title:this.state.title,
         content:this.state.content,
         date:this.state.date,
@@ -75,18 +75,20 @@ createPost = (event) => {
         nickname:this.state.nickname,
     };
     
-    console.log("Freepost => "+ JSON.stringify(Freepost));
+    console.log("Freepost => "+ JSON.stringify(FreePost));
 
     if (!this.state.pid) {
-        FreePostService.createPost(Freepost).then(res => {
+        FreePostService.createPost(FreePost).then(res => {
             this.props.history.push('/post');
         });
     } else {
-        FreePostService.updatePost(this.state.pid, Freepost).then(res => {
-            this.props.history.push('/post');
+        FreePostService.updatePost(this.state.pid,FreePost).then(res => {
+            this.props.history.push(`/post/${this.state.pid}`);
         });
+        
     } 
 }
+
 getTitle() {
     if (!this.state.pid) {
         return <h2 className="reviewnaming">새 글을 작성해주세요</h2>
@@ -94,6 +96,7 @@ getTitle() {
         return <h2 className="reviewnaming">글을 수정합니다</h2>
     }
 }
+
 componentDidMount() {
     if (!this.state.pid) {
         return
@@ -134,37 +137,23 @@ render() {
                                    <input type="text" placeholder="내용" name="content" className="form-control-sub" 
                                     value={this.state.content} onChange={this.changecontentHandler}/>
                                 </div>
-<<<<<<< HEAD
+
                                 
                                 <div className = "form-group">
                                 <label className="labels"> 카테고리  </label>
                                 <select placeholder="type" name="category" className="form-control"
-                                        value={this.state.category} onChange={this.changecategoryHandler}>
-                                        <option value>카테고리를 선택하세요.</option>
+                                        value={this.state.category}  onChange={this.changecategoryHandler}>
+                                            <optgroup label='카테고리를 선택하세요'>
+                                        
                                         <option value='1'>일상</option>
-                                        <option value='2'>질문</option>
+                                        <option value='2'>질문</option></optgroup>
                                         </select>
                                 
-=======
-                                <div className = "form-group">
-                                    <label className="labels"> 날짜  </label>
-                                    <input type="text" placeholder="날짜" name="date" className="form-control" 
-                                    value={this.state.date} onChange={this.changedateHandler} />
-                                </div>
+
 
 
                                 
-                                <div className = "form-group">
-                                <label className="labels"> 카테고리  </label>
-                                <select placeholder="type" name="categroy" className="form-control"
-                                        value={this.state.categroy} onChange={this.changecategroyHandler}>
-                                        <option value="1">일상</option>
-                                        <option value="2">질문</option>
-                                        </select>
-                                {/*<input placeholder="카테고리" name="categroy" className="form-control" 
-                                     value={this.state.category} onChange={this.changecategoryHandler}/>*/}
->>>>>>> feature/navermapapi
-                            
+                          
                                 </div>
                                 <div className = "form-group">
                                 <label className="labels"> 조회수  </label>

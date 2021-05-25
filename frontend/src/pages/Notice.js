@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
-import ToDoList from '../notice/ToDoList';
+import UnivList from '../notice/UnivList';
 import '../review/Review.css';
 
 class Notice extends Component {
     id = 4;
     state = {
-      toDoList: [
+      univList: [
         {
           id: 1,
           text: '강원대학교',
@@ -130,13 +130,13 @@ class Notice extends Component {
         });
       };
     render() {
-      const { toDoList, search } = this.state;
+      const { univList, search } = this.state;
       return (
         <div class='container'>
         <div className= 'notice'>
             <input className= 'searchbar' value={search} name="search" onChange={this.handleSearch} placeholder=" ..학교 이름을 검색하세요" />
-            <ToDoList
-                data={toDoList.filter((data) => data.text.indexOf(search) !== -1)}
+            <UnivList
+                data={univList.filter((data) => data.text.indexOf(search) !== -1)}
             />
             
     </div>
