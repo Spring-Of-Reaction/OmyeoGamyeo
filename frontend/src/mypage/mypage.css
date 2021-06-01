@@ -5,9 +5,15 @@
     margin-top: 20px;
     border: none;
     background-color: rgba(0,75,254,0.2);
-    border-radius: 15px;
-
+    border-radius: 10px;
     
+}
+
+.mymy:hover{
+    transition: all 0.3s ease-out;
+    background: #1921b6;
+    color: white;
+    transition: 250ms;
 }
 
 .cc{

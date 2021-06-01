@@ -80,17 +80,13 @@
 }
 
 .btn-click{
-    width: 140px;
-    padding: 10px 10px 20px 10px;
-    margin: 10px;
+    width: 280px;
+    height:50px ;
     background-color:var(--primary);
-    border: 0;
+    border:0;
     outline:0;
 }
-.btn-click:hover{
-    border-bottom: 3px solid #fff;
-    transition: all 0.2s ease-out;
-}
+
 
 .button-group2{
     padding-left: 20%;
@@ -101,14 +97,19 @@
 }
 
 .button-for-notice{
-    padding: 5px 10px 5px 10px;
     width: 80px;
     background-color:var(--primary);
-    color: black;
-    font-size: small;
     border: 0;
     outline:0;
     border-radius: 10px;
+}
+
+.btn-click:hover,
+.button-for-notice:hover{
+    transition: all 0.3s ease-out;
+    background: #f2f2f5;
+    color: #fffcfc;
+    transition: 250ms;
 }
 
 .card-body{

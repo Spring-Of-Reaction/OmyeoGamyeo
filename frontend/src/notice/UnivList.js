@@ -18,7 +18,7 @@ class UnivList extends Component {
    
 
     return (
-      <div className='Notice' style={{marginLeft:"75px"}}>
+      <div className='Notice' style={{marginLeft:"70px"}}>
         <ul >
           {data.map((data) => (
             <li className='button-for-notice' style={this.state.style}>

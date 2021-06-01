@@ -23,6 +23,20 @@
     border: 1px solid var(--primary);
     transition: all 0.3s ease-out;
   }
+.btn--outline2 {
+  background-color: rgb(30, 89, 238);
+  color: white;
+  padding: 8px 10px;
+  border: 1px solid var(--primary);
+  transition: all 0.3s ease-out;
+}
+.btn--outline3 {
+  background-color: rgb(172, 185, 226);
+  color: white;
+  padding: 8px 10px;
+  border: 1px solid var(--primary);
+  transition: all 0.3s ease-out;
+}
   
   .btn--medium {
     padding: 8px 16px;
@@ -33,7 +47,9 @@
     padding: 12px 26px;
     font-size: 20px;
   }
-  
+
+.btn--outline2:hover,
+  .btn--outline3:hover,
   .btn--large:hover,
   .btn--medium:hover {
     transition: all 0.3s ease-out;
