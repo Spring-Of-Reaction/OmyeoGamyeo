@@ -134,11 +134,10 @@ class Notice extends Component {
       return (
         <div class='container'>
         <div className= 'notice'>
-            <input className= 'searchbar' value={search} name="search" onChange={this.handleSearch} placeholder=" ..학교 이름을 검색하세요" />
+            <input className= 'searchbar' value={search} name="search" onChange={this.handleSearch} placeholder="..학교 이름을 검색하세요" />
             <UnivList
                 data={univList.filter((data) => data.text.indexOf(search) !== -1)}
             />
-            
     </div>
     </div>
       );

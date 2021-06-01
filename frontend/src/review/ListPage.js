@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
 import ReviewService from './ReviewService';
 import './Review.css';
-import ReviewSearch from './ReviewSearch';
 
 
 class ListPage extends Component{
