@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import axios from 'axios';
 import UserService from '../user/UserService';
 import '../user/user.css';
+import '../components/Button.css';
 
 
 class Login extends Component{
@@ -60,24 +61,30 @@ render(){
 return (
   
       <div class='container' >
-      <h2 class='reviewnaming'>로그인하세요.</h2>   
-          <div className='loginform'>
+          <div class='loginform'>
+              <div style={{marginBottom:"30px"}}>
+              <img src="logoimg.png" width="80" />
+              <h2>Login to your account</h2>
+              </div>
                                 <div className = "form-group">
-                                    <label className="labels"> 이메일  </label>
-                                    <input type="text" placeholder=""  className="form-control" 
+                                    { /* <label className="labels"> 이메일  </label>*/}
+                                    <input type="text" placeholder="     이메일을 입력하세요" style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}}  className="form-control"
                                     value={this.state.email}  onChange={this.changeemail}/>
                                 </div>
                                 <div className = "form-group">
-                                <label className="labels"> 비밀번호  </label>
-                                   <input type="password" placeholder=""  className="form-control" 
+                                    {/*<label className="labels"> 비밀번호  </label> */}
+                                   <input type="password" placeholder="     비밀번호를 입력하세요" style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}}  className="form-control"
                                     value={this.state.password} onChange={this.changepassword}/>
-                                </div> </div>
+                                </div>
+                  <button className="btn--outline2" onClick={this.loginUser} style={{width:"300px", height:"40px", borderRadius:"10px", fontWeight:"bold"}}>로그인</button>
+              <div style={{marginRight:"5px",fontSize:"13px", fontWeight:"bold", marginTop:"20px"}}>
+                                    아직 회원이 아니신가요?
+                  <button className='btn--outline3' onClick={this.signup} style={{borderRadius:"10px", marginLeft:"50px", width:"100px"}}>
+                      회원가입 </button>
+              </div>
 
-
-                            
-                                <div>아직 회원이 아니신가요? <button className="btn btn-danger" onClick={this.signup}> 회원가입하세요. </button></div>
-                                <button className="btn btn-danger" onClick={this.loginUser}>로그인</button> 
       </div>
+</div>
       
   )
 
