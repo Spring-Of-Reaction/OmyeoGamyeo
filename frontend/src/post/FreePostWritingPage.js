@@ -126,7 +126,18 @@ render() {
                     {this.getTitle()}
                         <div className = "card-body">
                             <form className = "form-design">
-
+                            <div className = "form-group">
+                                <label className="labels"> 카테고리  </label>
+                                <select placeholder="type" name="category" className="select-group"
+                                        value={this.state.category}  onChange={this.changecategoryHandler}>
+                                            <optgroup label='카테고리를 선택하세요'>
+                                        
+                                        <option value='1'>일상</option>
+                                        <option value='2'>질문</option></optgroup>
+                                        </select>
+                                
+                          
+                                </div>
                             <div className = "form-group">
                                     <label className="labels"> 제목  </label>
                                     <input type="text" placeholder="제목" name="subjectName" className="form-control" 
@@ -139,34 +150,19 @@ render() {
                                 </div>
 
                                 
-                                <div className = "form-group">
-                                <label className="labels"> 카테고리  </label>
-                                <select placeholder="type" name="category" className="form-control"
-                                        value={this.state.category}  onChange={this.changecategoryHandler}>
-                                            <optgroup label='카테고리를 선택하세요'>
-                                        
-                                        <option value='1'>일상</option>
-                                        <option value='2'>질문</option></optgroup>
-                                        </select>
                                 
-
-
-
-                                
-                          
-                                </div>
-                                <div className = "form-group">
+                                {/*<div className = "form-group">
                                 <label className="labels"> 조회수  </label>
                                     <input placeholder="조회수" name="views" className="form-control" 
                                      value={this.state.views} onChange={this.changeviewsHandler}/>
-                                </div>
+    </div>*/}
                                 
                                    <div className = "form-group">
-                                        <label className="labels"> 파일이름  </label>
+                                        <label className="labels"> 첨부파일  </label>
                                         <input type="file" placeholder="" name="filename" className="form-control" 
                                          value={this.state.filename} onChange={this.changefilenameHandler}/>
                                     </div>
-                                    <div className = "form-group">
+                                   {/* <div className = "form-group">
                                         <label className="labels"> 닉네임  </label>
                                         <input type="text" placeholder="" name="nickname" className="form-control" 
                                          value={this.state.nickname} onChange={this.changenicknameHandler}/>
@@ -175,7 +171,7 @@ render() {
                                         <label className="labels"> 파일경로  </label>
                                         <input type="file" placeholder="" name="filepath" className="form-control" 
                                          value={this.state.filepath} onChange={this.changefilepathHandler}/>
-                                    </div>
+</div>*/}
                                     
                                 {/*
                                 <div className = "form-group">
@@ -197,8 +193,8 @@ render() {
                                         />
                                 </div>*/}
                                 <div className = "button-group">
-                                    <button className="btn btn-success" onClick={this.createPost} style={{marginLeft:"10px"}}>등록</button>
-                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft:"10px"}}>취소</button>
+                                    <button className="btn--primary" onClick={this.createPost} style={{marginLeft:"10px"}}>등록</button>
+                                    <button className="btn--primary" onClick={this.cancel.bind(this)} style={{marginLeft:"10px"}}>취소</button>
                                     </div>
                             </form>
                         </div>

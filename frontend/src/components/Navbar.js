@@ -3,6 +3,8 @@ import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
+
+
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -24,6 +26,8 @@ function Navbar() {
 
     window.addEventListener('resize', showButton);
 
+  
+
     return (
         <>
         <nav className="navbar">
@@ -32,7 +36,7 @@ function Navbar() {
                     <img src="logoimg.png" width="80"/>
                 </Link>
                 <div className='menu-icon' onClick={handleClick}>
-                    <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
+                    <li className={click ? 'fas fa-times' : 'fas fa-bars'}/>
                 </div>
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li className='nav-item'>
@@ -62,11 +66,12 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
+                        <Link to='/user/login' className='nav-links-mobile' onClick={closeMobileMenu}>
                             로그인
                         </Link>
                     </li> 
                 </ul>
+                
                 {button && <Button buttonStyle='btn--outline'>로그인</Button>}
             </div>
         </nav>

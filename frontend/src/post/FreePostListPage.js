@@ -6,11 +6,16 @@ import '../review/Review.css';
 class FreepostListPage extends Component{
   constructor(props) {
     super(props)
-
+    
     this.state = { 
       Freepost: [],
       keywords:'',
-      searchoption:0
+      searchoption:0,
+      lgth:0,
+      Newpost:[],
+      start:0,
+      end:5,
+      
   }
     this.searchkeywords = this.searchkeywords.bind(this);
     this.changekeyworsdHandler = this.changekeywordsHandler.bind(this);
@@ -20,14 +25,18 @@ class FreepostListPage extends Component{
     this.category=this.category.bind(this);
     this.category1=this.category1.bind(this);
     this.category2=this.category2.bind(this);
-
+    
     
 }
   componentDidMount() {
       
         FreePostService.getPost().then((res) => {
             this.setState({ Freepost : res.data});
-           /* console.log(JSON.stringify(this.state.Freepost));*/
+            this.setState({lgth : res.data.length});
+            console.log(this.state.lgth);
+            console.log((this.state.lgth-this.state.lgth%5)/5);
+            this.setState({Newpost: this.state.Freepost.slice(this.state.start,this.state.end)});
+            console.log(JSON.stringify(this.state.Newpost));
         });
         
         
@@ -56,6 +65,8 @@ category2(){
     this.props.history.push('/post/category/2')
 }
 
+
+
 searchkeywords(option,keywords){
 
     if(option==='1'){
@@ -76,17 +87,16 @@ searchkeywords(option,keywords){
 
   render(){
   return (
-  
       <div class='container'>
-      <h2 class='reviewnaming' >자유게시판</h2>
-      <div className="button-group2">
-      <button className="btn--primary3" onClick={this.category}> 전체 보기 </button>
-      <button className="btn--primary3" onClick={this.category1}> 일상 </button> 
-      <button className="btn--primary3" onClick={this.category2}> 질문 </button> 
-
+        <h2 class='reviewnaming' >자유게시판</h2>
+        <div className="button-group2">
+          <button className="btn--primary3" onClick={this.category}> 전체 보기 </button>
+          <button className="btn--primary3" onClick={this.category1}> 일상 </button> 
+          <button className="btn--primary3" onClick={this.category2}> 질문 </button> 
+        </div>
       <div className = "form-group">
-                                
-                                <select placeholder="type" name="searchoption" 
+      <div className='search-group'>
+                                <select className="category" placeholder="type" name="searchoption" 
                                         value={this.searchoption}  onChange={this.changesearchoptionHandler}>
                                             <optgroup label='카테고리를 선택하세요'>
                                         
@@ -95,14 +105,15 @@ searchkeywords(option,keywords){
                                         </select>
                                 
                                     
-                                    <input type="text" placeholder="검색어를 입력하세요" name="keyword"  
+                                    <input className="category" type="text" placeholder="검색어를 입력하세요" name="keyword"  
                                    value={this.keywords} onChange={this.changekeywordsHandler}/>
-                                   <button onClick={() => this.searchkeywords(this.state.searchoption,this.state.keywords)}> 검색 </button> 
+                                   <button className="category2" onClick={() => this.searchkeywords(this.state.searchoption,this.state.keywords)}> 검색 </button> 
 
                                    
                                 </div>
       </div>
       <div className = "card-body"> 
+                    
 
                     <table className="table-boarder">
                         <thead className="tablest">
@@ -115,12 +126,12 @@ searchkeywords(option,keywords){
                         </thead>
                         <tbody className="tablest">
                             {
-                                this.state.Freepost.map(
-                                    Freepost => 
-                                    <tr key = {Freepost.pid}>
-                                        <td width="100px"> <a onClick = {() => this.readpost(Freepost.pid)}>{Freepost.pid} </a></td>
-                                        <td width="600px"> <a onClick = {() => this.readpost(Freepost.pid)}>{Freepost.title} </a></td>
-                                        <td width="500px"> <a onClick = {() => this.readpost(Freepost.pid)}>{Freepost.date}</a> </td>
+                                this.state.Newpost.map(
+                                    Newpost => 
+                                    <tr key = {Newpost.pid}>
+                                        <td width="100px"> <a onClick = {() => this.readpost(Newpost.pid)}>{Newpost.pid} </a></td>
+                                        <td width="600px"> <a onClick = {() => this.readpost(Newpost.pid)}>{Newpost.title} </a></td>
+                                        <td width="500px"> <a onClick = {() => this.readpost(Newpost.pid)}>{Newpost.date}</a> </td>
                                     </tr>
                                 )
                             }
@@ -128,7 +139,8 @@ searchkeywords(option,keywords){
                     </table>
                 
                 
-      
+                    <button className="btn--primary2" > 1 </button>
+                    
       <button className="btn--primary2" onClick={this.createFreepost}> 글 작성 </button> 
       
       </div></div>

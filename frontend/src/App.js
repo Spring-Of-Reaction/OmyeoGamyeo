@@ -10,10 +10,14 @@ import Footer from './components/Footer';
 import Notice from './pages/Notice';
 import ReviewPage from './pages/Review';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Signup from './user/Signup';
 
 function App() {
+  if (localStorage.getItem('user')){
+    console.log('heejin'+localStorage.getItem('user'));
+  }
   return (
+    
     <>
       <Router>
       <Navbar/>
@@ -25,7 +29,7 @@ function App() {
           <Route path='/notice' component={Notice} />
           <Route path='/review' component={ReviewPage} />
           <Route path='/login' component={Login} />
-          <Route path='/sign-up' component={Signup} />
+          <Route path='/join' component={Signup} />
           <Route render={() => <div className='error'>에러 페이지</div>} />
         </Switch>
       <Footer/>

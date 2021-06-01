@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './mypage.css';
+import user from '../components/user.png'
 
 
 
@@ -7,11 +9,12 @@ function MyPage() {
   return (
   
       <div className='container' >
-      <div>마이 페이지 입니다.</div>
-      <ul>
-        <li><Link to='/mypage/scraps'><h3>스크랩 한 글</h3></Link></li>
-        <li><Link to='/mypage/mylist'><h3>내가 쓴 글</h3></Link></li>
-        <li><Link to='/mypage/Inform'><h3>내 정보</h3></Link></li>
+      <h2 class='reviewnaming' >마이페이지</h2>
+      <div className='my'><img  src={user} width='200' height='180'/></div>
+      <ul className='cc'>
+        <li><Link to='/mypage/post'><button className='mymy'><h2>내가 쓴 글</h2></button></Link></li>
+        <li><Link to='/mypage/scrap'><button className='mymy'><h2>스크랩 한 글</h2></button></Link></li>
+        <li><Link to='/mypage/inform'><button className='mymy'><h2>내 정보</h2></button></Link></li>
       </ul>
       </div>
         

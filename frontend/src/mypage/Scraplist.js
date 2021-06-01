@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import MypageService from './MypageService';
 
-class Mylist extends Component {
+class Scraplist extends Component {
   constructor(props) {
     super(props)
 
     this.state = { 
-      Mylist: [],
+      Scraplist: [],
     }
-    this.readPost=this.readPost.bind(this);
+    this.readScrap=this.readScrap.bind(this);
     
   }
 
 componentDidMount() {
-  MypageService.getMylist().then((res) => {
-    this.setState({ Mylist : res.data});
+  MypageService.getMyscraplist().then((res) => {
+    this.setState({ Scraplist : res.data});
         /*console.log("Review => "+ JSON.stringify(this.state.Review));*/
   });
 
 }
 
-readPost(no){
-  this.props.history.push(`/mypage/post/${no}`)
+readScrap(no){
+  this.props.history.push(`/mypage/scrap/${no}`)
 }
 
 
@@ -29,7 +29,7 @@ readPost(no){
   return (
     <div class='container' >
     {/*<img src={star} width='30' height='30'/>*/}
-    <h2 class='reviewnaming'>내가 쓴 글 목록</h2> 
+    <h2 class='reviewnaming'>스크랩한 글 목록</h2> 
     <div className = "card-body">
       <table className="table-boarder">
                       <thead className="tablest">
@@ -41,22 +41,21 @@ readPost(no){
                       </thead>
                       <tbody className="tablest">
                           {
-                              this.state.Mylist.map(
-                                Mylist => 
-                                  <tr key = {Mylist.pid}>
-                                      <td width="100px"> <a onClick = {() => this.readPost(Mylist.pid)}>{Mylist.pid} </a></td>
+                              this.state.Scraplist.map(
+                                Scraplist => 
+                                  <tr key = {Scraplist.sid}>
+                                      <td width="100px"> <a onClick = {() => this.readScrap(Scraplist.sid)}>{Scraplist.sid} </a></td>
           
                                   </tr>
                               )
                           }
                       </tbody>
       </table>
-      
-            
+    
     </div>
   </div>
       
   )}
 }
 
-export default Mylist;
+export default Scraplist;

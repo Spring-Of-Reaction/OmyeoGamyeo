@@ -1,5 +1,8 @@
 import React,{Component} from 'react';
 import axios from 'axios';
+import UserService from '../user/UserService';
+import '../user/user.css';
+
 
 class Login extends Component{
   constructor(props) {
@@ -7,37 +10,43 @@ class Login extends Component{
 
     this.state = {
       email:'',
-      password:''
+      password:'',
+      token:''
         
     }
-    this.handleSubmit=this.handleSubmit.bind(this);
     this.signup=this.signup.bind(this);
   }
   
 signup(){
-  this.props.history.push('/sign-up');
+  this.props.history.push('/join');
 }
 
-  handleSubmit=e=>{
-   e.preventDefault();
-        
-    let data={
-      email:this.state.email,
-      password:this.state.password
-    };
+loginUser = (event) => {
+  event.preventDefault();
+  
+  let User = {
+    email:this.state.email,
+    password:this.state.password,
+  
+    
+};
+  let Email={
+    email:this.state.email,
+  }
+  const headers=new Headers({
+    "Content-Type":"application/json"
+  })
+  
+      UserService.loginUser(User).then(res => {
+        let token=res.data;
+        localStorage.setItem('user',token);
 
-    axios.post('url',data)
-    .then(res=>{
-      console.log(res.data);
-      const{accessToken}=res.date;
-    localStorage.setItem('token',res.data); //localstorage 저장
-    axios.defaults.headers.common['Authorization']=`Bearer ${accessToken}`; //위랑 반대 상황
-  })
-  .catch(err=>{
-    console.log(err)
-  })
-  };
- 
+        console.log(localStorage.getItem('user'));
+        this.props.history.push("/mypage");
+        
+      });
+}
+
 
   changeemail = (event) => {
     this.setState({ email : event.target.value });
@@ -52,7 +61,7 @@ return (
   
       <div class='container' >
       <h2 class='reviewnaming'>로그인하세요.</h2>   
-
+          <div className='loginform'>
                                 <div className = "form-group">
                                     <label className="labels"> 이메일  </label>
                                     <input type="text" placeholder=""  className="form-control" 
@@ -62,12 +71,12 @@ return (
                                 <label className="labels"> 비밀번호  </label>
                                    <input type="password" placeholder=""  className="form-control" 
                                     value={this.state.password} onChange={this.changepassword}/>
-                                </div> 
+                                </div> </div>
 
 
-                                <button className="btn btn-danger" onClick={() => alert(`${this.state.email}, ${this.state.password}`)}>회원?</button> 
+                            
                                 <div>아직 회원이 아니신가요? <button className="btn btn-danger" onClick={this.signup}> 회원가입하세요. </button></div>
-                               
+                                <button className="btn btn-danger" onClick={this.loginUser}>로그인</button> 
       </div>
       
   )

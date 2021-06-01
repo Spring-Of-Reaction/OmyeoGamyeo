@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createFactory } from 'react';
 import '../App.css';
 import './HeroSection.css';
 

@@ -70,11 +70,11 @@ class FreepostViewingPage extends Component {
 
            
     }
-    deleteFreePost = async function (comments) {
-       /* console.log("삭제예정댓글 => "+ JSON.stringify(comments));*/
-        comments.map(
-            Comments => FreePostService.deleteComments(this.state.pid,Comments.cid)
-            /*,console.log(Comments.cid)*/
+    deleteFreePost = async function (Comments) {
+       
+        Comments.map(
+            Comments => FreePostService.deleteComments(this.state.pid,Comments.cid),
+            console.log(Comments.cid)
         );
 
  
@@ -82,7 +82,7 @@ class FreepostViewingPage extends Component {
             FreePostService.deletePost(this.state.pid).then(res=> {
                 console.log("delete result=>"+JSON.stringify(res));
                 if(res.status===200){
-                    this.props.history.push('/api/post');
+                    this.props.history.push('/post');
                 }else{
                     alert("글 삭제를 실패하였습니다.");
                 }
@@ -112,66 +112,73 @@ class FreepostViewingPage extends Component {
             <div className = "container">
       
                 <div className = "card col-md-6 offset-md-3">
-                    <h2 className ='reviewnaming'> 조회 페이지</h2>
+                    <h2 className ='reviewnaming2'> {this.state.FreePost.title}</h2>
                     <div className = "card-body">
                     <div className='form-design2'>    
-                          
+                    <h3> {this.state.FreePost.content}</h3>
+                          {/*
                             <div className = "row">      
                                
-                                <label className="labels"> 제목 </label>  <div className='contentbox'> {this.state.FreePost.title} </div>
+                               <div className='contentbox'> {this.state.FreePost.title} </div>
                             </div>
-
+                          
+                          
                             <div className = "row">
-                                <label className="labels"> Contents </label>  <div className='contentbox'> {this.state.FreePost.content} </div>
+                                <div className='contentbox'> {this.state.FreePost.content} </div>
+                            </div >*/}
+                            <div className = "row">
+                                {this.state.FreePost.filename} 
                             </div >
-                            
-
-                            <table >
+                            </div >
+                <div className="table-boarder5">
+                        <table  >
                         <thead >
                             <tr>
-                                <th width="100px">댓글 작성자 </th>
-                                <th width="600px">댓글의 내용 </th>
-                                <th width="600px">시간 </th>
+                                <th width="100px"></th>
+                                <th width="500px"> </th>
+                                <th width="200px"></th>
                               
                             
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
                             {
                                 this.state.Comments.map(
                                     Comments => 
                                     <tr key = {Comments.cid}>
-                                        <td width="600px"> {Comments.c_writer} </td>
+                                        <td width="100px"> {Comments.c_writer} </td>
                                         <td width="500px"> {Comments.c_content}</td>
-                                        <td width="500px"> {Comments.dateTime}</td>
+                                        <td width="200px"> {Comments.dateTime}</td>
                                         <button onClick={()=> this.deleteComments(Comments.cid)} style={{width:"wrap-contents"}}>x</button>
                                     </tr>
                                 )
-                            }
-                        </tbody>
-                    </table>
-
+                             }
+                             </tbody>
+                             </table>
+                    
                            
-                            {/*this.returnDate(this.state.Posts.createdTime, this.state.Posts.updatedTime) */}
+                            {/*this.returnDate(this.state.Posts.createdTime, this.state.Posts.updatedTime) 
                             <div className = "form-group">
-                                <label className="labels"> 댓글작성자  </label>
+                                <label > 댓글작성자  </label>
                                    <input type="text" placeholder="내용" name="" className="form-control" 
                                     value={this.state.c_writer} onChange={this.changec_writerHandler}/>
-                                </div>
-                                <label className="labels"> 댓글달기  </label>
-                                   <input type="text" placeholder="작성자" name="" className="form-control-sub" 
-                                    value={this.state.c_content} onChange={this.changec_contentHandler}/>
-                                
-                                <form>
-                            <button className="btn btn-success" onClick={this.createComments} style={{marginLeft:"10px"}}>등록</button>
-                            </form>
-                            <button className="btn btn-primary" onClick={this.goToList.bind(this)} style={{marginLeft:"10px"}}>글 목록으로 이동</button>
+                                </div>*/}
+                                <div className="table-boarder6">
+                                    <label > 댓글달기  </label>
+                                        <input type="text" placeholder="" name="" className="form-control-sub2" 
+                                            value={this.state.c_content} onChange={this.changec_contentHandler}/>
+                                    <button className="btn--primary" onClick={this.createComments} style={{marginLeft:"10px"}}>등록</button>
+                                </div>    
+                </div>
+                            <div>
+                           
                             <button className="btn--primary" onClick={this.goToPEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
                             <button className="btn--primary" onClick={()=> this.deleteFreePost(this.state.Comments)} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
+                        </div>
                     </div>
                 </div>
                 </div>
-            </div>
+            
         );
     }
 }

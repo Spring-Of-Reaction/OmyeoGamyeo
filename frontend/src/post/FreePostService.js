@@ -36,7 +36,6 @@ class FreepostService {
     searchCPost(keyword){
         return axios.get(post_url+'/search/content/?keyword='+keyword);
     }
-
     getcomments(id){
         return axios.get(post_url+'/'+id+'/comment');
     }

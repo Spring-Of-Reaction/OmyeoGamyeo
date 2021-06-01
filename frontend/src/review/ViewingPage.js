@@ -1,6 +1,7 @@
 import React,{Component}  from 'react';
 import ReviewService from './ReviewService';
 import './Review.css';
+import star from '../components/star.png';
 
 class ViewingPage extends Component {
     constructor(props) {
@@ -13,42 +14,22 @@ class ViewingPage extends Component {
         }
 
         this.goToEdit=this.goToEdit.bind(this);
+        this.reviewscrap=this.reviewscrap.bind(this);
+        this.reviewlike=this.reviewlike.bind(this);
           
     }
     
     componentDidMount() {
         ReviewService.getOneReview(this.props.match.params.id).then( (res) => {
             this.setState({Review: res.data});
+            console.log("Review => "+ JSON.stringify(this.state.Review)+this.state.id); 
             
         });      
-        console.log("Review => "+ JSON.stringify(this.state.Review)+this.state.id); 
+      
         
     }
-    /*
-    returnCategory(typeNo){
-        let type=null;
-        if(typeNo==1){
-            type="일상";
-        }
-        else if(typeNo==2){
-            type="질문";
-        }
+   
 
-        return (
-            <div className = "row">
-                <label className="labels"  > 평점 </label> <div className='contentbox'>{type}</div>
-            </div>
-
-        )
-    }*/
-
-    returnDate(cTime, uTime) {
-        return (
-            <div className = "row">
-                <label>생성일 : [ {cTime} ] / 최종 수정일 : [ {uTime} ] </label>
-            </div>
-        )
-    }
 
     goToList() {
         this.props.history.push('/review');
@@ -57,6 +38,26 @@ class ViewingPage extends Component {
     goToEdit= (event)=>{
         event.preventDefault();
         this.props.history.push(`/review/update/${this.state.id}`);
+           
+    }
+
+    reviewscrap = (event)=>{
+        event.preventDefault();
+        let userscrap={
+            uid:localStorage.getItem('user')
+        };
+        ReviewService.reviewscrap(this.state.id,userscrap).then(res=>
+            window.alert("스크랩이 완료되었습니다."));
+           
+    }
+    reviewlike = (event)=>{
+        event.preventDefault();
+        let userlike={
+            uid:localStorage.getItem('user'),
+            
+        };
+        ReviewService.reviewscrap(this.state.id,userlike).then(res=>
+            window.alert("좋아요를 누릅니다."));
            
     }
     
@@ -73,21 +74,50 @@ class ViewingPage extends Component {
         }
         
     }
+
+    getrating(startcount){
+        if(startcount===1){
+            return <div className='contentbox'><img src={star} width='30' height='30'/></div>
+        }else if(startcount===2){
+            return <div className='contentbox'><img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/></div>
+        }
+        else if(startcount===3){
+            return <div className='contentbox'><img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/></div>
+        }
+        else if(startcount===4){
+            return <div className='contentbox'><img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/></div>
+        }
+        else{
+            return <div className='contentbox'><img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/>
+            <img src={star} width='30' height='30'/></div>
+        }
+
+    }
     render() {
         
         return (
             <div className = "container">
-      
+                
                 <div className = "card col-md-6 offset-md-3">
-                    <h2 className='reviewnaming'> 강의 후기</h2>
+                    <h2 className ='reviewnaming2'>{this.state.Review.subjectName}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.Review.univName}</h2>
                     <div className = "card-body">
                         <div className='form-design2'>
-                            <div className = "row">      
+                           {/* <div className = "row">      
                                 <label className="labels" > 강의명 </label>  <div className='contentbox'>{this.state.Review.subjectName} </div>
                             </div>
                             <div className = "row">      
                                 <label className="labels" > 학교 </label>  <div className='contentbox'>{this.state.Review.univName} </div>
-                            </div>
+        </div>*/}
                             <div className = "row">      
                                 <label className="labels"  > 교수명 </label>  <div className='contentbox'>{this.state.Review.professor+' 교수님'} </div>
                             </div>
@@ -99,25 +129,25 @@ class ViewingPage extends Component {
                             </div>
                             
                             <div className = "row">
-                                <label className="labels"  > 평점 </label> <div className='contentbox'>{this.state.Review.rating} </div>
+                                <label className="labels"  > 평점 </label> 
+                                {this.getrating(this.state.Review.rating)}
+                               
                             </div >
                             {/*{this.returnCategory(this.state.Review.rating)}*/}
 
                             <div className = "row">
                                 <label className="labels"  > 기타 </label> <div className='contentbox'> {this.state.Review.content} </div>
                             </div >
+                            {/*
                             <div className = "row">
-<<<<<<< HEAD
-                                <label className="labels"  > 작성 시간</label> <div className='contentbox'> {this.state.Review.nickname} </div>
-=======
-                                <label className="labels"  > 작성 시간 </label> <div className='contentbox'> {this.state.Review.nickname} </div>
->>>>>>> feature/navermapapi
-                            </div >
+
+                                <label className="labels"  > 작성자</label> <div className='contentbox'> {this.state.Review.nickname} </div>
+
+                            </div>*/}
                             
-                            {/*this.returnDate(this.state.Review.createdTime, this.state.Review.updatedTime) 
-                            
-                            <button className="btn--primary" onClick={this.goToList.bind(this)} style={{marginTop:"100px" }}>글 목록으로 이동</button>*/}
-                           
+        
+                           <button className="btn--primary" onClick={this.reviewscrap} style={{marginTop:"100px", marginLeft:"10px"}}>스크랩하기</button>
+                           <button className="btn--primary" onClick={this.reviewlike} style={{marginTop:"100px", marginLeft:"10px"}}>좋아요</button>
                             <button className="btn--primary" onClick={this.goToEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
                             <button className="btn--primary" onClick={()=> this.deleteReview()} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
                             </div> </div>

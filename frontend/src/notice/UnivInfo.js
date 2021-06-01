@@ -6,7 +6,7 @@ class UnivInfo extends Component {
     const { data } = this.props;
     return (
       <div>
-        <button className="btn--primary4" ><a href={data.text2}><span>{data.text}</span></a></button>
+        <button  className="btn--primary4" ><a href={data.text2}><span>{data.text}</span></a></button>
       </div>
     );
   }

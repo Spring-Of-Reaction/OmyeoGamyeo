@@ -10,6 +10,10 @@
     margin-left:20%;
     padding-top:40px;
 }
+.reviewnaming2{
+    margin-left:20%;
+    padding-top:80px;
+}
 
 
 .table-boarder{
@@ -23,6 +27,23 @@
    
 }
 
+.table-boarder5{
+    
+    
+    background-color: rgba(0,75,254,0.2);
+    margin-top: 80px;
+    width: 800px;
+    
+   
+}
+.table-boarder6{
+    display: table;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    
+    
+}
 
 .btn--primary{
     padding: 5px 10px 5px 10px;
@@ -78,10 +99,19 @@
     text-align: center;
     
 }
+.select-group{
+    display: flex;
+    text-align: center;
+    border: none;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 25px;
+    
+}
 
 .form-control{
     height: 25px;
-    width: 400px;
+    width: 300px;
     margin-left: 10px;
     margin-bottom: 10px;
     border: none;
@@ -91,7 +121,15 @@
 .form-control-sub{
     border: none;
     height: 60px;
-    width: 400px;
+    width: 300px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+}
+.form-control-sub2{
+    border: none;
+    height: 40px;
+    width: 500px;
     margin-left: 10px;
     margin-bottom: 10px;
 
@@ -110,7 +148,7 @@
 .form-design2{
   
     padding: 10px;
-    padding-left: 30%;
+    
 }
 
 .row{
@@ -140,4 +178,19 @@
 .map{
     margin-left: 30%;
     padding-top: 50px;
+}
+
+.category{
+    border: none;
+    height:30px;   
+}
+.category2{
+    border: none;
+    height:30px; 
+    width: 60px;  
+}
+
+.search-group{
+    
+    padding-left: 50%;
 }

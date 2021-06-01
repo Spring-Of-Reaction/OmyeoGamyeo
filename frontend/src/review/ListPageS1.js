@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
 import ReviewService from './ReviewService';
 import './Review.css';
-import ReviewSearch from './ReviewSearch';
+
 
 
 class ListPageS1 extends Component{
@@ -11,7 +11,8 @@ class ListPageS1 extends Component{
 
     this.state = { 
       Review: [],
-      number: 100
+      number: 100,
+      keywords: this.props.match.params.keywords,
     }
  
     this.createReview = this.createReview.bind(this);
@@ -21,9 +22,10 @@ class ListPageS1 extends Component{
     this.changekeyworsdHandler = this.changekeywordsHandler.bind(this);
     this.changesearchoptionHandler = this.changesearchoptionHandler.bind(this);
   }
-
+  
 componentDidMount() {
-  ReviewService.getReview().then((res) => {
+  console.log(this.state.keywords);
+  ReviewService. searchUPost(this.state.keywords).then((res) => {
     this.setState({ Review : res.data});
         /*console.log("Review => "+ JSON.stringify(this.state.Review));*/
   });

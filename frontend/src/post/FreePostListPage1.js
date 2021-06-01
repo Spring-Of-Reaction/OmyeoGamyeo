@@ -68,9 +68,9 @@ category2(){
                                 this.state.Freepost.map(
                                     Freepost => 
                                     <tr key = {Freepost.pid}>
-                                        <td width="100px"> <a onClick = {() => this.readPosts(Freepost.pid)}>{Freepost.pid} </a></td>
-                                        <td width="600px"> <a onClick = {() => this.readPosts(Freepost.pid)}>{Freepost.title} </a></td>
-                                        <td width="500px"> <a onClick = {() => this.readpost(Freepost.pid)}>{Freepost.date}</a> </td>
+                                        <td width="100px"> <a onClick = {() => this.readFreepost(Freepost.pid)}>{Freepost.pid} </a></td>
+                                        <td width="600px"> <a onClick = {() => this.readFreepost(Freepost.pid)}>{Freepost.title} </a></td>
+                                        <td width="500px"> <a onClick = {() => this.readFreepost(Freepost.pid)}>{Freepost.date}</a> </td>
                                     </tr>
                                 )
                             }

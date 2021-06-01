@@ -11,7 +11,9 @@ class Signup extends Component{
       email:'',
       password:'',
       univName:'',
-      nickname:''
+      nickname:'',
+      token:'',
+      message:''
         
     }
     this.handleSubmit=this.handleSubmit.bind(this);
@@ -20,6 +22,7 @@ class Signup extends Component{
     this.changeunivNameHandler = this.changeunivNameHandler.bind(this);
     this.changenicknameHandler = this.changenicknameHandler.bind(this);
     this.createUser=this.createUser.bind(this);
+    this.verifyUser=this.verifyUser.bind(this);
   }
 changeemailHandler = (event) => {
     this.setState({email: event.target.value});
@@ -43,14 +46,42 @@ createUser = (event) => {
       nickname:this.state.nickname
       
   };
-  
-  console.log("User => "+ JSON.stringify(User));
 
   
+  {/*console.log("User => "+ JSON.stringify(User));*/}
+    
+  
       UserService.createUser(User).then(res => {
-          this.props.history.push('/post');
+        let token=res.data;
+        console.log(token);
+      });
+      console.log(JSON.stringify(User));
+   
+}
+
+verifyUser = (event) => {
+  event.preventDefault();
+  
+  let User = {
+    email:this.state.email,
+    password:this.state.password,
+    univName:this.state.univName,
+    nickname:this.state.nickname
+    
+};
+  let Email={
+    email:this.state.email,
+  }
+  
+      UserService.emailverify(User).then(res => {
+        let message=res.data;
+        console.log(message);
+        console.log("email 보냈음=> "+ JSON.stringify(User.email));
+        window.alert("입력하신 이메일로 인증을 완료하세요.");
       });
 }
+
+
 
 
   handleSubmit=e=>{
@@ -104,6 +135,7 @@ return (
                                 </div>
                                 
                                 <button className="btn btn-danger" onClick={this.createUser}>회원가입</button> 
+                                <button className="btn btn-danger" onClick={this.verifyUser}>이메일인증</button> 
                                 <button className="btn btn-danger" onClick={() => alert(`${this.state.email}, ${this.state.univName}, ${this.state.password}`)}>회원정보는?</button> 
       </div>
       

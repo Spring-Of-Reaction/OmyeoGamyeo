@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import ReviewService from './ReviewService';
 import './Review.css';
+import axios from 'axios';
 
 class WritingPage extends Component{
     constructor(props) {
@@ -11,22 +12,22 @@ class WritingPage extends Component{
         subjectName:'',
         univName:'',
         professor:'',
-        semester:'',
+        semestery:'',
+        semesters:'',
         testType:'',
         content:'',
-<<<<<<< HEAD
+
         rating:1,
-=======
-        rating:0,
->>>>>>> feature/navermapapi
-        nickname: new Date(),
+
+        nickname: '',
         
     }
 
     this.changesubjectNameHandler = this.changesubjectNameHandler.bind(this);
     this.changeunivNameHandler = this.changeunivNameHandler.bind(this);
     this.changeprofessorHandler = this.changeprofessorHandler.bind(this);
-    this.changesemesterHandler = this.changesemesterHandler.bind(this);
+    this.changesemesteryHandler = this.changesemesteryHandler.bind(this);
+    this.changesemestersHandler = this.changesemestersHandler.bind(this);
     this.changetestTypeHandler = this.changetestTypeHandler.bind(this);
     this.changecontentHandler = this.changecontentHandler.bind(this);
     this.changeratingHandler = this.changeratingHandler.bind(this);
@@ -44,8 +45,11 @@ changeunivNameHandler = (event) => {
 changeprofessorHandler = (event) => {
     this.setState({professor: event.target.value});
 }
-changesemesterHandler = (event) => {
-    this.setState({semester: event.target.value});
+changesemesteryHandler = (event) => {
+    this.setState({semestery: event.target.value});
+}
+changesemestersHandler = (event) => {
+    this.setState({semesters: event.target.value});
 }
 changetestTypeHandler = (event) => {
     this.setState({testType: event.target.value});
@@ -68,26 +72,29 @@ createReview = (event) => {
         subjectName:this.state.subjectName,
         univName:this.state.univName,
         professor:this.state.professor,
-        semester:this.state.semester,
+        semester:this.state.semestery+"-"+this.state.semesters,
         testType:this.state.testType,
         content:this.state.content,
         rating:this.state.rating,
-        nickname:this.state.nickname,
+        nickname:localStorage.getItem('user'),
     };
 
-    console.log("Review sssW=> "+ JSON.stringify(Review)+this.state.id);
+    
 
-<<<<<<< HEAD
+
     if (!this.state.id) {
-=======
-    if (!this.state.id ) {
->>>>>>> feature/navermapapi
+               
         ReviewService.createReview(Review).then(res => {
             this.props.history.push('/review');
+            console.log("새로운 Review=> "+ JSON.stringify(Review)+this.state.id);
         });
+
+
+
     } else {
         ReviewService.updateReview(this.state.id, Review).then(res => {
-            this.props.history.push('/review');
+            this.props.history.push(`/review/${this.state.id}`);
+            console.log("수정 후 새로운 Review=> "+ JSON.stringify(Review)+this.state.id);
         });
     } 
         
@@ -98,11 +105,10 @@ cancel() {
 }
 
 getTitle() {
-<<<<<<< HEAD
-    if (!this.state.id) {
-=======
+
+   
     if (!this.state.id ) {
->>>>>>> feature/navermapapi
+
         return <h2 className="reviewnaming">새 글을 작성해주세요</h2>
     } else {
         return <h2 className="reviewnaming">글을 수정합니다</h2>
@@ -110,16 +116,15 @@ getTitle() {
 }
 
 componentDidMount() {
-<<<<<<< HEAD
-    if (!this.state.id) {
-=======
+
+  
     if (!this.state.id ) {
->>>>>>> feature/navermapapi
+
         return
     } else {
-        ReviewService.getOneReview(this.state.id).then( (res) => {
+        ReviewService.getOneReview(this.props.match.params.id).then( (res) => {
             let Review = res.data;
-            console.log("Review W=> "+ JSON.stringify(Review));
+            console.log("수정 전 원래 Review => "+ JSON.stringify(Review));
             
             this.setState({
                 subjectName:Review.subjectName,
@@ -160,8 +165,23 @@ render() {
                                 </div>
                                 <div className = "form-group">
                                 <label className="labels"> 수강학기  </label>
-                                <input type="text" placeholder="수강학기" name="semester" className="form-control" 
-                                     value={this.state.semester} onChange={this.changesemesterHandler}/>
+                                <select placeholder="type" name="type"  className = "select-group"
+                                        value={this.state.semestery} onChange={this.changesemesteryHandler}>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                </select>
+                                <select placeholder="type" name="type"  className = "select-group"
+                                        value={this.state.semesters} onChange={this.changesemestersHandler}>
+                                        <option value="1학기">1학기</option>
+                                        <option value="여름계절">여름계절</option>
+                                        <option value="2학기">2학기</option>
+                                        <option value="겨울계절">겨울계절</option>
+                                </select>
+                            
                                 </div>
                                 <div className = "form-group">
                                 <label className="labels"> 시험유형  </label>
@@ -174,7 +194,7 @@ render() {
                                    <div className = "form-group">
                                        
                                         <label className="labels"> 평점  </label>                
-                                        <select placeholder="type" name="type" className="form-control"
+                                        <select placeholder="type" name="type" className = "select-group"
                                         value={this.state.rating} onChange={this.changeratingHandler}>
                                         <option value="1">1점</option>
                                         <option value="2">2점</option>

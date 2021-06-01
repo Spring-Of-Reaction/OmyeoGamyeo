@@ -22,8 +22,8 @@ function Review() {
         <Route exact path='/review' component={ListPage} />
         <Route path='/review/create' component={WritingPage} />
         <Route path='/review/update/:id' component={WritingPage} />
-        <Route path='/review/search/univName/:keywords' component={ListPageS1} />
-        <Route path='/review/search/subjectName/:keywords' component={ListPageS2} />
+        <Route path='/review/search/univ/:keywords' component={ListPageS1} />
+        <Route path='/review/search/subject/:keywords' component={ListPageS2} />
         <Route path='/review/:id' component={ViewingPage} />
         </Switch>
        </div>   
