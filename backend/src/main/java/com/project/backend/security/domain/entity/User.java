@@ -58,6 +58,12 @@ public class User implements UserDetails {
                 .collect(Collectors.toList());
     }
 
+    public void update(User user){
+        this.password = user.password;
+        this.nickname = user.nickname;
+        this.univ = user.univ;
+    }
+
     @Override
     public String getUsername() {
         return email;
@@ -82,6 +88,7 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
 
 

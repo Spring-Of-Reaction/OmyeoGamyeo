@@ -19,6 +19,7 @@ class WritingPage extends Component{
         rating:1,
         nickname: '',
    
+
     }
 
     this.changesubjectNameHandler = this.changesubjectNameHandler.bind(this);
@@ -78,6 +79,7 @@ createReview = (event) => {
     };
 
     
+
 
     if (!this.state.id) {
 

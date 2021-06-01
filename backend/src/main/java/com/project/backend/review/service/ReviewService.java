@@ -37,8 +37,8 @@ public class ReviewService {
         Review review = reviewRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당  게시글이 없습니다. id="+id));
         review.update(request.getSubjectName(), request.getContent(), request.getNickname(),
-                request.getProfessor(), request.getRating(), request.getTestType(),
-                request.getSemester(),request.getUnivName());
+                request.getUnivName(), request.getRating(), request.getTestType()
+                ,request.getProfessor(),request.getSemester());
         return id;
     }
 

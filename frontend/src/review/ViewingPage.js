@@ -116,7 +116,7 @@ class ViewingPage extends Component {
                             </div>
                             <div className = "row">      
                                 <label className="labels" > 학교 </label>  <div className='contentbox'>{this.state.Review.univName} </div>
-        </div>*/}
+                        </div>*/}
                             <div className = "row">      
                                 <label className="labels"  > 교수명 </label>  <div className='contentbox'>{this.state.Review.professor+' 교수님'} </div>
                             </div>
@@ -137,19 +137,8 @@ class ViewingPage extends Component {
                             <div className = "row">
                                 <label className="labels"  > 기타 </label> <div className='contentbox'> {this.state.Review.content} </div>
                             </div >
-                            {/*
-                            <div className = "row">
-
-
-                                <label className="labels"  > 작성자</label> <div className='contentbox'> {this.state.Review.nickname} </div>
-
-                            </div>*/}
-
-                                <label className="labels"  > 작성 시간</label> <div className='contentbox'> {this.state.Review.nickname} </div>
-
-                            </div >
                             
-                            {/*this.returnDate(this.state.Review.createdTime, this.state.Review.updatedTime) 
+             
                             
         
                            <button className="btn--primary" onClick={this.reviewscrap} style={{marginTop:"100px", marginLeft:"10px"}}>스크랩하기</button>
@@ -159,7 +148,7 @@ class ViewingPage extends Component {
                             </div> </div>
                 </div>
                 {/*<td width="500px"> <a onClick = {() => this.readReview(Review.id)}>{Review.univName}</a> </td>*/}
-            </div></div></div>
+            </div>
         );
     }
 }
