@@ -4,10 +4,11 @@ import UnivInfo from './UnivInfo';
 class UnivList extends Component {
   state = {
     style: {
-      border: '2px solid black',
+      border: '10px',
       padding: '10px',
       margin: '10px',
-      width: 'wrapping',
+      width: '200px',
+      height: '80px',
       alignItems:'flex-start'
     },
   };
@@ -17,10 +18,10 @@ class UnivList extends Component {
    
 
     return (
-      <div className='Notice'>
+      <div className='Notice' style={{marginLeft:"75px"}}>
         <ul >
           {data.map((data) => (
-            <li className='btn--primary' style={this.state.style}>
+            <li className='button-for-notice' style={this.state.style}>
               <UnivInfo data={data}> </UnivInfo>
             </li>))}
           

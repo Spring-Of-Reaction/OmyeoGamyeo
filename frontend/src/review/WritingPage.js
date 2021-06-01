@@ -16,11 +16,9 @@ class WritingPage extends Component{
         semesters:'',
         testType:'',
         content:'',
-
         rating:1,
-
         nickname: '',
-        
+   
     }
 
     this.changesubjectNameHandler = this.changesubjectNameHandler.bind(this);
@@ -81,9 +79,8 @@ createReview = (event) => {
 
     
 
-
     if (!this.state.id) {
-               
+
         ReviewService.createReview(Review).then(res => {
             this.props.history.push('/review');
             console.log("새로운 Review=> "+ JSON.stringify(Review)+this.state.id);
@@ -106,9 +103,7 @@ cancel() {
 
 getTitle() {
 
-   
-    if (!this.state.id ) {
-
+    if (!this.state.id) {
         return <h2 className="reviewnaming">새 글을 작성해주세요</h2>
     } else {
         return <h2 className="reviewnaming">글을 수정합니다</h2>
@@ -116,7 +111,6 @@ getTitle() {
 }
 
 componentDidMount() {
-
   
     if (!this.state.id ) {
 
