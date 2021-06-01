@@ -111,7 +111,8 @@ render(){
 return (
   
       <div class='container' >
-      <h2 class='reviewnaming'>오며가며 회원가입</h2>   
+        <div className='loginform'>
+      <h2 class='reviewnaming'>회원가입</h2>   
 
                                 <div className = "form-group">
                                     <label className="labels"> 이메일  </label>
@@ -138,7 +139,7 @@ return (
                                 <button className="btn btn-danger" onClick={this.verifyUser}>이메일인증</button> 
                                 <button className="btn btn-danger" onClick={() => alert(`${this.state.email}, ${this.state.univName}, ${this.state.password}`)}>회원정보는?</button> 
       </div>
-      
+      </div>
 
   )
 

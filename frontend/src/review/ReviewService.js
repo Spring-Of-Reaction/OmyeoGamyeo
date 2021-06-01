@@ -10,7 +10,7 @@ class ReviewService {
     
 
     getReview(){
-        return axios.get(review_url);
+        return axios.get(review_url,{headers});
     }
 
     createReview(review){
@@ -18,29 +18,29 @@ class ReviewService {
     }
 
     getOneReview(id){
-        return axios.get(review_url+'/'+id);
+        return axios.get(review_url+'/'+id,{headers});
     }
 
     updateReview(id,review){
-        return axios.put(review_url+'/'+id,review);
+        return axios.put(review_url+'/'+id,review,{headers});
     }
 
     searchUPost(keyword){
-        return axios.get(review_url+'/search/univ/?univName='+keyword);
+        return axios.get(review_url+'/search/univ/?univName='+keyword,{headers});
     }
     searchSPost(keyword){
-        return axios.get(review_url+'/search/subject/?subjectName='+keyword);
+        return axios.get(review_url+'/search/subject/?subjectName='+keyword,{headers});
     }
 
     deleteReview(id){
-        return axios.delete(review_url+'/'+id);
+        return axios.delete(review_url+'/'+id,{headers});
     }
 
     reviewscrap(id,scrap){
-        return axios.put(review_url+'/'+id+'/scrap',scrap);
+        return axios.put(review_url+'/'+id+'/scrap',scrap,{headers});
     }
     reviewlike(id,scrap){
-        return axios.put(review_url+'/'+id+'/like',scrap);
+        return axios.put(review_url+'/'+id+'/like',scrap,{headers});
     }
 }
 

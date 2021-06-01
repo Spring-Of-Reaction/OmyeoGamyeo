@@ -106,8 +106,8 @@ class ViewingPage extends Component {
         
         return (
             <div className = "container">
-                <div className = "card col-md-6 offset-md-3">
-                    <h2 className ='reviewnaming2'>{this.state.Review.subjectName}
+               <div className="setcenter">
+                    <h2>{this.state.Review.subjectName}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.Review.univName}</h2>
                     <div className = "card-body">
                         <div className='form-design2'>
@@ -138,7 +138,7 @@ class ViewingPage extends Component {
                                 <label className="labels"  > 기타 </label> <div className='contentbox'> {this.state.Review.content} </div>
                             </div >
                             
-             
+              </div>
                             
         
                            <button className="btn--primary" onClick={this.reviewscrap} style={{marginTop:"100px", marginLeft:"10px"}}>스크랩하기</button>
@@ -146,9 +146,9 @@ class ViewingPage extends Component {
                             <button className="btn--primary" onClick={this.goToEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
                             <button className="btn--primary" onClick={()=> this.deleteReview()} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
                             </div> </div>
+               
                 </div>
-                {/*<td width="500px"> <a onClick = {() => this.readReview(Review.id)}>{Review.univName}</a> </td>*/}
-            </div>
+           
         );
     }
 }
