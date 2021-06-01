@@ -2,6 +2,7 @@ import React,{Component}  from 'react';
 import { Link } from 'react-router-dom';
 import FreePostService from './FreePostService';
 import '../review/Review.css';
+import '../components/Navbar.css';
 
 class FreepostListPage extends Component{
   constructor(props) {
@@ -90,12 +91,12 @@ searchkeywords(option,keywords){
       <div class='container'>
         <h2 class='reviewnaming' >자유게시판</h2>
         <div className="button-group2">
-          <button className="btn--primary3" onClick={this.category}> 전체 보기 </button>
-          <button className="btn--primary3" onClick={this.category1}> 일상 </button> 
-          <button className="btn--primary3" onClick={this.category2}> 질문 </button> 
+          <h4 style={{width:"140px",float:"left"}} className="nav-links" onClick={this.category}> 전체 보기 </h4>
+          <h4 style={{width:"100px",float:"left"}} className="nav-links" onClick={this.category1}> 일상 </h4> 
+          <h4 style={{width:"100px",float:"left"}} className="nav-links" onClick={this.category2}> 질문 </h4> 
         </div>
       <div className = "form-group">
-      <div className='search-group'>
+      <div className='search-group' style={{marginTop:"80px",marginRight:"100px"}}>
                                 <select className="category" placeholder="type" name="searchoption" 
                                         value={this.searchoption}  onChange={this.changesearchoptionHandler}>
                                             <optgroup label='카테고리를 선택하세요'>
@@ -139,8 +140,8 @@ searchkeywords(option,keywords){
                     </table>
                 
                 
-                    <button className="btn--primary2" > 1 </button>
-                    
+                  {/*  <button className="btn--primary2" > 1 </button>
+                    */}
       <button className="btn--primary2" onClick={this.createFreepost}> 글 작성 </button> 
       
       </div></div>

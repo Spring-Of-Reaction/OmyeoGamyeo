@@ -107,16 +107,10 @@ class ViewingPage extends Component {
         return (
             <div className = "container">
                <div className="setcenter">
-                    <h2>{this.state.Review.subjectName}
+                    <h2 style={{paddingTop:"70px",paddingBottom:"50px"}}>{this.state.Review.subjectName}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.Review.univName}</h2>
-                    <div className = "card-body">
+                    
                         <div className='form-design2'>
-                           {/* <div className = "row">      
-                                <label className="labels" > 강의명 </label>  <div className='contentbox'>{this.state.Review.subjectName} </div>
-                            </div>
-                            <div className = "row">      
-                                <label className="labels" > 학교 </label>  <div className='contentbox'>{this.state.Review.univName} </div>
-                        </div>*/}
                             <div className = "row">      
                                 <label className="labels"  > 교수명 </label>  <div className='contentbox'>{this.state.Review.professor+' 교수님'} </div>
                             </div>
@@ -124,13 +118,11 @@ class ViewingPage extends Component {
                                 <label className="labels"  > 수강학기 </label> <div className='contentbox'>{this.state.Review.semester} </div>
                             </div>
                             <div className = "row">      
-                                <label className="labels"  > 시험유형 </label> <div className='contentbox'>  {this.state.Review.testType}</div>
+                                <label className="labels"  > 시험유형 </label><div className='contentbox'>{this.state.Review.testType}</div>
                             </div>
                             
                             <div className = "row">
-                                <label className="labels"  > 평점 </label> 
-                                {this.getrating(this.state.Review.rating)}
-                               
+                                <label className="labels"  > 평점 </label> {this.getrating(this.state.Review.rating)}
                             </div >
                             {/*{this.returnCategory(this.state.Review.rating)}*/}
 
@@ -138,7 +130,7 @@ class ViewingPage extends Component {
                                 <label className="labels"  > 기타 </label> <div className='contentbox'> {this.state.Review.content} </div>
                             </div >
                             
-              </div>
+                         </div>
                             
         
                            <button className="btn--primary" onClick={this.reviewscrap} style={{marginTop:"100px", marginLeft:"10px"}}>스크랩하기</button>
@@ -147,7 +139,7 @@ class ViewingPage extends Component {
                             <button className="btn--primary" onClick={()=> this.deleteReview()} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
                             </div> </div>
                
-                </div>
+               
            
         );
     }

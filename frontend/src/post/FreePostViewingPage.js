@@ -113,9 +113,10 @@ class FreepostViewingPage extends Component {
       
                 <div className = "card col-md-6 offset-md-3">
                     <h2 className ='reviewnaming2'> {this.state.FreePost.title}</h2>
+                    <h3 className ='reviewnaming2'> {this.state.FreePost.content}</h3>
                     <div className = "card-body">
                     <div className='form-design2'>    
-                    <h3> {this.state.FreePost.content}</h3>
+                    
                           {/*
                             <div className = "row">      
                                
@@ -134,7 +135,7 @@ class FreepostViewingPage extends Component {
                         <table  >
                         <thead >
                             <tr>
-                                <th width="100px"></th>
+                                <th width="10px"></th>
                                 <th width="500px"> </th>
                                 <th width="200px"></th>
                               
@@ -146,7 +147,7 @@ class FreepostViewingPage extends Component {
                                 this.state.Comments.map(
                                     Comments => 
                                     <tr key = {Comments.cid}>
-                                        <td width="100px"> {Comments.c_writer} </td>
+                                        <td width="10px"> {Comments.c_writer} </td>
                                         <td width="500px"> {Comments.c_content}</td>
                                         <td width="200px"> {Comments.dateTime}</td>
                                         <button onClick={()=> this.deleteComments(Comments.cid)} style={{width:"wrap-contents"}}>x</button>
