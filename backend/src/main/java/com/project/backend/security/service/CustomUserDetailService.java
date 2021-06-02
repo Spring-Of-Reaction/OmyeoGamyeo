@@ -1,6 +1,7 @@
 package com.project.backend.security.service;
 
 import com.project.backend.security.domain.entity.User;
+import com.project.backend.security.domain.entity.UserAdapter;
 import com.project.backend.security.domain.repository.UserRepository;
 import javassist.NotFoundException;
 import lombok.AccessLevel;
@@ -20,8 +21,8 @@ public class CustomUserDetailService implements UserDetailsService {
     @SneakyThrows
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) {
-        User member = userRepository.findByEmail(username);
+    public UserDetails loadUserByUsername(String userPk) {
+        User member = userRepository.findByEmail(userPk);
         if(member==null) throw new NotFoundException("멤버가 조회되지않음");
         return member;
     }

@@ -32,14 +32,14 @@ public class User implements UserDetails {
     private String univ;
     private String certified;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles = new ArrayList<>();
-/*
+    /*@ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();*/
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
- */
+
 
     @Builder
     public User(String password, String email, String nickname, String univ, List roles) {

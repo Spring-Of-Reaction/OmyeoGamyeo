@@ -21,5 +21,11 @@ public class UserRequest {
         this.nickname = nickname;
         this.univ = univ;
     }
-
+    public User toUserEntity(){
+        return User.builder()
+                .nickname(nickname)
+                .email(email)
+                .univ(univ)
+                .build();
+    }
 }

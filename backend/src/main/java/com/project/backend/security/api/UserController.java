@@ -3,22 +3,23 @@ package com.project.backend.security.api;
 import com.project.backend.security.domain.entity.RequestVerifyEmail;
 import com.project.backend.security.domain.entity.User;
 import com.project.backend.security.domain.repository.UserRepository;
+import com.project.backend.security.dto.SignInRequest;
+import com.project.backend.security.dto.SignInResponse;
 import com.project.backend.security.dto.UserRequest;
 import com.project.backend.security.dto.UserResponse;
 import com.project.backend.security.jwt.JwtTokenProvider;
 import com.project.backend.security.security.CurrentUser;
 import com.project.backend.security.service.AuthService;
 
+import com.project.backend.security.service.UserService;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,12 +32,10 @@ import java.util.Map;
 @Slf4j
 public class UserController {
     private final PasswordEncoder passwordEncoder;
-    private final JwtTokenProvider jwtTokenProvider;
-    private final UserRepository userRepository;
-
-
-    @Autowired
-    private AuthService authService;
+    private  final JwtTokenProvider jwtTokenProvider;
+    private  final UserRepository userRepository;
+    private  final UserService userService;
+    private final AuthService authService;
 
     // 회원가입
     @PostMapping("/join")
@@ -50,19 +49,21 @@ public class UserController {
                 .build()).getUid();
     }
 
-    // 로그인
-    @PostMapping("/login")
-    public String login(@RequestBody Map<String, String> user) throws NotFoundException {
-        User member = userRepository.findByEmail(user.get("email"));
-        if(member==null) throw new NotFoundException("멤버가 조회되지않음");
-        if (!passwordEncoder.matches(user.get("password"), member.getPassword())) {
-            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
-        }
-        return jwtTokenProvider.createToken(member.getUsername(), member.getRoles());
+    //로그인
+    @PostMapping("/signin")
+    public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest request){
+        return userService.signIn(request);
+    }
+
+    @GetMapping("/logout")
+    public void logOut(HttpServletRequest request, HttpServletResponse response) {
+        new SecurityContextLogoutHandler().logout(request, response,
+                SecurityContextHolder.getContext().getAuthentication());
     }
 
     @PostMapping("/verify")
-    public String verify(@RequestBody RequestVerifyEmail requestVerifyEmail, HttpServletRequest req, HttpServletResponse res) {
+    public String verify(@RequestBody RequestVerifyEmail requestVerifyEmail,
+                         HttpServletRequest req, HttpServletResponse res) {
         try {
             User user = authService.findByEmail(requestVerifyEmail.getEmail());
             authService.sendVerificationMail(user);
@@ -83,37 +84,14 @@ public class UserController {
     }
 
     @GetMapping("/mypage")
-    public ResponseEntity<UserResponse> findUserById(HttpServletRequest request) {
-        String token = jwtTokenProvider.resolveToken(request);
-        String useremail = jwtTokenProvider.getUserPk(token);
-        log.info(useremail);
-        User user= userRepository.findByEmail(useremail);
-        UserResponse userResponse = UserResponse.builder()
-                .uid(user.getUid())
-                .nickname(user.getNickname())
-                .univ(user.getUniv())
-                .email(user.getEmail())
-                .build();
+    public ResponseEntity<UserResponse> findUserInfo(@CurrentUser User user) {
+        UserResponse userResponse = userService.findByUserEmail(user.getEmail());
         return ResponseEntity.ok(userResponse);
-
     }
 
-
-    @PutMapping("/mypage")
-    public ResponseEntity<Void> update(HttpServletRequest request, @RequestBody UserRequest userRequest) {
-        String token = jwtTokenProvider.resolveToken(request);
-        String useremail = jwtTokenProvider.getUserPk(token);
-        User user= userRepository.findByEmail(useremail);
-        log.info(user.getNickname());
-        user.update(User.builder()
-                .email(userRequest.getEmail())
-                .nickname(userRequest.getNickname())
-                .univ(userRequest.getUniv())
-                .password(user.getPassword())
-                .build());
-        userRepository.save(user);
-
+    @PutMapping(value = "/mypage")
+    public ResponseEntity<Void> update(@RequestBody UserRequest request, @CurrentUser User user) {
+        userService.update(request, user);
         return ResponseEntity.noContent().build();
     }
-
 }
