@@ -10,7 +10,8 @@ class ViewingPage extends Component {
          
         this.state = { 
             id: this.props.match.params.id,
-            Review: []
+            Review: [],
+            background: 'white'
         }
 
         this.goToEdit=this.goToEdit.bind(this);
@@ -42,12 +43,23 @@ class ViewingPage extends Component {
     }
 
     reviewscrap = (event)=>{
+        if(this.state.background=='white')
+        {
+        this.setState({background:'rgba(193, 208, 248, 0.2)'})
         event.preventDefault();
         let userscrap={
             uid:localStorage.getItem('user')
         };
+        console.log(this.state.id,JSON.stringify(this.state.userscrap)); 
         ReviewService.reviewscrap(this.state.id,userscrap).then(res=>
             window.alert("스크랩이 완료되었습니다."));
+        }
+        else
+        {
+        this.setState({background:'white'})
+            window.alert("스크랩이 취소되었습니다.")
+        }
+        
            
     }
     reviewlike = (event)=>{
@@ -133,8 +145,8 @@ class ViewingPage extends Component {
                          </div>
                             
         
-                           <button className="btn--primary" onClick={this.reviewscrap} style={{marginTop:"100px", marginLeft:"10px"}}>스크랩하기</button>
-                           <button className="btn--primary" onClick={this.reviewlike} style={{marginTop:"100px", marginLeft:"10px"}}>좋아요</button>
+                           <button className= "scrapbutton" onClick={this.reviewscrap} style={{marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>스크랩하기</button>
+                          
                             <button className="btn--primary" onClick={this.goToEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
                             <button className="btn--primary" onClick={()=> this.deleteReview()} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
                             </div> </div>
