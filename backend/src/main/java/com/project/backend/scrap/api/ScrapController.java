@@ -23,8 +23,8 @@ public class ScrapController {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
 
-    @PostMapping("/api/scrap/{pid}")
-    public ResponseEntity<String> addScrap(User user, @PathVariable Long rid, HttpServletRequest request) {
+    @PostMapping("/api/scrap/{id}")
+    public ResponseEntity<String> addScrap(User user, @PathVariable Long id, HttpServletRequest request) {
         String token = jwtTokenProvider.resolveToken(request);
         String useremail = jwtTokenProvider.getUserPk(token);
         user = userRepository.findByEmail(useremail);
@@ -35,7 +35,7 @@ public class ScrapController {
         System.out.println(token);
 
         if (user != null){
-            result = scrapService.addScrap(user, rid);
+            result = scrapService.addScrap(user, id);
 
         }
         return result ?

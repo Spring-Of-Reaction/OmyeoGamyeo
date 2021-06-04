@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly = true)
 public interface ScrapRepository extends JpaRepository<Scrap, Long> {
-    Scrap findByUserAndPost(User user, Review review);
+    Scrap findByUserAndReview(User user, Review review);
 }
