@@ -29,7 +29,7 @@ public class ScrapService {
         }
         //사용자가 기존에 스크랩한 게시물이 있다면 -> 중복처리 : 삭제
         else {
-            Scrap scrap = scraprepository.findByUserAndPost(user, review);
+            Scrap scrap = scraprepository.findByUserAndReview(user, review);
             Long sid = scrap.getSid();
             scraprepository.delete(scrap);
             return true;
@@ -37,7 +37,7 @@ public class ScrapService {
     }
 
     private Scrap isNotAlreadyLike(User user, Review review) {
-        return scraprepository.findByUserAndPost(user, review);
+        return scraprepository.findByUserAndReview(user, review);
     }
 
 }
