@@ -1,8 +1,11 @@
 package com.project.backend.review.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.backend.BaseTimeEntity;
+import com.project.backend.security.domain.entity.User;
 import lombok.*;
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -38,20 +41,29 @@ public class Review extends BaseTimeEntity {
     @Column(nullable = false)
     private String semester;
 
+    @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    private LocalDate date;
+
     //User 객체 연결
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
     @Builder
     public Review(String subjectName,String content, String nickname,
                   String univName, Integer rating, String testType, String professor,
-                  String semester) {
+                  String semester,User user, LocalDate date) {
         this.subjectName = subjectName;
         this.content = content;
         this.nickname = nickname;
         this.univName = univName;
         this.rating = rating;
         this.testType = testType;
-        this.professor =professor;
+        this.professor = professor;
         this.semester = semester;
+        this.user = user;
+        this.date = date;
     }
 
     public void update(String subjectName,String content, String nickname,

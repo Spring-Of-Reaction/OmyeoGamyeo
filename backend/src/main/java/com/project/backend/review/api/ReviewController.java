@@ -6,6 +6,8 @@ import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.review.dto.ReviewResponse;
 import com.project.backend.review.dto.ReviewUpdateRequest;
 import com.project.backend.review.service.ReviewService;
+import com.project.backend.security.domain.entity.User;
+import com.project.backend.security.security.CurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,19 +27,18 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @PostMapping("/review")
-    public ResponseEntity createReview(@RequestBody ReviewCreateRequest request){
-        Long id = reviewService.create(request);
+    public ResponseEntity createReview(@RequestBody ReviewCreateRequest request,
+                                        @CurrentUser User user){
+        Long id = reviewService.create(request, user);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ReviewResponse.builder()
-                        .id(id)
-                        .build());
+                .build();
     }
 
 
     @PutMapping("/review/{id}")
     public Long update(@PathVariable Long id,
-                                 @RequestBody ReviewUpdateRequest request) {
-        return reviewService.update(id, request);
+                       @RequestBody ReviewUpdateRequest request,@CurrentUser User user) {
+        return reviewService.update(id, request, user);
     }
 
     @DeleteMapping("/review/{id}")
@@ -48,8 +49,8 @@ public class ReviewController {
     }
 
     @GetMapping("/review/{id}")
-    public ResponseEntity<ReviewResponse> findById(@PathVariable Long id){
-        ReviewResponse reviewResponse = reviewService.findById(id);
+    public ResponseEntity<ReviewResponse> findById(@PathVariable Long id, @CurrentUser User user){
+        ReviewResponse reviewResponse = reviewService.findById(id, user);
         return ResponseEntity.ok(reviewResponse);
     }
 
@@ -59,7 +60,7 @@ public class ReviewController {
         return ResponseEntity.ok(reviewList);
     }
 
-   @GetMapping("/review/search/univ")
+    @GetMapping("/review/search/univ")
     public List searchTitle(@RequestParam("univName") String keyword){
         return reviewService.searchUniv(keyword);
     }

@@ -7,6 +7,7 @@ import com.project.backend.review.dto.ReviewCreateRequest;
 import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.review.dto.ReviewResponse;
 import com.project.backend.review.dto.ReviewUpdateRequest;
+import com.project.backend.security.domain.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,13 +28,12 @@ public class ReviewService {
 
 
     @Transactional
-    public Long create(ReviewCreateRequest request){
-
-        return reviewRepository.save(request.toReviewEntity()).getId();
+    public Long create(ReviewCreateRequest request, User user){
+        return reviewRepository.save(request.toReviewEntity(user)).getId();
     }
 
     @Transactional
-    public Long update(Long id, ReviewUpdateRequest request){
+    public Long update(Long id, ReviewUpdateRequest request,  User user){
         Review review = reviewRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당  게시글이 없습니다. id="+id));
         review.update(request.getSubjectName(), request.getContent(), request.getNickname(),
@@ -50,7 +50,7 @@ public class ReviewService {
     }
 
     @Transactional(readOnly=true)
-    public ReviewResponse findById(Long id){
+    public ReviewResponse findById(Long id, User user){
         Review review = reviewRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
         return new ReviewResponse(review);
@@ -63,7 +63,7 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
-   @Transactional
+    @Transactional
     public List<ReviewListResponse>searchUniv(String keyword){
         return reviewRepository.findByUnivNameContaining(keyword).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())

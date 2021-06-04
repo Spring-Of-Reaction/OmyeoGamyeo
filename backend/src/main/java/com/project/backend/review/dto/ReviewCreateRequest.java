@@ -1,7 +1,11 @@
 package com.project.backend.review.dto;
 import com.project.backend.review.domain.entity.Review;
+import com.project.backend.security.domain.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
@@ -15,10 +19,12 @@ public class ReviewCreateRequest {
     private String testType;
     private String professor;
     private String semester;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate createdDate;
 
     public ReviewCreateRequest(String subjectName,String content, String nickname,
                                String univName, Integer rating, String testType, String professor,
-                               String semester) {
+                               String semester,LocalDate createdDate) {
         this.subjectName = subjectName;
         this.content = content;
         this.nickname = nickname;
@@ -27,9 +33,10 @@ public class ReviewCreateRequest {
         this.testType = testType;
         this.professor =professor;
         this.semester = semester;
+        this.createdDate = createdDate;
     }
 
-    public Review toReviewEntity() {
+    public Review toReviewEntity(User user) {
         return Review.builder()
                 .subjectName(subjectName)
                 .content(content)
@@ -39,6 +46,8 @@ public class ReviewCreateRequest {
                 .testType(testType)
                 .professor(professor)
                 .semester(semester)
+                .date(createdDate)
+                .user(user)
                 .build();
     }
 }

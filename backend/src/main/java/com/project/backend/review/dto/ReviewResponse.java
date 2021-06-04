@@ -1,6 +1,8 @@
 package com.project.backend.review.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.backend.review.domain.entity.Review;
+import com.project.backend.security.domain.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import java.time.LocalDate;
@@ -18,13 +20,15 @@ public class ReviewResponse {
     private String testType;
     private String professor;
     private String semester;
-    private LocalDate updateDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    private LocalDate createdDate;
+    private User user;
 
 
     @Builder
     public ReviewResponse(Long id, String subjectName,String content, String nickname,
                           String univName, Integer rating, String testType, String professor,
-                          String semester, LocalDate updateDate) {
+                          String semester, LocalDate createdDate, User user) {
         this.id = id;
         this.subjectName = subjectName;
         this.content = content;
@@ -34,7 +38,8 @@ public class ReviewResponse {
         this.testType = testType;
         this.professor =professor;
         this.semester = semester;
-        this.updateDate = updateDate; }
+        this.createdDate = createdDate;
+        this.user = user;   }
 
     public ReviewResponse(Review review){
         this.id = review.getId();
@@ -46,7 +51,8 @@ public class ReviewResponse {
         this.testType = review.getTestType();
         this.professor = review.getProfessor();
         this.semester = review.getSemester();
-        this.updateDate = review.getUpdateDate();
+        this.createdDate = review.getDate();
+        this.nickname = review.getUser().getNickname();
     }
 
 
