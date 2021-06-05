@@ -2,12 +2,14 @@ package com.project.backend.comment.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.backend.post.domain.entity.Post;
+import com.project.backend.security.domain.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -28,15 +30,21 @@ public class Comment {
     private Post post;
 
     @CreatedDate
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-    private LocalDateTime dateTime;
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate date;
+
+    //User 객체 연결
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
     @Builder
-    public Comment(String c_content, String c_writer, Post post, LocalDateTime dateTime){
+    public Comment(String c_content, String c_writer, Post post, LocalDate date, User user){
         this.c_content = c_content;
         this.c_writer = c_writer;
         this.post = post;
-        this.dateTime = dateTime;
+        this.date = date;
+        this.user = user;
     }
 
 
