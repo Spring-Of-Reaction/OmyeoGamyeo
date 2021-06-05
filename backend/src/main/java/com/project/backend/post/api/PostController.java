@@ -62,7 +62,9 @@ public class PostController {
         return postService.searchContent(keyword);
     }
 
-    //@GetMapping("api/post/mypage")
-    //public List mypage_post(@RequestBody )
+    @GetMapping("api/post/mypage")
+    public List mypage_post(@CurrentUser User user){
+        return postService.mypagePost(user);
+    }
 
 }

@@ -93,4 +93,12 @@ public class PostService {
                 .map(PostListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public List<PostListResponseDto> mypagePost(User user){
+        return postRepository.findByUser(user).stream()
+                .sorted(Comparator.comparing(Post::getPid).reversed()) //먼저 만들어진게 아래 오도록
+                .map(PostListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
