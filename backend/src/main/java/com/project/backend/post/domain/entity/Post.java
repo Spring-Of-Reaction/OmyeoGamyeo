@@ -1,6 +1,7 @@
 package com.project.backend.post.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.project.backend.security.domain.entity.User;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,9 +32,13 @@ public class Post {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDate date;
 
+    @ManyToOne
+    @JoinColumn
+    private User user;
+
 
     @Builder
-    public Post(String nickname, String title, String content, LocalDate date, Integer category, Integer views, String filename, String filepath){
+    public Post(String nickname, String title, String content, LocalDate date, Integer category, Integer views, String filename, String filepath, User user){
         this.nickname = nickname;
         this.title = title;
         this.content = content;
@@ -42,6 +47,7 @@ public class Post {
         this.views = views;
         this.filename = filename;
         this.filepath = filepath;
+        this.user = user;
     }
     //수정시에 바뀔 수 있는 것만 값만 지정
     public void update(String title, String content, Integer category, String filename, String filepath){

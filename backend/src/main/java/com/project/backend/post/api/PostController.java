@@ -4,7 +4,11 @@ import com.project.backend.post.dto.PostResponseDto;
 import com.project.backend.post.dto.PostSaveRequestDto;
 import com.project.backend.post.dto.PostUpdateRequestDto;
 import com.project.backend.post.service.PostService;
+import com.project.backend.security.domain.entity.User;
+import com.project.backend.security.security.CurrentUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,14 +20,15 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/api/post")
-    public Long save(@RequestBody PostSaveRequestDto requestDto){
-
-        return postService.save(requestDto);
+    public ResponseEntity save(@RequestBody PostSaveRequestDto requestDto, @CurrentUser User user){
+        Long uid = postService.save(requestDto, user);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .build();
     }
 
     @PutMapping("/api/post/{pid}")
-    public Long update(@PathVariable Long pid, @RequestBody PostUpdateRequestDto requestDto){
-        return postService.update(pid, requestDto);
+    public String update(@PathVariable Long pid, @RequestBody PostUpdateRequestDto requestDto, @CurrentUser User user){
+        return postService.update(pid, requestDto, user);
     }
 
     @GetMapping("/api/post/{pid}")
@@ -32,9 +37,9 @@ public class PostController {
     }
 
     @DeleteMapping("/api/post/{pid}")
-    public Long delete(@PathVariable Long pid){
-        postService.delete(pid);
-        return pid;
+    public String delete(@PathVariable Long pid, @CurrentUser User user){
+        return postService.delete(pid, user);
+
     }
 
     @GetMapping("/api/post")
@@ -56,5 +61,8 @@ public class PostController {
     public List searchContent(@RequestParam("keyword") String keyword){
         return postService.searchContent(keyword);
     }
+
+    //@GetMapping("api/post/mypage")
+    //public List mypage_post(@RequestBody )
 
 }
