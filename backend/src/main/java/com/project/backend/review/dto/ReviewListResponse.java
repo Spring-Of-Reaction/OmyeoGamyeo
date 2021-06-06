@@ -12,14 +12,14 @@ public class ReviewListResponse {
     private String subjectName;
     private String nickname;
     private String univName;
-    private LocalDate updateDate;
+    private LocalDate date;
 
     public ReviewListResponse(Review review){
         this.id = review.getId();
         this.nickname = review.getNickname();
         this.subjectName= review.getSubjectName();
         this.univName = review.getUnivName();
-        this.updateDate = review.getUpdateDate();
+        this.date = review.getDate();
     }
 
 }

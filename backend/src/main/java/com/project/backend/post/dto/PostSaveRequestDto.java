@@ -1,6 +1,7 @@
 package com.project.backend.post.dto;
 import com.project.backend.post.domain.entity.Post;
 
+import com.project.backend.security.domain.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,9 +35,9 @@ public class PostSaveRequestDto {
         this.date = date;
     }
 
-    public Post toPostEntity(){
+    public Post toPostEntity(User user){
         return Post.builder()
-                .nickname(nickname)
+                .nickname(user.getNickname())
                 .title(title)
                 .content(content)
                 .category(category)
@@ -44,6 +45,7 @@ public class PostSaveRequestDto {
                 .filename(filename)
                 .filepath(filepath)
                 .date(date)
+                .user(user)
                 .build();
     }
 }

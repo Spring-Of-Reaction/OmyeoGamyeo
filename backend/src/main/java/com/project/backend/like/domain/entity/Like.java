@@ -1,11 +1,12 @@
-package com.project.backend.scrap.domain.entity;
+package com.project.backend.like.domain.entity;
 
-import com.project.backend.review.domain.entity.Review;
+import com.project.backend.post.domain.entity.Post;
 import com.project.backend.security.domain.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.persistence.GenerationType;
 
@@ -13,21 +14,20 @@ import javax.persistence.GenerationType;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Scrap {
+public class Like {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sid;
+    private Long lid;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Review review;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Post post;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    public Scrap(Review review, User user){
-        this.review = review;
+    public Like(Post post, User user) {
+        this.post = post;
         this.user = user;
     }
-
 }

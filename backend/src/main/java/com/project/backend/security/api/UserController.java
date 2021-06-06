@@ -20,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -74,12 +75,12 @@ public class UserController {
     }
 
     @GetMapping("/verify/{key}")
-    public String getVerify(@PathVariable String key) {
+    public RedirectView getVerify(@PathVariable String key) {
         try {
             authService.verifyEmail(key);
-            return "성공적으로 인증메일을 확인했습니다.";
+            return new RedirectView("http://localhost:3000/");
         } catch (Exception e) {
-            return "인증메일을 확인하는데 실패했습니다.";
+            return new RedirectView("http://localhost:3000/signin");
         }
     }
 

@@ -20,13 +20,11 @@ public class ReviewUpdateRequest {
     private String testType;
     private String professor;
     private String semester;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate createdDate;
 
     @Builder
     public ReviewUpdateRequest(String subjectName,String content, String nickname,
                                String univName, Integer rating, String testType, String professor,
-                               String semester,LocalDate createdDate){
+                               String semester){
         this.subjectName = subjectName;
         this.content = content;
         this.nickname = nickname;
@@ -35,7 +33,6 @@ public class ReviewUpdateRequest {
         this.testType = testType;
         this.professor =professor;
         this.semester = semester;
-        this.createdDate = createdDate;
     }
 
     public Review toReviewEntity() {
@@ -49,7 +46,6 @@ public class ReviewUpdateRequest {
                 .testType(testType)
                 .professor(professor)
                 .semester(semester)
-                .date(createdDate)
                 .build();
     }
 }

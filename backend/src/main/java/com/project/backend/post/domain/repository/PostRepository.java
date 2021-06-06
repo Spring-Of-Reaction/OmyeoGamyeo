@@ -1,6 +1,7 @@
 package com.project.backend.post.domain.repository;
 
 import com.project.backend.post.domain.entity.Post;
+import com.project.backend.security.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,6 +15,8 @@ public interface PostRepository extends JpaRepository<Post,Long> {
 
     List<Post> findByTitleContaining(String keyword);
     List<Post> findByContentContaining(String keyword);
+
+    List<Post> findByUser(User user);
 
 }
 //JpaRepository<Entity 클래스, PK 타입> 상속시 기본 CRUD 메소드 자동 생성
