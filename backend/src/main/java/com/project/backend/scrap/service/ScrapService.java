@@ -1,16 +1,19 @@
 package com.project.backend.scrap.service;
 
-import com.project.backend.post.domain.entity.Post;
-import com.project.backend.post.domain.repository.PostRepository;
 import com.project.backend.review.domain.entity.Review;
 import com.project.backend.review.domain.repository.ReviewRepository;
+import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.scrap.domain.entity.Scrap;
 import com.project.backend.scrap.domain.repository.ScrapRepository;
 import com.project.backend.security.domain.entity.User;
+import com.project.backend.security.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestHeader;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Transactional
 @RequiredArgsConstructor
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public class ScrapService {
     private final ScrapRepository scraprepository;
     private final ReviewRepository reviewrepository;
+    private final UserRepository userRepository;
 
     public boolean addScrap(User user, Long id) {
         Review review = reviewrepository.findById(id).orElseThrow();
@@ -38,6 +42,21 @@ public class ScrapService {
 
     private Scrap isNotAlreadyLike(User user, Review review) {
         return scraprepository.findByUserAndReview(user, review);
+    }
+
+    public List<ReviewListResponse> mypageScrap(User user){
+        List<Scrap> scraplist = scraprepository.findByUser_uid(user.getUid());
+        System.out.println(user.getUid());
+
+
+        List<ReviewListResponse> reviewlist = new ArrayList<>();
+        for (int i = 0; i <scraplist.size(); i++) {
+            Review review = scraplist.get(i).getReview();
+            reviewlist.add(new ReviewListResponse(review));
+        }
+
+        return reviewlist;
+
     }
 
 }

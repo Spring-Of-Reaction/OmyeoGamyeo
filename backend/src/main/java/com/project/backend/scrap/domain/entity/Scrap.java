@@ -1,6 +1,5 @@
 package com.project.backend.scrap.domain.entity;
 
-import com.project.backend.post.domain.entity.Post;
 import com.project.backend.review.domain.entity.Review;
 import com.project.backend.security.domain.entity.User;
 import lombok.AllArgsConstructor;
@@ -20,10 +19,10 @@ public class Scrap {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Review review;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     public Scrap(Review review, User user){
