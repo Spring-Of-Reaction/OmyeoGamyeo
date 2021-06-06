@@ -17,6 +17,8 @@ public class PostResponseDto {
     private String filename;
     private String filepath;
     private LocalDate date;
+    private Long uid;
+
 
     public PostResponseDto(Post entity){
         this.pid = entity.getPid();
@@ -28,6 +30,8 @@ public class PostResponseDto {
         this.filename = entity.getFilename();
         this.filepath = entity.getFilepath();
         this.date = entity.getDate();
+        this.uid = entity.getUser().getUid();
+
 
     }
 }
