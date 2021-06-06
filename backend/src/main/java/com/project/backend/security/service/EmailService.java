@@ -35,7 +35,7 @@ public class EmailService {
 
         Context context = new Context();
         context.setVariable("nickname",nickname);
-        context.setVariable("host", "http://localhost:8080/verify/"); // 메시지소스로 설정해두고 받아쓰면 참 편하다.
+        context.setVariable("host", "http://localhost:8080/verify/");
         context.setVariable("link", key);
         log.info(key);
 
