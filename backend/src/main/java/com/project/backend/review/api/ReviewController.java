@@ -36,21 +36,19 @@ public class ReviewController {
 
 
     @PutMapping("/review/{id}")
-    public Long update(@PathVariable Long id,
+    public String update(@PathVariable Long id,
                        @RequestBody ReviewUpdateRequest request,@CurrentUser User user) {
         return reviewService.update(id, request, user);
     }
 
     @DeleteMapping("/review/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
-        reviewService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK)
-                .build();
+    public String delete(@PathVariable Long id, @CurrentUser User user){
+        return reviewService.delete(id, user);
     }
 
     @GetMapping("/review/{id}")
-    public ResponseEntity<ReviewResponse> findById(@PathVariable Long id, @CurrentUser User user){
-        ReviewResponse reviewResponse = reviewService.findById(id, user);
+    public ResponseEntity<ReviewResponse> findById(@PathVariable Long id){
+        ReviewResponse reviewResponse = reviewService.findById(id);
         return ResponseEntity.ok(reviewResponse);
     }
 
@@ -68,5 +66,10 @@ public class ReviewController {
     @GetMapping("/review/search/subject")
     public List searchContent(@RequestParam("subjectName") String keyword){
         return reviewService.searchSubject(keyword);
+    }
+
+    @GetMapping("/review/mypage")
+    public List mypage_review(@CurrentUser User user){
+        return reviewService.mypageReview(user);
     }
 }

@@ -4,10 +4,10 @@ package com.project.backend.review.service;
 import com.project.backend.review.domain.repository.ReviewRepository;
 import com.project.backend.review.domain.entity.Review;
 import com.project.backend.review.dto.ReviewCreateRequest;
+import com.project.backend.security.domain.entity.User;
 import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.review.dto.ReviewResponse;
 import com.project.backend.review.dto.ReviewUpdateRequest;
-import com.project.backend.security.domain.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -33,24 +33,34 @@ public class ReviewService {
     }
 
     @Transactional
-    public Long update(Long id, ReviewUpdateRequest request,  User user){
+    public String update(Long id, ReviewUpdateRequest request,  User user){
         Review review = reviewRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당  게시글이 없습니다. id="+id));
-        review.update(request.getSubjectName(), request.getContent(), request.getNickname(),
-                request.getUnivName(), request.getRating(), request.getTestType()
-                ,request.getProfessor(),request.getSemester());
-        return id;
+        if((review.getUser()).getUid().equals(user.getUid())) {
+            review.update(request.getSubjectName(), request.getContent(), request.getNickname(),
+                    request.getUnivName(), request.getRating(), request.getTestType()
+                    , request.getProfessor(), request.getSemester());
+            return "수정이 완료되었습니다.";
+        }
+        else{
+            return review.getUser()+"해당 글쓴이가 아닙니다."+user;
+        }
     }
 
     @Transactional
-    public void delete (Long id){
+    public String delete (Long id, User user){
         Review review = reviewRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id="+id));
-        reviewRepository.delete(review);
+        if(review.getUser().getUid().equals(user.getUid())) {
+            reviewRepository.delete(review);
+            return "삭제가 완료되었습니다.";
+        }
+        else
+            return "해당 글쓴이가 아닙니다";
     }
 
     @Transactional(readOnly=true)
-    public ReviewResponse findById(Long id, User user){
+    public ReviewResponse findById(Long id){
         Review review = reviewRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
         return new ReviewResponse(review);
@@ -75,6 +85,14 @@ public class ReviewService {
     public List<ReviewListResponse>searchSubject(String keyword){
         return reviewRepository.findBySubjectNameContaining(keyword).stream()
                 .sorted(Comparator.comparing(Review::getId).reversed())
+                .map(ReviewListResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<ReviewListResponse> mypageReview(User user){
+        return reviewRepository.findByUser(user).stream()
+                .sorted(Comparator.comparing(Review::getId).reversed()) //먼저 만들어진게 아래 오도록
                 .map(ReviewListResponse::new)
                 .collect(Collectors.toList());
     }

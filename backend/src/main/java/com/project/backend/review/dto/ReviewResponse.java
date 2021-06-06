@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 public class ReviewResponse {
 
+    private Long uid;
     private Long id;
     private String subjectName;
     private String content;
@@ -21,14 +22,14 @@ public class ReviewResponse {
     private String professor;
     private String semester;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private LocalDate createdDate;
+    private LocalDate date;
     private User user;
 
 
     @Builder
     public ReviewResponse(Long id, String subjectName,String content, String nickname,
                           String univName, Integer rating, String testType, String professor,
-                          String semester, LocalDate createdDate, User user) {
+                          String semester, LocalDate date, User user) {
         this.id = id;
         this.subjectName = subjectName;
         this.content = content;
@@ -38,7 +39,7 @@ public class ReviewResponse {
         this.testType = testType;
         this.professor =professor;
         this.semester = semester;
-        this.createdDate = createdDate;
+        this.date = date;
         this.user = user;   }
 
     public ReviewResponse(Review review){
@@ -51,36 +52,9 @@ public class ReviewResponse {
         this.testType = review.getTestType();
         this.professor = review.getProfessor();
         this.semester = review.getSemester();
-        this.createdDate = review.getDate();
+        this.date = review.getDate();
         this.nickname = review.getUser().getNickname();
+        this.uid = review.getUser().getUid();
     }
-
-
-
-    /*@Builder
-    public ReviewResponse(Long rid) {
-        this.rid = rid;
-    }*/
-
-    /*public static ReviewResponse from(Review review){
-        return ReviewResponse.builder()
-                .subjectName(review.getSubjectName())
-                .content(review.getContent())
-                .nickname( review.getNickname())
-                .univName(review.getUnivName())
-                .rating(review.getRating())
-                .testType(review.getTestType())
-                .semester( review.getSemester())
-                .date(review.getDate())
-                .rid(review.getRid())
-                .build();
-    }
-
-    public static List<ReviewResponse> listFrom(List<Review> places){
-        return places.stream()
-                .map(ReviewResponse::from)
-                .collect(Collectors.toList());
-    }*/
-
 
 }
