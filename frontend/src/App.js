@@ -11,10 +11,11 @@ import Notice from './pages/Notice';
 import ReviewPage from './pages/Review';
 import Login from './pages/Login';
 import Signup from './user/Signup';
+import Email from './user/email';
 
 function App() {
-  if (localStorage.getItem('user')){
-    console.log('heejin'+localStorage.getItem('user'));
+  if(localStorage.getItem('nickname')){
+    localStorage.setItem('nickname',localStorage.getItem('nickname'));
   }
   return (
     
@@ -30,6 +31,7 @@ function App() {
           <Route path='/review' component={ReviewPage} />
           <Route path='/login' component={Login} />
           <Route path='/join' component={Signup} />
+          <Route path='/join_email' component={Email} />
           <Route render={() => <div className='error'>에러 페이지</div>} />
         </Switch>
       <Footer/>

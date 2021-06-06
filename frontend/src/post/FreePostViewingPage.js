@@ -43,7 +43,6 @@ class FreepostViewingPage extends Component {
     createComments= (event) => {
         event.preventDefault();
         let newComments = {
-            c_writer:this.state.c_writer,
             c_content:this.state.c_content,
             dateTime:this.state.dateTime,
             
@@ -80,11 +79,14 @@ class FreepostViewingPage extends Component {
  
         if(window.confirm("글을 삭제하시겠습니까?")){
             FreePostService.deletePost(this.state.pid).then(res=> {
+                let deletemessage=res.data; 
                 console.log("delete result=>"+JSON.stringify(res));
                 if(res.status===200){
+                    alert(deletemessage);
                     this.props.history.push('/post');
                 }else{
-                    alert("글 삭제를 실패하였습니다.");
+                    alert(deletemessage);
+                    //alert("글 삭제를 실패하였습니다.");
                 }
             });
         }

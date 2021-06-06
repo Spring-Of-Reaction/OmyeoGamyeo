@@ -3,7 +3,7 @@ import axios from 'axios';
 const post_url="/api/post"  
 const headers ={
     'Content-type':'application/json',
-    'X-AUTH-TOKEN':localStorage.getItem('user')
+    'X-AUTH-TOKEN':localStorage.getItem('jwt')
 }
 
 class FreepostService {

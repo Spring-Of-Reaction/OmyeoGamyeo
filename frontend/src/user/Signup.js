@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import UserService from './UserService';
+import '../user/user.css';
+import '../components/Button.css';
 
 class Signup extends Component{
   constructor(props) {
@@ -10,16 +12,15 @@ class Signup extends Component{
     this.state = {
       email:'',
       password:'',
-      univName:'',
+      univ:'',
       nickname:'',
       token:'',
       message:''
         
     }
-    this.handleSubmit=this.handleSubmit.bind(this);
     this.changeemailHandler = this.changeemailHandler.bind(this);
     this.changepasswordHandler = this.changepasswordHandler.bind(this);
-    this.changeunivNameHandler = this.changeunivNameHandler.bind(this);
+    this.changeunivHandler = this.changeunivHandler.bind(this);
     this.changenicknameHandler = this.changenicknameHandler.bind(this);
     this.createUser=this.createUser.bind(this);
     this.verifyUser=this.verifyUser.bind(this);
@@ -30,8 +31,8 @@ changeemailHandler = (event) => {
 changepasswordHandler = (event) => {
     this.setState({password: event.target.value});
 }
-changeunivNameHandler = (event) => {
-    this.setState({univName: event.target.value});
+changeunivHandler = (event) => {
+    this.setState({univ: event.target.value});
 }
 changenicknameHandler = (event) => {
   this.setState({nickname: event.target.value});
@@ -42,7 +43,7 @@ createUser = (event) => {
   let User = {
       email:this.state.email,
       password:this.state.password,
-      univName:this.state.univName,
+      univ:this.state.univ,
       nickname:this.state.nickname
       
   };
@@ -54,24 +55,22 @@ createUser = (event) => {
       UserService.createUser(User).then(res => {
         let token=res.data;
         console.log(token);
+        this.verifyUser();
       });
       console.log(JSON.stringify(User));
+     {/* this.props.history.push('/join_email');*/}
    
 }
 
 verifyUser = (event) => {
-  event.preventDefault();
-  
   let User = {
     email:this.state.email,
     password:this.state.password,
-    univName:this.state.univName,
+    univ:this.state.univ,
     nickname:this.state.nickname
     
 };
-  let Email={
-    email:this.state.email,
-  }
+  
   
       UserService.emailverify(User).then(res => {
         let message=res.data;
@@ -84,26 +83,6 @@ verifyUser = (event) => {
 
 
 
-  handleSubmit=e=>{
-   e.preventDefault();
-        
-    let data={
-      email:this.state.email,
-      password:this.state.password
-    };
-
-    axios.post('url',data)
-    .then(res=>{
-      console.log(res.data);
-      const{accessToken}=res.date;
-    localStorage.setItem('token',res.data); //localstorage 저장
-    axios.defaults.headers.common['Authorization']=`Bearer ${accessToken}`; //위랑 반대 상황
-  })
-  .catch(err=>{
-    console.log(err)
-  })
-  };
- 
 
  
 
@@ -112,32 +91,34 @@ return (
   
       <div class='container' >
         <div className='loginform'>
-      <h2 class='reviewnaming'>회원가입</h2>   
-
+        <div style={{marginBottom:"30px"}}>
+              <img src="logoimg.png" width="80" />
+              <h2>Sign up to our account</h2>  
+              </div>
                                 <div className = "form-group">
-                                    <label className="labels"> 이메일  </label>
-                                    <input type="text" placeholder=""  className="form-control" 
+                                
+                                    <input type="text" placeholder="        이메일을 입력하세요"  style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}} className="form-control"  
                                     value={this.state.email}  onChange={this.changeemailHandler}/>
                                 </div>
                                 <div className = "form-group">
-                                <label className="labels"> 비밀번호  </label>
-                                   <input type="password" placeholder=""  className="form-control" 
+                               
+                                   <input type="password" placeholder="        비밀번호를 입력하세요" style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}} className="form-control" 
                                     value={this.state.password} onChange={this.changepasswordHandler}/>
                                 </div> 
                                 <div className = "form-group">
-                                    <label className="labels"> 학교이름  </label>
-                                    <input type="text" placeholder=""  className="form-control" 
-                                    value={this.state.univName}  onChange={this.changeunivNameHandler}/>
+                                 
+                                    <input type="text" placeholder="        학교 이름을 입력하세요"  style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}} className="form-control" 
+                                    value={this.state.univ}  onChange={this.changeunivHandler}/>
                                 </div>
                                 <div className = "form-group">
-                                    <label className="labels"> 닉네임  </label>
-                                    <input type="text" placeholder=""  className="form-control" 
+                                    
+                                    <input type="text" placeholder="        닉네임을 입력하세요" style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}}  className="form-control" 
                                     value={this.state.nickname}  onChange={this.changenicknameHandler}/>
                                 </div>
                                 
-                                <button className="btn btn-danger" onClick={this.createUser}>회원가입</button> 
-                                <button className="btn btn-danger" onClick={this.verifyUser}>이메일인증</button> 
-                                <button className="btn btn-danger" onClick={() => alert(`${this.state.email}, ${this.state.univName}, ${this.state.password}`)}>회원정보는?</button> 
+                                <button className="btn--outline2" onClick={this.createUser} style={{width:"300px", height:"40px", borderRadius:"10px", fontWeight:"bold"}}>회원가입</button> 
+                                
+                               
       </div>
       </div>
 

@@ -1,15 +1,14 @@
 import axios from 'axios';
 
-const post_url="/user/mypage"  
+const post_url="/mypage"  
 const headers ={
-    'Content-type':'application/json',
-    'X-AUTH-TOKEN':localStorage.getItem('user')
+    'X-AUTH-TOKEN': localStorage.getItem('jwt')
 }
 
 class MypageService {
 
     getMylist(){
-        return axios.get(post_url+'/post',{headers});
+        return axios.get('/api/post/mypage',{headers});
     }
     getOnePost(no){
         return axios.get(post_url+'/post/'+no,{headers});
@@ -22,11 +21,12 @@ class MypageService {
     }
 
     getUserInform(){
+        
         return axios.get(post_url,{headers});
     }
 
     updateUserInform(UserInform){
-        return axios.put(post_url+'/update',UserInform,{headers});
+        return axios.put(post_url,UserInform,{headers});
     }
   
 

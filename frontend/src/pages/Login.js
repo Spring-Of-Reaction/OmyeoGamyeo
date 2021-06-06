@@ -6,16 +6,18 @@ import '../components/Button.css';
 
 
 class Login extends Component{
+  
   constructor(props) {
     super(props);
 
     this.state = {
       email:'',
       password:'',
-      token:''
+      token:[],
         
     }
     this.signup=this.signup.bind(this);
+    
   }
   
 signup(){
@@ -34,15 +36,15 @@ loginUser = (event) => {
   let Email={
     email:this.state.email,
   }
-  const headers=new Headers({
-    "Content-Type":"application/json"
-  })
+  
   
       UserService.loginUser(User).then(res => {
+          
         let token=res.data;
-        localStorage.setItem('user',token);
-
-        console.log(localStorage.getItem('user'));
+        localStorage.setItem('nickname',token.nickname);
+        localStorage.setItem('jwt',token.jwt);
+        console.log(localStorage.getItem('nickname'));
+        console.log(localStorage.getItem('jwt'));
         this.props.history.push("/mypage");
         
       });

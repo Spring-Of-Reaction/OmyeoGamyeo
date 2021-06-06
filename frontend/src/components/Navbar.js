@@ -5,6 +5,7 @@ import './Navbar.css';
 
 
 
+
 function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -71,8 +72,9 @@ function Navbar() {
                         </Link>
                     </li> 
                 </ul>
-                
-                {button && <Button buttonStyle='btn--outline'>로그인</Button>}
+                {button && <Button buttonStyle='btn--outline'></Button>}
+
+                {/*{localStorage.getItem('nickname')?'로그아웃':'로그인'}*/}
             </div>
         </nav>
         </>

@@ -17,7 +17,8 @@ class WritingPage extends Component{
         testType:'',
         content:'',
         rating:1,
-        nickname: '',
+        date:new Date(),
+        nickname:''
    
 
     }
@@ -75,7 +76,9 @@ createReview = (event) => {
         testType:this.state.testType,
         content:this.state.content,
         rating:this.state.rating,
-        nickname:localStorage.getItem('user'),
+        date:this.state.date,
+        nickname:this.state.nickname,
+        user:'',
     };
 
     
@@ -130,7 +133,7 @@ componentDidMount() {
                 testType:Review.testType,
                 content:Review.content,
                 rating:Review.rating,
-                nickname:Review.nickname,
+
                 });
         });
     }

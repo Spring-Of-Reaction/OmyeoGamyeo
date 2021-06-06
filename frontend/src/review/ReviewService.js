@@ -3,7 +3,7 @@ import axios from 'axios';
 const review_url="/review"  
 const headers ={
         'Content-type':'application/json',
-        'X-AUTH-TOKEN':localStorage.getItem('user')
+        'X-AUTH-TOKEN':localStorage.getItem('jwt')
     }
 
 class ReviewService {

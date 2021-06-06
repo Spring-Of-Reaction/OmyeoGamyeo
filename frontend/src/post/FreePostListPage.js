@@ -91,31 +91,26 @@ searchkeywords(option,keywords){
       <div class='container'>
         <h2 class='reviewnaming' >자유게시판</h2>
         <div className="button-group2">
-          <h4 style={{width:"140px",float:"left"}} className="nav-links" onClick={this.category}> 전체 보기 </h4>
-          <h4 style={{width:"100px",float:"left"}} className="nav-links" onClick={this.category1}> 일상 </h4> 
-          <h4 style={{width:"100px",float:"left"}} className="nav-links" onClick={this.category2}> 질문 </h4> 
-        </div>
-      <div className = "form-group">
-      <div className='search-group' style={{marginTop:"80px",marginRight:"100px"}}>
-                                <select className="category" placeholder="type" name="searchoption" 
-                                        value={this.searchoption}  onChange={this.changesearchoptionHandler}>
-                                            <optgroup label='카테고리를 선택하세요'>
-                                        
-                                        <option value='1'>제목</option>
-                                        <option value='2'>내용</option></optgroup>
-                                        </select>
-                                
-                                    
-                                    <input className="category" type="text" placeholder="검색어를 입력하세요" name="keyword"  
-                                   value={this.keywords} onChange={this.changekeywordsHandler}/>
-                                   <button className="category2" onClick={() => this.searchkeywords(this.state.searchoption,this.state.keywords)}> 검색 </button> 
+          <h4 style={{width:"140px",float:"left", marginTop:'10px'}} className="nav-links" onClick={this.category}> 전체 보기 </h4>
+          <h4 style={{width:"100px",float:"left",marginTop:'10px'}} className="nav-links" onClick={this.category1}> 일상 </h4> 
+          <h4 style={{width:"100px",float:"left",marginTop:'10px'}} className="nav-links" onClick={this.category2}> 질문 </h4> 
+        
 
-                                   
-                                </div>
-      </div>
+        
+        <div className='search-group' style={{marginTop:"10px"}}>
+            <select className="category" placeholder="type" name="searchoption" value={this.searchoption}  onChange={this.changesearchoptionHandler}>
+                <optgroup label='카테고리를 선택하세요'>
+                    <option value='1'>제목</option>
+                    <option value='2'>내용</option>
+                </optgroup>
+            </select>
+            <input className="category" type="text" placeholder="검색어를 입력하세요" name="keyword" value={this.keywords} onChange={this.changekeywordsHandler}/>
+            <button className="category2" onClick={() => this.searchkeywords(this.state.searchoption,this.state.keywords)}> 검색 </button> 
+        </div></div>
+      
+
       <div className = "card-body"> 
-                    
-
+             
                     <table className="table-boarder">
                         <thead className="tablest">
                             <tr>

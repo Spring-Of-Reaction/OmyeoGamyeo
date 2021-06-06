@@ -48,10 +48,11 @@ category2(){
       <div class='container'>
       <h2 class='reviewnaming' >자유게시판</h2>
       <div className="button-group2">
-      <button className="btn--primary3" onClick={this.category}> 전체 보기 </button>
-      <button className="btn--primary3" onClick={this.category1}> 일상 </button> 
-      <button className="btn--primary3" onClick={this.category2}> 질문 </button> 
-      </div>
+          <h4 style={{width:"140px",float:"left", marginTop:'10px'}} className="nav-links" onClick={this.category}> 전체 보기 </h4>
+          <h4 style={{width:"100px",float:"left",marginTop:'10px'}} className="nav-links" onClick={this.category1}> 일상 </h4> 
+          <h4 style={{width:"100px",float:"left",marginTop:'10px'}} className="nav-links" onClick={this.category2}> 질문 </h4> 
+        
+        </div>
       <div className = "card-body"> 
 
                     <table className="table-boarder">

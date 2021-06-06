@@ -8,14 +8,14 @@ class FreepostWritingPage extends Component{
     this.state = {
         email:'',
         password:'',
-        univName:'',
+        univ:'',
         nickname:'',
         
     }
 
     this.changeemailHandler = this.changeemailHandler.bind(this);
     this.changepasswordHandler = this.changepasswordHandler.bind(this);
-    this.changeunivNameHandler = this.changeunivNameHandler.bind(this);
+    this.changeunivHandler = this.changeunivHandler.bind(this);
     this.changenicknameHandler = this.changenicknameHandler.bind(this);
     this.createUser=this.createUser.bind(this);
 }
@@ -27,8 +27,8 @@ changeemailHandler = (event) => {
 changepasswordHandler = (event) => {
     this.setState({password: event.target.value});
 }
-changeunivNameHandler = (event) => {
-    this.setState({univName: event.target.value});
+changeunivHandler = (event) => {
+    this.setState({univ: event.target.value});
 }
 changenicknameHandler = (event) => {
   this.setState({nickname: event.target.value});
@@ -41,7 +41,7 @@ createUser = (event) => {
     let User = {
         email:this.state.email,
         password:this.state.password,
-        univName:this.state.univName,
+        univ:this.state.univ,
         nickname:this.state.nickname
         
     };
@@ -67,7 +67,7 @@ componentDidMount() {
             this.setState({
                 email:User.email,
                 password:User.password,
-                univName:User.univName,
+                univ:User.univ,
                 nickname:User.nickname})
             
              });    
@@ -96,8 +96,8 @@ render() {
     
                                 <div className = "form-group">
                                 <label className="labels"> 학교명  </label>
-                                    <input placeholder="학교명" name="univName" className="form-control" 
-                                     value={this.state.univName} onChange={this.changeunivNameHandler}/>
+                                    <input placeholder="학교명" name="univ" className="form-control" 
+                                     value={this.state.univ} onChange={this.changeunivHandler}/>
                                 </div>
                                 
                                    

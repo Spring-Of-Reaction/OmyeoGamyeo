@@ -20,13 +20,13 @@ export const Button = ({
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
   return (
-    <Link to='/login' className='btn-mobile'>
+    
+    <Link to={localStorage.getItem('nickname')?'/':'/login'} className='btn-mobile'>
       <button
         className={`btn ${checkButtonStyle} ${checkButtonSize}`}
-        onClick={onClick}
+        onClick={localStorage.removeItem('nickname')} 
         type={type}
-      >
-        {children}
+      >{localStorage.getItem('nickname')?'로그인':'로그아웃'}
       </button>
     </Link>
   );

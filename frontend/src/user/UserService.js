@@ -15,7 +15,7 @@ class UserService {
     }
 
     loginUser(user){
-        return axios.post('/login',user);
+        return axios.post('/signin',user);
     }
 
     
