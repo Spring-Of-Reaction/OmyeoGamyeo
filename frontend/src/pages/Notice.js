@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import UnivList from '../notice/UnivList';
 import '../review/Review.css';
+import Navbar from '../components/Navbar';
 
 class Notice extends Component {
     id = 4;
@@ -20,7 +21,7 @@ class Notice extends Component {
         {
           id: 3,
           text: '숙명여자대학교',
-          text2: "http://www.sookmyung.ac.kr/",
+          text2: "http://www.sookmyung.ac.kr/sookmyungkr/1099/subview.do",
         },
         {
           id: 4,
@@ -132,6 +133,7 @@ class Notice extends Component {
     render() {
       const { univList, search } = this.state;
       return (
+       <> <Navbar/>
         <div class='container'>
         <div className= 'notice'>
             <input className= 'searchbar' value={search} name="search" onChange={this.handleSearch} placeholder="    학교 이름을 검색하세요" />
@@ -139,7 +141,7 @@ class Notice extends Component {
                 data={univList.filter((data) => data.text.indexOf(search) !== -1)}
             />
     </div>
-    </div>
+    </div></>
       );
     }
   }

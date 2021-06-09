@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ViewingPage from '../review/ViewingPage';
 import ListPageS1 from '../review/ListPageS1';
 import ListPageS2 from '../review/ListPageS2';
+import Navbar from '../components/Navbar';
 
 
 function Review() {
@@ -18,6 +19,7 @@ function Review() {
   
   return (
     <div>
+      <Navbar/>
         <Switch>
         <Route exact path='/review' component={ListPage} />
         <Route path='/review/create' component={WritingPage} />

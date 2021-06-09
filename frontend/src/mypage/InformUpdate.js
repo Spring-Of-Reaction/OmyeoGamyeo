@@ -40,7 +40,6 @@ createUser = (event) => {
     event.preventDefault();
     let User = {
         email:this.state.email,
-        password:this.state.password,
         univ:this.state.univ,
         nickname:this.state.nickname
         
@@ -86,13 +85,7 @@ render() {
                                     <input type="text" placeholder="이메일" name="email" className="form-control" 
                                    value={this.state.email} onChange={this.changeemailHandler} disabled/>
                                 </div>
-                                <div className = "form-group">
-                                <label className="labels"> 비밀번호  </label>
-                                   <input type="text" placeholder="비밀번호" name="password" className="form-control" 
-                                    value={this.state.password} onChange={this.changepasswordHandler}/>
-                                </div>
-
-                                
+                                                              
     
                                 <div className = "form-group">
                                 <label className="labels"> 학교명  </label>

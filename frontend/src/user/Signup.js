@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserService from './UserService';
 import '../user/user.css';
 import '../components/Button.css';
+import Navbar from '../components/Navbar';
 
 class Signup extends Component{
   constructor(props) {
@@ -77,6 +78,7 @@ verifyUser = (event) => {
         console.log(message);
         console.log("email 보냈음=> "+ JSON.stringify(User.email));
         window.alert("입력하신 이메일로 인증을 완료하세요.");
+        this.props.history.push('/login');
       });
 }
 
@@ -88,7 +90,7 @@ verifyUser = (event) => {
 
 render(){
 return (
-  
+  <><Navbar/>
       <div class='container' >
         <div className='loginform'>
         <div style={{marginBottom:"30px"}}>
@@ -97,9 +99,9 @@ return (
               </div>
                                 <div className = "form-group">
                                 
-                                    <input type="text" placeholder="        이메일을 입력하세요"  style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}} className="form-control"  
-                                    value={this.state.email}  onChange={this.changeemailHandler}/>
-                                </div>
+                                    <input type="text" placeholder="        이메일을 입력하세요  "  style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}} className="form-control"  
+                                    value={this.state.email}  onChange={this.changeemailHandler}/> 
+                                </div><div style={{"font-size":"12px",marginTop:'-5px',marginBottom:'5px'}}>※학교 이메일로 가입하세요.</div>
                                 <div className = "form-group">
                                
                                    <input type="password" placeholder="        비밀번호를 입력하세요" style={{width:"300px", height:"40px", marginLeft:"50px", borderRadius:"10px"}} className="form-control" 
@@ -120,7 +122,7 @@ return (
                                 
                                
       </div>
-      </div>
+      </div></>
 
   )
 

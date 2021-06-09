@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserService from '../user/UserService';
 import '../user/user.css';
 import '../components/Button.css';
+import Navbar from '../components/Navbar';
 
 
 class Login extends Component{
@@ -43,6 +44,8 @@ loginUser = (event) => {
         let token=res.data;
         localStorage.setItem('nickname',token.nickname);
         localStorage.setItem('jwt',token.jwt);
+        localStorage.setItem('uid',token.uid);
+        console.log(localStorage.getItem('uid'));
         console.log(localStorage.getItem('nickname'));
         console.log(localStorage.getItem('jwt'));
         this.props.history.push("/mypage");
@@ -60,8 +63,8 @@ changepassword = (event) => {
 };
 
 render(){
-return (
-  
+return (<>
+  <Navbar/>
       <div class='container' >
           <div class='loginform'>
               <div style={{marginBottom:"30px"}}>
@@ -87,7 +90,7 @@ return (
 
       </div>
 </div>
-      
+   </>   
   )
 
 }}

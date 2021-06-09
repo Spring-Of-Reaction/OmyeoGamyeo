@@ -6,6 +6,7 @@ const STYLES = ['btn--primary', 'btn--outline', 'btn--test'];
 
 const SIZES = ['btn--medium', 'btn--large'];
 
+
 export const Button = ({
   children,
   type,
@@ -18,16 +19,15 @@ export const Button = ({
     : STYLES[0];
 
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
+  const usercheck=localStorage.getItem('nickname');
 
-  return (
-    
-    <Link to={localStorage.getItem('nickname')?'/':'/login'} className='btn-mobile'>
+  return (<Link to={usercheck?'/':'/login'}  className='btn-mobile'>
       <button
         className={`btn ${checkButtonStyle} ${checkButtonSize}`}
-        onClick={localStorage.removeItem('nickname')} 
+        onClick={usercheck?undefined:(localStorage.removeItem('nickname'),localStorage.removeItem('uid'),localStorage.removeItem('jwt'))} 
         type={type}
-      >{localStorage.getItem('nickname')?'로그인':'로그아웃'}
-      </button>
-    </Link>
+      >{usercheck?'로그아웃':'로그인'}
+      </button></Link>
+   
   );
 };

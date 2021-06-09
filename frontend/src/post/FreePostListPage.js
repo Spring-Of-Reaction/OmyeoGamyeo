@@ -53,9 +53,16 @@ createFreepost(){
   this.props.history.push('/post/create')
 }
 
+
 readpost(no){
-    this.props.history.push(`/post/${no}`)
-}
+    if(localStorage.getItem('nickname')){
+        this.props.history.push(`/post/${no}`)}
+    else{
+      window.alert("로그인을 해야 서비스를 사용할 수 있습니다.");
+      this.props.history.push('/login');
+    }
+  }
+
 category(){
     this.props.history.push('/post')
 }
@@ -85,7 +92,11 @@ searchkeywords(option,keywords){
     }
  
 }
-
+usernull(){
+    if(localStorage.getItem('nickname')){
+       return <button className="btn--primary2" onClick={this.createFreepost}> 글 작성 </button> 
+    }
+  }
   render(){
   return (
       <div class='container'>
@@ -137,7 +148,7 @@ searchkeywords(option,keywords){
                 
                   {/*  <button className="btn--primary2" > 1 </button>
                     */}
-      <button className="btn--primary2" onClick={this.createFreepost}> 글 작성 </button> 
+      {this.usernull()}
       
       </div></div>
   )

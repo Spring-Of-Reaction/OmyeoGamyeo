@@ -36,12 +36,10 @@ class ReviewService {
         return axios.delete(review_url+'/'+id,{headers});
     }
 
-    reviewscrap(id,scrap){
-        return axios.put(review_url+'/'+id+'/scrap',scrap,{headers});
+    reviewscrap(id){
+        return axios.post('/api/scrap/'+id,{headers});
     }
-    reviewlike(id,scrap){
-        return axios.put(review_url+'/'+id+'/like',scrap,{headers});
-    }
+    
 }
 
 export default new ReviewService();

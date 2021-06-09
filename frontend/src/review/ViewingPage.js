@@ -48,10 +48,10 @@ class ViewingPage extends Component {
         this.setState({background:'rgba(193, 208, 248, 0.2)'})
         event.preventDefault();
         let userscrap={
-            uid:localStorage.getItem('user')
+            uid:localStorage.getItem('uid')
         };
-        console.log(this.state.id,JSON.stringify(this.state.userscrap)); 
-        ReviewService.reviewscrap(this.state.id,userscrap).then(res=>
+        console.log(this.state.id,localStorage.getItem('uid')); 
+        ReviewService.reviewscrap(this.state.id).then(res=>
             window.alert("스크랩이 완료되었습니다."));
         }
         else
@@ -114,6 +114,19 @@ class ViewingPage extends Component {
         }
 
     }
+
+    usercheck(){
+        if(localStorage.getItem('uid')==this.state.Review.uid){
+            return <div><button className="btn--primary" onClick={this.goToEdit} style={{ marginTop:"100px",marginLeft:"10px"}}>수정하기</button>
+            <button className="btn--primary" onClick={()=> this.deleteReview()} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
+         </div>
+        }
+         else{
+             return <button className= "scrapbutton" onClick={this.reviewscrap} style={{width:"100px",height:"40px",marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>스크랩하기</button>
+    
+         }
+    }
+
     render() {
         
         return (
@@ -121,7 +134,11 @@ class ViewingPage extends Component {
                <div className="setcenter">
                     <h2 style={{paddingTop:"70px",paddingBottom:"50px"}}>{this.state.Review.subjectName}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.Review.univName}</h2>
-                    
+                            <div className = "row">
+                                <label className="labels"  >  </label> <div className='contentbox'>  </div>
+                            
+                                <label className="labels" >  </label> <div className='contentbox'>{this.state.Review.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자: {this.state.Review.nickname} </div>
+                            </div >
                         <div className='form-design2'>
                             <div className = "row">      
                                 <label className="labels"  > 교수명 </label>  <div className='contentbox'>{this.state.Review.professor+' 교수님'} </div>
@@ -137,7 +154,7 @@ class ViewingPage extends Component {
                                 <label className="labels"  > 평점 </label> {this.getrating(this.state.Review.rating)}
                             </div >
                             {/*{this.returnCategory(this.state.Review.rating)}*/}
-
+                            
                             <div className = "row">
                                 <label className="labels"  > 기타 </label> <div className='contentbox'> {this.state.Review.content} </div>
                             </div >
@@ -145,10 +162,8 @@ class ViewingPage extends Component {
                          </div>
                             
         
-                           <button className= "scrapbutton" onClick={this.reviewscrap} style={{marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>스크랩하기</button>
-                          
-                            <button className="btn--primary" onClick={this.goToEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
-                            <button className="btn--primary" onClick={()=> this.deleteReview()} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
+                           
+                            {this.usercheck()}
                             </div> </div>
                
                

@@ -41,7 +41,12 @@ createReview() {
 }
 
 readReview(id){
-  this.props.history.push(`/review/${id}`)
+  if(localStorage.getItem('nickname')){
+  this.props.history.push(`/review/${id}`)}
+  else{
+    window.alert("로그인을 해야 서비스를 사용할 수 있습니다.");
+    this.props.history.push('/login');
+  }
 }
 
 searchkeywords(option,keywords){
@@ -62,7 +67,11 @@ searchkeywords(option,keywords){
 
 }
 
-
+usernull(){
+  if(localStorage.getItem('nickname')){
+     return <button className="btn--primary2" onClick={this.createReview}> 글 작성 </button> 
+  }
+}
 
   render(){
      return (
@@ -105,7 +114,8 @@ searchkeywords(option,keywords){
             }
           </tbody>
         </table>
-        <button className="btn--primary2" onClick={this.createReview}> 글 작성 </button> 
+        {this.usernull()}
+       
       </div>
     </div>
   );

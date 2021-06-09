@@ -11,7 +11,7 @@ import Notice from './pages/Notice';
 import ReviewPage from './pages/Review';
 import Login from './pages/Login';
 import Signup from './user/Signup';
-import Email from './user/email';
+
 
 function App() {
   if(localStorage.getItem('nickname')){
@@ -21,7 +21,7 @@ function App() {
     
     <>
       <Router>
-      <Navbar/>
+      
         <Switch>
         <Route exact path='/' exact component={Main} />
           <Route path='/post' component={Post} />
@@ -31,7 +31,6 @@ function App() {
           <Route path='/review' component={ReviewPage} />
           <Route path='/login' component={Login} />
           <Route path='/join' component={Signup} />
-          <Route path='/join_email' component={Email} />
           <Route render={() => <div className='error'>에러 페이지</div>} />
         </Switch>
       <Footer/>

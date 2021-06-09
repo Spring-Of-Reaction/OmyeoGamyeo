@@ -1,5 +1,6 @@
 import React from 'react';
 import '../review/Review.css';
+import Navbar from '../components/Navbar';
 import { RenderAfterNavermapsLoaded, NaverMap } from 'react-naver-maps';  
 {/*function getLocation() {
   if (navigator.geolocation) { // GPS를 지원하면
@@ -20,7 +21,7 @@ import { RenderAfterNavermapsLoaded, NaverMap } from 'react-naver-maps';
 
 
 function FindPage() {
-  return (
+  return (<><Navbar/>
     <div className='container'>
       <div className='map'>
       <RenderAfterNavermapsLoaded
@@ -41,7 +42,7 @@ function FindPage() {
 
       </RenderAfterNavermapsLoaded>
       <div className='find'></div></div>
-    </div>
+    </div></>
   );
 }
 

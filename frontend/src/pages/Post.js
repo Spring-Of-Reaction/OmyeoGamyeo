@@ -8,13 +8,14 @@ import PostListPage2 from '../post/FreePostListPage2';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PostViewingPage from '../post/FreePostViewingPage';
 import notice from '../pages/Notice';
+import Navbar from '../components/Navbar';
 
 function Post() 
 
 
     {
         return (
-                   
+         <> <Navbar/>       
         <Switch>
         <Route exact path='/post' component={PostListPage} />
         <Route path='/post/category/1' component={PostListPage1} />
@@ -25,7 +26,7 @@ function Post()
         <Route path='/post/search/content/:keywords' component={PostListPageS2} />
         <Route path='/post/:pid' component={PostViewingPage} />
         </Switch>
-
+          </>
           
         )
       }

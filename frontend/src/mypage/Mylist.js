@@ -15,7 +15,7 @@ class Mylist extends Component {
 componentDidMount() {
   MypageService.getMylist().then((res) => {
     this.setState({ Mylist : res.data});
-        /*console.log("Review => "+ JSON.stringify(this.state.Review));*/
+        console.log("Mylist => "+ JSON.stringify(this.state.Mylist));
   });
 
 }
@@ -35,7 +35,7 @@ readPost(no){
                       <thead className="tablest">
                           <tr >
                               
-                              <th width="600px" >제목 </th>
+                              <th width="600px" >자유게시판 </th>
                               
                           </tr>
                       </thead>
@@ -44,7 +44,7 @@ readPost(no){
                               this.state.Mylist.map(
                                 Mylist => 
                                   <tr key = {Mylist.pid}>
-                                      <td width="100px"> <a onClick = {() => this.readPost(Mylist.pid)}>{Mylist.pid} </a></td>
+                                      <td width="100px"> <a onClick = {() => this.readPost(Mylist.pid)}>{Mylist.title} </a></td>
           
                                   </tr>
                               )

@@ -42,9 +42,7 @@ goToEdit= (event)=>{
                   <div className = "row">      
                       <label className="labels" > 이메일 </label>  <div className='contentbox'>{this.state.UserInform.email} </div>
                   </div>
-                  <div className = "row">      
-                      <label className="labels" > 비밀번호 </label>  <div className='contentbox'>{this.state.UserInform.password} </div>
-                  </div>
+                
                   <div className = "row">      
                       <label className="labels"  > 닉네임 </label>  <div className='contentbox'>{this.state.UserInform.nickname} </div>
                   </div>
