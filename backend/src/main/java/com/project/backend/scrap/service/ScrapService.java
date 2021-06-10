@@ -26,14 +26,17 @@ public class ScrapService {
     public boolean addScrap(User user, Long id) {
         Review review = reviewrepository.findById(id).orElseThrow();
 
+
         //사용자가 기존에 스크랩한 게시물이 없다면
         if (isNotAlreadyLike(user, review) == null) {
+            System.out.println(review.getId());
+            //System.out.println(user.getEmail());
             scraprepository.save(new Scrap(review, user));
             return true;
         }
         //사용자가 기존에 스크랩한 게시물이 있다면 -> 중복처리 : 삭제
         else {
-            Scrap scrap = scraprepository.findByUserAndReview(user, review);
+            Scrap scrap = scraprepository.findByUser_uidAndReview_id(user.getUid(), review.getId());
             Long sid = scrap.getSid();
             scraprepository.delete(scrap);
             return true;
@@ -41,7 +44,7 @@ public class ScrapService {
     }
 
     private Scrap isNotAlreadyLike(User user, Review review) {
-        return scraprepository.findByUserAndReview(user, review);
+        return scraprepository.findByUser_uidAndReview_id(user.getUid(), review.getId());
     }
 
     public List<ReviewListResponse> mypageScrap(User user){

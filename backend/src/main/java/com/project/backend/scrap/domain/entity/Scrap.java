@@ -2,7 +2,6 @@ package com.project.backend.scrap.domain.entity;
 
 import com.project.backend.review.domain.entity.Review;
 import com.project.backend.security.domain.entity.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +10,6 @@ import javax.persistence.GenerationType;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Scrap {
 
@@ -19,10 +17,12 @@ public class Scrap {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sid;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn
     private Review review;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
+    @JoinColumn
     private User user;
 
     public Scrap(Review review, User user){
