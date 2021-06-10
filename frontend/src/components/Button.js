@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import './Button.css';
 import { Link } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ export const Button = ({
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
   const usercheck=localStorage.getItem('nickname');
 
-  return (<Link to={usercheck?'/':'/login'}  className='btn-mobile'>
+  return (<Link to={'/login'}  className='btn-mobile'>
       <button
         className={`btn ${checkButtonStyle} ${checkButtonSize}`}
         onClick={usercheck?undefined:(localStorage.removeItem('nickname'),localStorage.removeItem('uid'),localStorage.removeItem('jwt'))} 

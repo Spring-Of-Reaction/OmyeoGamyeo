@@ -61,10 +61,15 @@ loginUser = (event) => {
 changepassword = (event) => {
     this.setState({ password : event.target.value });
 };
-
+logoutuser(){
+  localStorage.removeItem('nickname');
+  localStorage.removeItem('uid');
+  localStorage.removeItem('jwt');
+}
 render(){
 return (<>
   <Navbar/>
+  {this.logoutuser()}
       <div class='container' >
           <div class='loginform'>
               <div style={{marginBottom:"30px"}}>

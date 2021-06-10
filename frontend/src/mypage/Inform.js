@@ -31,8 +31,7 @@ goToEdit= (event)=>{
   render(){
     return (
   
-      
-      
+    
       <div className = "container">
                 
       <div >
