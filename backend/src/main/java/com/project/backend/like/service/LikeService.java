@@ -4,10 +4,17 @@ import com.project.backend.like.domain.entity.Like;
 import com.project.backend.like.domain.repository.LikeRepository;
 import com.project.backend.post.domain.entity.Post;
 import com.project.backend.post.domain.repository.PostRepository;
+import com.project.backend.post.dto.PostListResponseDto;
+import com.project.backend.review.domain.entity.Review;
+import com.project.backend.review.dto.ReviewListResponse;
+import com.project.backend.scrap.domain.entity.Scrap;
 import com.project.backend.security.domain.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor
@@ -35,6 +42,19 @@ public class LikeService {
 
     private Like isNotAlreadyLike(User user, Post post) {
         return likeRepository.findByUserAndPost(user, post);
+    }
+
+    public List<PostListResponseDto> mypageLike(User user){
+        List<Like> likelist = likeRepository.findByUser_uid(user.getUid());
+
+        List<PostListResponseDto> postlist = new ArrayList<>();
+        for (int i = 0; i <likelist.size(); i++) {
+            Post post = likelist.get(i).getPost();
+            postlist.add(new PostListResponseDto(post));
+        }
+
+        return postlist;
+
     }
 
 }

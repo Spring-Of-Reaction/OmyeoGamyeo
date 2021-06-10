@@ -2,6 +2,8 @@ package com.project.backend.like.api;
 
 
 import com.project.backend.like.service.LikeService;
+import com.project.backend.post.dto.PostListResponseDto;
+import com.project.backend.review.dto.ReviewListResponse;
 import com.project.backend.security.domain.entity.User;
 import com.project.backend.security.domain.repository.UserRepository;
 import com.project.backend.security.jwt.JwtTokenProvider;
@@ -44,5 +46,10 @@ public class LikeController {
                 new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
+    }
+
+    @GetMapping("api/like/mypage")
+    public List<PostListResponseDto> mypage_like (@CurrentUser User user){
+        return likeService.mypageLike(user);
     }
 }
