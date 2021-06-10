@@ -10,6 +10,9 @@ class MypageService {
     getMylist(){
         return axios.get('/api/post/mypage',{headers});
     }
+    getMyReviewlist(){
+        return axios.get('/review/mypage',{headers});
+    }
     getOnePost(no){
         return axios.get(post_url+'/post/'+no,{headers});
     }

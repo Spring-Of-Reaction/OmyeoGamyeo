@@ -14,7 +14,8 @@ class FreepostViewingPage extends Component {
             c_content:'',
             dateTime:new Date(),
             cid: this.props.match.params.cid,
-            background: 'white'
+            background: 'white',
+            count:3
         }
         this.goToPEdit=this.goToPEdit.bind(this);
         this.changec_writerHandler = this.changec_writerHandler.bind(this);
@@ -114,11 +115,13 @@ class FreepostViewingPage extends Component {
 
     usercheck(){
         if(localStorage.getItem('uid')==this.state.FreePost.uid){
-            return <div><button className="btn--primary" onClick={this.goToPEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
+            return <div>
+                <button className= "scrapbutton" onClick={this.postlike} style={{width:"100px",height:"40px",marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>좋아요 {this.state.count}</button>
+                <button className="btn--primary" onClick={this.goToPEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
         <button className="btn--primary" onClick={()=> this.deleteFreePost(this.state.Comments)} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
          </div>
     }else{
-        return <button className= "scrapbutton" onClick={this.postlike} style={{width:"100px",height:"40px",marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>좋아요</button>
+        return <button className= "scrapbutton" onClick={this.postlike} style={{width:"100px",height:"40px",marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>좋아요 {this.state.count}</button>
     }
 
     }
@@ -127,12 +130,13 @@ class FreepostViewingPage extends Component {
         if(this.state.background=='white')
         {
         this.setState({background:'rgba(193, 208, 248, 0.2)'})
-        
+        this.state.count=this.state.count+1;
             window.alert("좋아요를 눌렀습니다.");
         }
         else
         {
         this.setState({background:'white'})
+        this.state.count=this.state.count-1;
             window.alert("좋아요를 취소하였습니다.")
         }
         

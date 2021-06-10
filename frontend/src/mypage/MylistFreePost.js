@@ -2,7 +2,7 @@ import React,{Component}  from 'react';
 import FreePostService from '../post/FreePostService';
 import '../review/Review.css';
 
-class MylistFreePost extends Component {
+class FreepostViewingPage extends Component {
     constructor(props) {
         super(props)
          
@@ -14,10 +14,12 @@ class MylistFreePost extends Component {
             c_content:'',
             dateTime:new Date(),
             cid: this.props.match.params.cid,
+            background: 'white'
         }
         this.goToPEdit=this.goToPEdit.bind(this);
         this.changec_writerHandler = this.changec_writerHandler.bind(this);
-        this.changec_contentHandler = this.changec_contentHandler.bind(this);
+        this.changec_contentHandler = this.changec_contentHandler.bind(this);    
+        
        
     }
 
@@ -109,6 +111,34 @@ class MylistFreePost extends Component {
         }
         
     }
+
+    usercheck(){
+        if(localStorage.getItem('uid')==this.state.FreePost.uid){
+            return <div><button className="btn--primary" onClick={this.goToPEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
+        <button className="btn--primary" onClick={()=> this.deleteFreePost(this.state.Comments)} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
+         </div>
+    }else{
+        return <button className= "scrapbutton" onClick={this.postlike} style={{width:"100px",height:"40px",marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>좋아요</button>
+    }
+
+    }
+
+    postlike = (event)=>{
+        if(this.state.background=='white')
+        {
+        this.setState({background:'rgba(193, 208, 248, 0.2)'})
+        
+            window.alert("좋아요를 눌렀습니다.");
+        }
+        else
+        {
+        this.setState({background:'white'})
+            window.alert("좋아요를 취소하였습니다.")
+        }
+        
+           
+    }
+
     render() {
         return (
             <div className = "container">
@@ -119,7 +149,7 @@ class MylistFreePost extends Component {
                                 <label className="labels"  >  </label> <div className='contentbox'>  </div>
                             
                                 <label className="labels" >  </label> <div className='contentbox'>{this.state.FreePost.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자: {this.state.FreePost.nickname} </div>
-                            </div >
+                                </div >
                     <h3 className ='reviewnaming2'> {this.state.FreePost.content}</h3>
                     <div className = "card-body">
 
@@ -138,7 +168,7 @@ class MylistFreePost extends Component {
                             <div className = "row">
                                 {this.state.FreePost.filename} 
                             </div >
-                            </div >
+                            </div >{this.usercheck()}
                 <div className="table-boarder5">
                         <table  >
                         <thead >
@@ -181,8 +211,7 @@ class MylistFreePost extends Component {
                 </div>
                             <div>
                            
-                            <button className="btn--primary" onClick={this.goToPEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
-                            <button className="btn--primary" onClick={()=> this.deleteFreePost(this.state.Comments)} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -192,4 +221,4 @@ class MylistFreePost extends Component {
     }
 }
 
-export default MylistFreePost;
+export default FreepostViewingPage;
