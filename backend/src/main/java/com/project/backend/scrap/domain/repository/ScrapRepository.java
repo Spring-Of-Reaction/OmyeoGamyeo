@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@Transactional(readOnly = true)
 public interface ScrapRepository extends JpaRepository<Scrap, Long> {
     Scrap findByUserAndReview(User user, Review review);
+    Scrap findByUser_uidAndReview_id(Long uid, Long rid);
     List<Scrap> findByUser_uid(Long uid);
 
 }

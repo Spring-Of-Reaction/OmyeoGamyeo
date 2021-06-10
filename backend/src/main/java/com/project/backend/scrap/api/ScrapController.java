@@ -22,33 +22,17 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+
 public class ScrapController {
     private final ScrapService scrapService;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
 
     @PostMapping("/api/scrap/{id}")
-    public ResponseEntity<String> addScrap(User user, @PathVariable Long id, HttpServletRequest request) {
-        String token = jwtTokenProvider.resolveToken(request);
-        String useremail = jwtTokenProvider.getUserPk(token);
-        user = userRepository.findByEmail(useremail);
+    public boolean addScrap( @PathVariable Long id, @CurrentUser User user) {
+        return scrapService.addScrap(user, id); }
 
-
-        boolean result = false;
-        System.out.println(user);
-        System.out.println(token);
-
-        if (user != null){
-            result = scrapService.addScrap(user, id);
-
-        }
-        return result ?
-                new ResponseEntity<>(HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-    }
-
-    @GetMapping("api/scrap/mypage")
+    @GetMapping("/api/scrap/mypage")
     public List<ReviewListResponse> mypage_scrap(@CurrentUser User user){
         return scrapService.mypageScrap(user);
     }
