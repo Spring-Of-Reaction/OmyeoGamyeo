@@ -26,12 +26,12 @@ public class LikeService {
     public boolean addLike(User user, Long id) {
         Post post = postRepository.findById(id).orElseThrow();
 
-        //사용자가 기존에 스크랩한 게시물이 없다면
+        //사용자가 기존에 좋아요 안 눌렀다면
         if (isNotAlreadyLike(user, post) == null) {
             likeRepository.save(new Like(post, user));
             return true;
         }
-        //사용자가 기존에 스크랩한 게시물이 있다면 -> 중복처리 : 삭제
+        //사용자가 기존에 좋아요 눌렀다면-> 중복처리 : 삭제
         else {
             Like like = likeRepository.findByUserAndPost(user, post);
             Long lid = like.getLid();
@@ -45,15 +45,15 @@ public class LikeService {
     }
 
     public List<PostListResponseDto> mypageLike(User user){
-        List<Like> likelist = likeRepository.findByUser_uid(user.getUid());
+        List<Like> likeList = likeRepository.findByUser_uid(user.getUid());
 
-        List<PostListResponseDto> postlist = new ArrayList<>();
-        for (int i = 0; i <likelist.size(); i++) {
-            Post post = likelist.get(i).getPost();
-            postlist.add(new PostListResponseDto(post));
+        List<PostListResponseDto> postList = new ArrayList<>();
+        for (int i = 0; i <likeList.size(); i++) {
+            Post post = likeList.get(i).getPost();
+            postList.add(new PostListResponseDto(post));
         }
 
-        return postlist;
+        return postList;
 
     }
 

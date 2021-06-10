@@ -33,10 +33,7 @@ public class LikeController {
         String email = jwtTokenProvider.getUserPk(token);
         user = userRepository.findByEmail(email);
 
-
         boolean result = false;
-        System.out.println(user);
-        System.out.println(token);
 
         if (user != null){
             result = likeService.addLike(user, id);
