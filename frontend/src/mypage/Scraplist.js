@@ -20,8 +20,8 @@ componentDidMount() {
 
 }
 
-readScrap(no){
-  this.props.history.push(`/mypage/scrap/${no}`)
+readScrap(id){
+  this.props.history.push(`/mypage/scrap/${id}`)
 }
 
 
@@ -43,8 +43,8 @@ readScrap(no){
                           {
                               this.state.Scraplist.map(
                                 Scraplist => 
-                                  <tr key = {Scraplist.sid}>
-                                      <td width="100px"> <a onClick = {() => this.readScrap(Scraplist.sid)}>{Scraplist.sid} </a></td>
+                                  <tr key = {Scraplist.id}>
+                                      <td width="100px"> <a onClick = {() => this.readScrap(Scraplist.id)}>{Scraplist.subjectName} </a></td>
           
                                   </tr>
                               )

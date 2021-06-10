@@ -37,7 +37,7 @@ class ReviewService {
     }
 
     reviewscrap(id){
-        return axios.post('/api/scrap/'+id,{headers});
+        return axios.post('/api/scrap/'+id,{ },{headers});
     }
     
 }

@@ -17,7 +17,7 @@ class MypageService {
         return axios.get(post_url+'/post/'+no,{headers});
     }
     getMyscraplist(){
-        return axios.get(post_url+'/scrap',{headers});
+        return axios.get('/api/scrap/mypage',{headers});
     }
     getOneScrap(no){
         return axios.get(post_url+'/scrap/'+no,{headers});

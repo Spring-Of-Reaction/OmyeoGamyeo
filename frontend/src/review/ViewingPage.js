@@ -57,7 +57,10 @@ class ViewingPage extends Component {
         else
         {
         this.setState({background:'white'})
-            window.alert("스크랩이 취소되었습니다.")
+        ReviewService.reviewscrap(this.state.id).then(res=>
+            window.alert("스크랩이 취소되었습니다."));
+        
+            
         }
         
            

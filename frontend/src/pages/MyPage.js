@@ -19,11 +19,10 @@ function MyPage() {
       <Switch>
         <Route exact path='/mypage' component={Mypagemain} />
         <Route path='/mypage/review/:id' component={MylistReview} />
-        <Route path='/mypage/scrap/:sid' component={MypageScrapView} />
+        <Route path='/mypage/scrap/:id' component={MypageScrapView} />
         <Route path='/mypage/scrap' component={Scraplist} />
         <Route path='/mypage/post/:pid' component={MylistFreePost} />
         <Route path='/mypage/post' component={Mylist} />
-        
         <Route path='/mypage/inform/update' component={InformUpdate} />
         <Route path='/mypage/inform' component={Inform} />
         </Switch>
