@@ -178,7 +178,8 @@
   
     padding: 10px;
     text-align: center;
-    margin-left: 39%;
+    margin-left: 5%;
+    
     
 }
 
@@ -230,7 +231,8 @@
 }
 
 .setcenter{
-    text-align: center;
+    
+    padding-left: 30%;
 }
 
 a { text-decoration: none; color: black; font-weight: bold; font-size: 15px;  }

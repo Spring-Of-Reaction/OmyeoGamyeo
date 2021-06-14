@@ -50,11 +50,7 @@ function Navbar() {
                             자유게시판
                         </Link>
                     </li>
-                    <li className='nav-item'>
-                        <Link to='/find' className='nav-links' onClick={closeMobileMenu}>
-                            학교별 길찾기
-                        </Link>
-                    </li>
+                    
                     
                     <li className='nav-item'>
                         <Link to='/notice' className='nav-links' onClick={closeMobileMenu}>
@@ -70,6 +66,9 @@ function Navbar() {
                         <Link to='/user/login' className='nav-links-mobile' onClick={closeMobileMenu}>
                             로그인
                         </Link>
+                    </li> 
+                    <li className='nav-item'>
+                        
                     </li> 
                 </ul>
                 {button && <Button buttonStyle='btn--outline'></Button>}

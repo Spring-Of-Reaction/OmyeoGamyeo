@@ -69,7 +69,7 @@ searchkeywords(option,keywords){
 
 usernull(){
   if(localStorage.getItem('nickname')){
-     return <button className="btn--primary2" onClick={this.createReview}> 글 작성 </button> 
+     return <button className="btn--primary2" onClick={this.createReview} style={{marginTop:"100px"}}> 글 작성 </button> 
   }
 }
 

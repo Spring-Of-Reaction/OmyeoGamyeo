@@ -94,7 +94,7 @@ searchkeywords(option,keywords){
 }
 usernull(){
     if(localStorage.getItem('nickname')){
-       return <button className="btn--primary2" onClick={this.createFreepost}> 글 작성 </button> 
+       return <button className="btn--primary2" onClick={this.createFreepost} style={{marginTop:"100px"}}> 글 작성 </button> 
     }
   }
   render(){
@@ -133,12 +133,12 @@ usernull(){
                         </thead>
                         <tbody className="tablest">
                             {
-                                this.state.Newpost.map(
-                                    Newpost => 
-                                    <tr key = {Newpost.pid}>
-                                        <td width="100px"> <a onClick = {() => this.readpost(Newpost.pid)}>{Newpost.pid} </a></td>
-                                        <td width="600px"> <a onClick = {() => this.readpost(Newpost.pid)}>{Newpost.title} </a></td>
-                                        <td width="500px"> <a onClick = {() => this.readpost(Newpost.pid)}>{Newpost.date}</a> </td>
+                                this.state.Freepost.map(
+                                    Freepost => 
+                                    <tr key = {Freepost.pid}>
+                                        <td width="100px"> <a onClick = {() => this.readpost(Freepost.pid)}>{Freepost.pid} </a></td>
+                                        <td width="600px"> <a onClick = {() => this.readpost(Freepost.pid)}>{Freepost.title} </a></td>
+                                        <td width="500px"> <a onClick = {() => this.readpost(Freepost.pid)}>{Freepost.date}</a> </td>
                                     </tr>
                                 )
                             }

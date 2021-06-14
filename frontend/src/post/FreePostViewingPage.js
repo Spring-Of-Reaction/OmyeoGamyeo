@@ -116,12 +116,12 @@ class FreepostViewingPage extends Component {
     usercheck(){
         if(localStorage.getItem('uid')==this.state.FreePost.uid){
             return <div>
-                <button className= "scrapbutton" onClick={this.postlike} style={{width:"100px",height:"40px",marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>좋아요 {this.state.count}</button>
-                <button className="btn--primary" onClick={this.goToPEdit} style={{marginTop:"100px", marginLeft:"10px"}}>수정하기</button>
-        <button className="btn--primary" onClick={()=> this.deleteFreePost(this.state.Comments)} style={{marginTop:"100px", marginLeft:"10px"}}>삭제하기</button>
+               
+                <button className="btn--primary" onClick={this.goToPEdit} style={{marginTop:"50px", marginLeft:"10px"}}>수정하기</button>
+        <button className="btn--primary" onClick={()=> this.deleteFreePost(this.state.Comments)} style={{marginTop:"50px", marginLeft:"10px"}}>삭제하기</button>
          </div>
     }else{
-        return <button className= "scrapbutton" onClick={this.postlike} style={{width:"100px",height:"40px",marginTop:"100px", marginLeft:"10px",backgroundColor:this.state.background}}>좋아요 {this.state.count}</button>
+        return <button className= "scrapbutton" onClick={this.postlike} style={{width:"100px",height:"40px",marginTop:"50px", marginLeft:"10px",backgroundColor:this.state.background}}>좋아요 {this.state.count}</button>
     }
 
     }
@@ -173,11 +173,11 @@ class FreepostViewingPage extends Component {
                                 {this.state.FreePost.filename} 
                             </div >
                             </div >{this.usercheck()}
-                <div className="table-boarder5">
+                <div className="table-boarder5" style={{marginTop:"10px"}}>
                         <table  >
                         <thead >
                             <tr>
-                                <th width="10px"></th>
+                                <th width="30px"></th>
                                 <th width="500px"> </th>
                                 <th width="200px"></th>
                               
@@ -206,7 +206,7 @@ class FreepostViewingPage extends Component {
                                    <input type="text" placeholder="내용" name="" className="form-control" 
                                     value={this.state.c_writer} onChange={this.changec_writerHandler}/>
                                 </div>*/}
-                                <div className="table-boarder6">
+                                <div className="table-boarder6" style={{marginTop:"50px"}}>
                                     <label > 댓글달기  </label>
                                         <input type="text" placeholder="" name="" className="form-control-sub2" 
                                             value={this.state.c_content} onChange={this.changec_contentHandler}/>

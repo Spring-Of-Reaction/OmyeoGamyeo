@@ -32,8 +32,8 @@ function Cards() {
             />
             <CardItem
               src='path.png'
-              text='희망하는 학교까지의 예상 길찾기 서비스를 제공합니다 '
-              label='학교별 길찾기'
+              text='마이페이지에서 나만의 정보를 관리해요!'
+              label='마이페이지'
               path='/find'
             />
           </ul>

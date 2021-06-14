@@ -140,7 +140,7 @@ class ViewingPage extends Component {
                             <div className = "row">
                                 <label className="labels"  >  </label> <div className='contentbox'>  </div>
                             
-                                <label className="labels" >  </label> <div className='contentbox'>{this.state.Review.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자: {this.state.Review.nickname} </div>
+                                <label className="labels" >  </label> <div style={{marginLeft:"-200px"}} className='contentbox'>{this.state.Review.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 작성자: {this.state.Review.nickname} </div>
                             </div >
                         <div className='form-design2'>
                             <div className = "row">      
